@@ -8,22 +8,21 @@ import { site } from "@/lib/site"
 export function HomeHero() {
   return (
     <section className="relative flex flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
-      {/* Кадр усадьбы на весь экран с медленным наездом */}
-      <div className="absolute inset-0">
+      {/* На телефоне фото — отдельный понятный кадр, а не фон под всем контентом. */}
+      <div className="absolute inset-x-0 top-0 h-[26rem] sm:inset-0 sm:h-auto">
         <Image
           src="/images/estate/house-lawn.jpg"
           alt="Бревенчатый дом усадьбы среди сосен"
           fill
           priority
           sizes="100vw"
-          className="lux-ken-burns object-cover"
+          className="lux-ken-burns object-cover object-[52%_45%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/45 via-background/35 to-background sm:from-background/75 sm:via-background/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/55 via-background/20 to-transparent sm:from-background/70" />
-        <div className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-t from-background via-background/90 to-transparent sm:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/25 via-transparent to-background sm:from-background/75 sm:via-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/35 via-transparent to-transparent sm:from-background/70 sm:via-background/20" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-32 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-[21rem] min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
         <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
