@@ -8,8 +8,8 @@ import { site } from "@/lib/site"
 export function HomeHero() {
   return (
     <section className="relative flex flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
-      {/* На телефоне фото — отдельный понятный кадр, а не фон под всем контентом. */}
-      <div className="absolute inset-x-0 top-0 h-[26rem] sm:inset-0 sm:h-auto">
+      {/* На телефоне фото и текст образуют один компактный первый экран. */}
+      <div className="absolute inset-x-0 top-0 h-[39rem] sm:inset-0 sm:h-auto">
         <Image
           src="/images/estate/house-lawn.jpg"
           alt="Бревенчатый дом усадьбы среди сосен"
@@ -18,11 +18,12 @@ export function HomeHero() {
           sizes="100vw"
           className="lux-ken-burns object-cover object-[52%_45%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/25 via-transparent to-background sm:from-background/75 sm:via-background/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/35 via-transparent to-transparent sm:from-background/70 sm:via-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/10 to-background sm:from-background/75 sm:via-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/45 via-background/10 to-transparent sm:from-background/70 sm:via-background/20" />
+        <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-background via-background/75 to-transparent sm:hidden" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-[21rem] min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-64 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
         <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
@@ -31,7 +32,7 @@ export function HomeHero() {
         </p>
 
         <h1
-          className="lux-rise mt-4 max-w-3xl text-balance font-display text-[2.5rem] font-extrabold leading-[0.98] tracking-[-0.045em] text-foreground drop-shadow-sm min-[390px]:text-[2.85rem] sm:mt-7 sm:text-7xl sm:leading-[0.94] lg:text-[5.5rem]"
+          className="lux-rise mt-4 max-w-3xl text-balance font-display text-[2.5rem] font-extrabold leading-[0.98] tracking-[-0.045em] text-foreground [text-shadow:0_2px_18px_rgb(0_0_0/0.55)] min-[390px]:text-[2.85rem] sm:mt-7 sm:text-7xl sm:leading-[0.94] sm:[text-shadow:none] lg:text-[5.5rem]"
           style={{ animationDelay: "220ms" }}
         >
           Усадьба между
