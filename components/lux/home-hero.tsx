@@ -23,7 +23,7 @@ export function HomeHero() {
         <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-background via-background/75 to-transparent sm:hidden" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-6 pt-56 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-6 pt-32 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
         <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
