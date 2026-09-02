@@ -44,9 +44,8 @@ export async function FreeDates() {
             >
               <CalendarCheck className="mt-px size-4 shrink-0 text-accent" aria-hidden />
               <span className="text-pretty">
-                Даты обновляются автоматически вместе с календарём Авито. Минимальный заезд —{" "}
-                {settings.minimum_nights} {nightsWord(settings.minimum_nights)}; дом всегда сдаётся
-                целиком, без подселения.
+                Минимальный заезд — {settings.minimum_nights} {nightsWord(settings.minimum_nights)};
+                дом всегда сдается целиком, без подселения.
               </span>
             </p>
           </>

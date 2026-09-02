@@ -8,7 +8,7 @@ import { Container, Eyebrow } from "@/components/lux/ui"
 
 export function BookingCta({
   title = "Дом свободен чаще, чем кажется",
-  lead = "Напишите желаемые даты — ответим в течение часа и подскажем, какой сезон подойдёт вашей компании больше.",
+  lead = "Напишите желаемые даты — ответим в течение часа и подскажем, какой сезон подойдет вашей компании больше.",
   image = "/images/estate/chan-day.jpg",
   imageAlt = "Сибирский чан с дымом на фоне осеннего леса",
 }: {
@@ -51,7 +51,7 @@ export function BookingCta({
             href="/booking"
             className="inline-flex min-h-13 items-center justify-center rounded-full border border-foreground/25 px-8 text-[15px] font-semibold tracking-[-0.01em] text-foreground transition-colors hover:border-accent hover:text-accent"
           >
-            Календарь и расчёт
+            Календарь и расчет
           </Link>
         </div>
 

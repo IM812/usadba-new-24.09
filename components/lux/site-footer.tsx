@@ -19,7 +19,7 @@ export async function SiteFooter() {
               <span className="eyebrow mt-2 text-accent">в Антропково</span>
             </Link>
             <p className="max-w-xs text-pretty text-sm leading-relaxed text-muted-foreground">
-              Бревенчатый дом на 250 м² в сосновом бору между двумя озёрами. Сдаётся целиком, без
+              Бревенчатый дом на 250 м² в сосновом бору между двумя озерами. Сдается целиком, без
               соседей и посторонних.
             </p>
             <p className="text-[13px] text-muted-foreground">
@@ -83,7 +83,7 @@ export async function SiteFooter() {
             © {year} {site.name}
           </p>
           <p className="text-pretty">
-            {`Дом сдаётся целиком · Заезд с ${settings.check_in_time}, выезд до ${settings.check_out_time} · Условия подтверждаем перед бронированием`}
+            {`Дом сдается целиком · Заезд с ${settings.check_in_time}, выезд до ${settings.check_out_time} · Условия подтверждаем перед бронированием`}
           </p>
         </div>
       </Container>

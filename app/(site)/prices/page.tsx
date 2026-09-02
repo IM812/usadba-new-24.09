@@ -92,13 +92,12 @@ export default async function PricesPage() {
               <p>Уборка после выезда входит в стоимость — доплачивать ничего не нужно.</p>
             )}
             <p>{spaSurcharge.full}</p>
-            <p>Праздничные даты считаются по тарифу выходного дня.</p>
           </div>
 
           <div className="mt-12 flex flex-col gap-4 sm:flex-row">
             <BookButton>Проверить даты</BookButton>
             <LuxLink href="/booking" variant="outline">
-              Календарь и расчёт
+              Календарь и расчет
             </LuxLink>
           </div>
         </Container>
@@ -150,14 +149,14 @@ export default async function PricesPage() {
           </dl>
           <p className="mt-12 max-w-2xl text-pretty text-[15px] leading-relaxed text-muted-foreground">
             Если планируете приехать с питомцем или вам нужен нестандартный график заезда,
-            сообщите об этом заранее — подтвердим воз��ожность и условия до бронирования.
+            сообщите об этом заранее — уточним условия до бронирования.
           </p>
         </Container>
       </Section>
 
       <BookingCta
         image="/images/estate/house-lawn.jpg"
-        imageAlt="Бревенчатый дом усадьбы на зелёной поляне среди сосен"
+        imageAlt="Бревенчатый дом усадьбы на зеленой поляне среди сосен"
         title="Посчитаем ваши даты"
         lead="Откройте календарь — свободные дни, точная сумма и минимальный срок появятся сразу."
       />

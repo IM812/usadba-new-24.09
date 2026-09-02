@@ -5,7 +5,7 @@ import { PageHero } from "@/components/lux/page-hero"
 import { BookingCalendar } from "@/components/lux/booking-calendar"
 import { Container, Section, SectionHeading, Eyebrow, TextLink } from "@/components/lux/ui"
 import { contacts } from "@/lib/site"
-import { getRates, formatMoney } from "@/lib/rates"
+import { getRates } from "@/lib/rates"
 
 export const metadata: Metadata = {
   title: "Бронирование",
@@ -41,7 +41,7 @@ export default async function BookingPage() {
       <PageHero
         eyebrow="Бронирование"
         title="Свободные даты усадьбы"
-        lead={`Дом сдаётся целиком: до ${settings.max_guests} гостей, базовое размещение — ${settings.base_guests} человек. Отметьте даты, и мы сразу посчитаем стоимость.`}
+        lead={`Дом сдается целиком: до ${settings.max_guests} гостей, базовое размещение — ${settings.base_guests} человек. Отметьте даты, и мы сразу посчитаем стоимость.`}
         image="/images/estate/house-facade.jpg"
         imageAlt="Фасад бревенчатого дома усадьбы среди сосен"
         size="short"
@@ -97,9 +97,6 @@ export default async function BookingPage() {
             <TextLink href={contacts.whatsapp}>Написать в WhatsApp</TextLink>
           </div>
 
-          <p className="mt-12 text-[13px] text-muted-foreground">
-            Тариф начинается от {formatMoney(settings.base_price)} ₽ за дом целиком в сутки.
-          </p>
         </Container>
       </Section>
     </>

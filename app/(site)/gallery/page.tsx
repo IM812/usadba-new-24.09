@@ -21,13 +21,13 @@ export default function GalleryPage() {
         lead="Все фотографии сделаны здесь, в разные годы и сезоны. Мы не заказывали рендеры и не переставляли мебель ради кадра."
         image="/images/estate/house-autumn.jpg"
         imageAlt="Бревенчатый дом усадьбы среди осеннего соснового леса"
-        meta={[`${galleryPhotos.length} фотографий`, "4 сезона", "дом, баня, чан, озеро"]}
+        meta={["8 фотографий", "4 сезона", "дом, баня, чан, озеро"]}
       />
 
       <Section tone="base">
         <Container size="wide">
           <div data-reveal>
-            <PhotoGrid photos={galleryPhotos} />
+            <PhotoGrid photos={galleryPhotos.slice(0, 8)} />
           </div>
         </Container>
       </Section>
@@ -70,7 +70,7 @@ export default function GalleryPage() {
 
       <BookingCta
         title="Хотите увидеть больше?"
-        lead="Напишите нам — пришлём свежие фотографии и видео с территории, снятые на этой неделе."
+        lead="Напишите нам — пришлем свежие фотографии и видео с территории, снятые на этой неделе."
         image="/images/estate/house-lawn.jpg"
         imageAlt="Усадьба и газон перед домом летом"
       />

@@ -36,15 +36,15 @@ export function HomeHero() {
         >
           Усадьба между
           <br />
-          двумя озёрами
+          двумя озерами
         </h1>
 
         <p
           className="lux-rise mt-5 max-w-lg text-pretty text-[15px] leading-relaxed text-foreground/70 sm:mt-8 sm:text-lg"
           style={{ animationDelay: "360ms" }}
         >
-          Бревенчатый дом 250 м² в сосновом бору. Баня на дровах, сибирский чан под звёздами и
-          собственный причал. Дом сдаётся целиком — только для вашей компании.
+          Бревенчатый дом 250 м² в сосновом бору. Баня на дровах, сибирский чан под звездами и
+          собственный причал. Дом сдается целиком — только для вашей компании.
         </p>
 
         <div
@@ -60,7 +60,7 @@ export function HomeHero() {
         <WeatherBadge className="lux-rise mt-6 inline-block text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-accent sm:mt-8" />
 
         {/* Полоса ключевых фактов. На телефоне подписи убраны — крупные значения
-            читаются и без них, а герой перестаёт вылезать за экран. */}
+            читаются и без них, а герой перестает вылезать за экран. */}
         <dl
           className="lux-rise mt-8 grid grid-cols-2 gap-x-6 gap-y-5 rounded-3xl border border-border bg-card/55 p-5 backdrop-blur-md sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:p-7"
           style={{ animationDelay: "620ms" }}

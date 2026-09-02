@@ -27,8 +27,8 @@ export function PageHero({
       className={cn(
         "relative flex items-end overflow-hidden pt-28",
         size === "default"
-          ? "min-h-[62svh] pb-14 sm:min-h-[70svh] sm:pb-20"
-          : "min-h-[46svh] pb-12 sm:min-h-[52svh] sm:pb-16",
+          ? "min-h-[56svh] pb-12 sm:min-h-[62svh] sm:pb-16"
+          : "min-h-[42svh] pb-10 sm:min-h-[48svh] sm:pb-14",
       )}
     >
       <Image
