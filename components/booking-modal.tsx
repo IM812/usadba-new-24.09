@@ -437,7 +437,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
   const [appSettings, setAppSettings] = useState<AppSettings>({
     base_price: 20_000,
     weekend_price: 24_000,
-    extra_guest_price: 0,
+    extra_guest_price: 1650,
     cleaning_fee: 0,
     minimum_nights: 1,
     base_guests: 8,

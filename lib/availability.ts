@@ -25,7 +25,7 @@ export type SeasonalPrice = {
 export const DEFAULT_SETTINGS: AvailabilitySettings = {
   base_price: 20000,
   weekend_price: 24000,
-  extra_guest_price: 0,
+  extra_guest_price: 1650,
   cleaning_fee: 0,
   minimum_nights: 1,
   base_guests: 8,

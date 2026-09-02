@@ -159,7 +159,7 @@ export async function POST(req: Request) {
     const basePrice = settings?.base_price ?? 20000
     const weekendPrice = settings?.weekend_price ?? 24000
     const priceMode = settings?.price_mode ?? 'base'
-    const extraGuestPrice = settings?.extra_guest_price ?? 1500
+    const extraGuestPrice = settings?.extra_guest_price ?? 1650
     const baseGuests = settings?.base_guests ?? 8
     const maxGuests = settings?.max_guests ?? 15
     const guestsCount = parseInt(guests) || 1

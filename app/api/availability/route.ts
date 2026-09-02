@@ -56,7 +56,7 @@ export async function GET() {
       settings: {
         base_price: settings?.base_price ?? 20000,
         weekend_price: settings?.weekend_price ?? 24000,
-        extra_guest_price: settings?.extra_guest_price ?? 0,
+        extra_guest_price: settings?.extra_guest_price ?? 1650,
         cleaning_fee: settings?.cleaning_fee ?? 0,
         minimum_nights: settings?.minimum_nights ?? 1,
         base_guests: settings?.base_guests ?? 8,

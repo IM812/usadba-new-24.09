@@ -19,7 +19,7 @@ import {
 import { LodgingJsonLd } from "@/components/json-ld"
 import { getRates } from "@/lib/rates"
 import { getReviews } from "@/lib/reviews"
-import { estateFacts, includedInStay, navigation, site, spaSurcharge } from "@/lib/site"
+import { estateFacts, extraGuestPolicy, includedInStay, navigation, site, spaSurcharge, waterEquipmentPolicy } from "@/lib/site"
 
 const chapters: {
   href: string
@@ -35,7 +35,7 @@ const chapters: {
     label: "Усадьба",
     image: "/images/estate/living-sofas.jpg",
     alt: "Гостиная усадьбы: большие диваны, книжные полки и бревенчатые стены",
-    line: "Четыре спальни, каждая со своим санузлом, и гостиная, где помещается вся компания.",
+    line: "Четыре отдельные спальни и гостиная с камином, мягкими диванами и небольшим столом.",
   },
   {
     href: "/spa",
@@ -52,7 +52,7 @@ const chapters: {
     // Кадр широкий, а карточка вертикальная: центральная обрезка съедала
     // берег с горизонтом и оставляла одну воду. Тянем кадр к верху.
     focus: "object-top",
-    line: "Два озера, свой причал, лодка, сап-борды и грибной бор за домом.",
+    line: "Два озера, свой причал и грибной бор за домом. Лодку и сап-борды можно заказать отдельно.",
   },
 ]
 
@@ -167,7 +167,7 @@ export default async function HomePage() {
               <SectionHeading
                 eyebrow="Включено в проживание"
                 title="Уже в стоимости"
-                lead={`Отдельно оплачиваются только баня с чаном — ${spaSurcharge.priceLabel} ${spaSurcharge.unit}.`}
+                lead={`${extraGuestPolicy.label}. ${spaSurcharge.short}. ${waterEquipmentPolicy}`}
               />
               <ul className="flex flex-col">
                 {includedInStay.map((item) => (

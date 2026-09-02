@@ -6,7 +6,7 @@ import { BookingCta } from "@/components/lux/booking-cta"
 import { BookButton } from "@/components/lux/book-button"
 import { Container, Section, SectionHeading, Eyebrow, LuxLink, Divider } from "@/components/lux/ui"
 import { getRates, formatMonthDay, formatMoney, seasonTitle } from "@/lib/rates"
-import { includedInStay, spaSurcharge } from "@/lib/site"
+import { extraGuestPolicy, includedInStay, spaSurcharge, waterEquipmentPolicy } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Цены и тарифы",
@@ -37,7 +37,7 @@ export default async function PricesPage() {
       <PageHero
         eyebrow="Цены"
         title={<>От {formatMoney(minPrice)} ₽ за дом целиком</>}
-        lead="Вы платите за усадьбу, а не за место в ней: 250 м², четыре спальни, баня и чан достаются одной компании. Тариф зависит только от сезона и дня недели."
+        lead="Вы арендуете усадьбу целиком. Цена зависит от сезона, дня недели и количества гостей; дополнительные услуги оплачиваются отдельно."
         image="/images/estate/terrace-lounge.jpg"
         imageAlt="Терраса усадьбы в золотую осень"
       />
@@ -85,12 +85,7 @@ export default async function PricesPage() {
           </div>
 
           <div className="mt-8 flex flex-col gap-3 text-[13px] leading-relaxed text-muted-foreground">
-            {settings.extra_guest_price > 0 ? (
-              <p>
-                Свыше {settings.base_guests} гостей — {formatMoney(settings.extra_guest_price)} ₽ за
-                каждого дополнительного гостя в сутки (до {settings.max_guests} человек).
-              </p>
-            ) : null}
+            <p>{extraGuestPolicy.label} (до {settings.max_guests} человек).</p>
             {settings.cleaning_fee > 0 ? (
               <p>Уборка после выезда — {formatMoney(settings.cleaning_fee)} ₽ единоразово.</p>
             ) : (
@@ -117,13 +112,14 @@ export default async function PricesPage() {
               <SectionHeading
                 eyebrow="Что уже оплачено"
                 title="Что входит в стоимость"
-                lead="Дрова для камина, лодка и сапы — без отдельного счёта: иначе отдых превращается в счёт из мини-бара."
+                lead="В базовую стоимость входит аренда дома целиком и перечисленные удобства. Дополнительные услуги считаются отдельно."
               />
               <Divider className="mt-10" />
-              <p className="mt-6 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-                Условия посещения бани и сибирского чана, а также размещения сверх базового,
-                согласовываются для выбранных дат до подтверждения бронирования.
-              </p>
+              <div className="mt-6 flex max-w-md flex-col gap-2 text-[15px] leading-relaxed text-muted-foreground">
+                <p>{extraGuestPolicy.label}.</p>
+                <p>{spaSurcharge.full}</p>
+                <p>{waterEquipmentPolicy}</p>
+              </div>
             </div>
 
             <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
@@ -160,8 +156,8 @@ export default async function PricesPage() {
       </Section>
 
       <BookingCta
-        image="/images/estate/chan-day.jpg"
-        imageAlt="Сибирский чан на фоне осеннего леса"
+        image="/images/estate/house-lawn.jpg"
+        imageAlt="Бревенчатый дом усадьбы на зелёной поляне среди сосен"
         title="Посчитаем ваши даты"
         lead="Откройте календарь — свободные дни, точная сумма и минимальный срок появятся сразу."
       />

@@ -2,183 +2,52 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import { BookingCta } from "@/components/lux/booking-cta"
 import { PageHero } from "@/components/lux/page-hero"
-import {
-  Container,
-  Divider,
-  Eyebrow,
-  FactList,
-  Section,
-  SectionHeading,
-  TextLink,
-} from "@/components/lux/ui"
-import { estateFacts, includedInStay, rooms, spaSurcharge } from "@/lib/site"
+import { Container, Divider, Eyebrow, FactList, Section, SectionHeading, TextLink } from "@/components/lux/ui"
+import { estateFacts, includedInStay, rooms, spaSurcharge, extraGuestPolicy, waterEquipmentPolicy } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Усадьба",
-  description:
-    "Бревенчатый дом 250 м²: гостиная с камином, четыре спальни со своими санузлами и оборудованная кухня. Дом сдаётся целиком.",
+  description: "Бревенчатый дом 250 м² с гостиной и камином, четырьмя спальнями и оборудованной кухней. Дом сдаётся целиком.",
 }
 
 const houseNotes = [
-  {
-    title: "Кухня",
-    text: "Полностью оборудованная кухня, посудомоечная машина и всё необходимое для приготовления еды во время отдыха.",
-  },
-  {
-    title: "Гостиная",
-    text: "Просторная общая зона с настоящим камином, большим столом и окнами в сосновый лес.",
-  },
-  {
-    title: "Санузлы",
-    text: "В каждой из четырёх спален есть отдельный санузел с душем.",
-  },
-  {
-    title: "Связь",
-    text: "В доме работает Wi-Fi, поэтому при необходимости можно оставаться на связи.",
-  },
+  { title: "Кухня", text: "Полностью оборудованная кухня, посудомоечная машина и всё необходимое для приготовления еды во время отдыха." },
+  { title: "Гостиная", text: "Общая зона с настоящим камином, мягкими диванами, книжными полками и небольшим столом." },
+  { title: "Спальни", text: "В доме четыре отдельные спальни. Схему размещения под состав компании подтверждаем до бронирования." },
+  { title: "Связь", text: "В доме работает Wi-Fi, поэтому при необходимости можно оставаться на связи." },
 ]
 
 export default function EstatePage() {
+  const livingRoom = rooms[0]
+  const bedrooms = rooms[1]
+
   return (
     <>
-      <PageHero
-        eyebrow="Усадьба"
-        title="Бревенчатый дом на 250 квадратных метров"
-        lead="Большой дом из круглого бревна: просторная гостиная с камином, четыре спальни со своими санузлами и полностью оборудованная кухня."
-        image="/images/estate/house-autumn.jpg"
-        imageAlt="Бревенчатый дом усадьбы в осеннем сосновом лесу"
-        meta={["250 м²", "4 спальни", "санузел в каждой спальне", "дом целиком"]}
-      />
+      <PageHero eyebrow="Усадьба" title="Бревенчатый дом на 250 квадратных метров" lead="Дом из круглого бревна с гостиной и камином, четырьмя отдельными спальнями и полностью оборудованной кухней." image="/images/estate/house-lawn.jpg" imageAlt="Бревенчатый дом усадьбы на зелёной поляне среди сосен" meta={["250 м²", "4 спальни", "дом целиком", "до 8 гостей в базовой цене"]} />
 
-      {/* ===== Факты ===== */}
-      <Section tone="raised" className="py-16 sm:py-20">
-        <Container size="wide">
-          <div data-reveal>
-            <FactList items={estateFacts} />
-          </div>
-        </Container>
-      </Section>
+      <Section tone="raised" className="py-16 sm:py-20"><Container size="wide"><div data-reveal><FactList items={estateFacts} /></div></Container></Section>
 
-      {/* ===== Комнаты ===== */}
       <Section tone="base">
         <Container size="wide">
-          <div data-reveal>
-            <SectionHeading
-              eyebrow="Комнаты"
-              title="Каждому — своя дверь"
-              lead="Спальни разведены по этажам и сторонам дома, поэтому большая компания не мешает друг другу. В каждой спальне — свой душ и туалет."
-            />
-          </div>
+          <div data-reveal><SectionHeading eyebrow="Дом" title="Реальные комнаты, без придуманных названий" lead="Показываем дом таким, какой он есть. Если важна конкретная схема кроватей, подтвердим её для состава вашей компании перед бронированием." /></div>
 
-          <div className="mt-16 flex flex-col gap-20 lg:gap-28">
-            {rooms.map((room, i) => (
-              <article
-                key={room.id}
-                data-reveal
-                className={`grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16 ${
-                  i % 2 === 1 ? "lg:[&>figure]:order-2" : ""
-                }`}
-              >
-                <figure className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-secondary lg:aspect-3/2">
-                  <Image
-                    src={room.image || "/placeholder.svg"}
-                    alt={`${room.name} — ${room.kind.toLowerCase()} в усадьбе`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </figure>
+          <article data-reveal className="mt-16 grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
+            <figure className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary lg:aspect-3/2"><Image src={livingRoom.image} alt="Гостиная с мягкими диванами, книжными полками и окнами" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></figure>
+            <div className="flex flex-col gap-5"><Eyebrow>{livingRoom.kind}</Eyebrow><h2 className="text-balance font-display text-[1.75rem] font-semibold leading-tight text-foreground sm:text-4xl">{livingRoom.name}</h2><p className="max-w-lg text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">{livingRoom.description}</p><Divider /><ul className="flex flex-wrap gap-x-6 gap-y-2">{livingRoom.features.map((feature) => <li key={feature} className="text-[13px] tracking-wide text-foreground/70">{feature}</li>)}</ul></div>
+          </article>
 
-                <div className="flex flex-col gap-5">
-                  <Eyebrow>{room.kind}</Eyebrow>
-                  <h3 className="text-balance font-display text-[1.75rem] font-semibold leading-tight text-foreground sm:text-4xl">
-                    {room.name}
-                  </h3>
-                  <p className="max-w-lg text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">
-                    {room.description}
-                  </p>
-
-                  <dl className="mt-1 flex flex-wrap gap-x-10 gap-y-3 text-[13px]">
-                    <div>
-                      <dt className="eyebrow text-muted-foreground">Площадь</dt>
-                      <dd className="mt-1.5 text-foreground">{room.area}</dd>
-                    </div>
-                    <div>
-                      <dt className="eyebrow text-muted-foreground">Вместимость</dt>
-                      <dd className="mt-1.5 text-foreground">{room.capacity}</dd>
-                    </div>
-                  </dl>
-
-                  <Divider className="mt-2" />
-
-                  <ul className="flex flex-wrap gap-x-6 gap-y-2">
-                    {room.features.map((f) => (
-                      <li key={f} className="text-[13px] tracking-wide text-foreground/70">
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
+          <article data-reveal className="mt-24 lg:mt-32">
+            <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16"><div className="flex flex-col gap-5"><Eyebrow>{bedrooms.kind}</Eyebrow><h2 className="text-balance font-display text-[1.75rem] font-semibold leading-tight text-foreground sm:text-4xl">{bedrooms.name}</h2><p className="text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">{bedrooms.description}</p></div><ul className="flex flex-wrap gap-x-6 gap-y-2 lg:justify-end">{bedrooms.features.map((feature) => <li key={feature} className="text-[13px] tracking-wide text-foreground/70">{feature}</li>)}</ul></div>
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">{bedrooms.images?.map((src, index) => <figure key={src} className="relative aspect-3/4 overflow-hidden rounded-2xl bg-secondary"><Image src={src} alt={`Одна из четырёх спален усадьбы, фотография ${index + 1}`} fill sizes="(max-width: 640px) 50vw, 25vw" className="object-cover" /></figure>)}</div>
+          </article>
         </Container>
       </Section>
 
-      {/* ===== Бытовые детали ===== */}
-      <Section tone="deep">
-        <Container size="wide">
-          <div data-reveal className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-            <SectionHeading eyebrow="Детали" title="То, о чём обычно спрашивают" />
+      <Section tone="deep"><Container size="wide"><div data-reveal className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"><SectionHeading eyebrow="Детали" title="То, о чём обычно спрашивают" /><div className="grid gap-x-12 gap-y-10 sm:grid-cols-2">{houseNotes.map((note) => <div key={note.title} className="flex flex-col gap-3 border-t border-border pt-5"><h3 className="font-display text-xl font-semibold text-accent">{note.title}</h3><p className="text-pretty text-[15px] leading-relaxed text-muted-foreground">{note.text}</p></div>)}</div></div></Container></Section>
 
-            <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
-              {houseNotes.map((n) => (
-                <div key={n.title} className="flex flex-col gap-3 border-t border-border pt-5">
-                  <h3 className="font-display text-xl font-semibold text-accent">{n.title}</h3>
-                  <p className="text-pretty text-[15px] leading-relaxed text-muted-foreground">
-                    {n.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <Section tone="base"><Container size="wide"><div data-reveal className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"><div className="flex flex-col gap-8"><SectionHeading eyebrow="Включено" title="Что входит в проживание" lead="Дополнительные услуги и размещение сверх восьми гостей считаются отдельно." /><div className="flex flex-col gap-2 text-[14px] leading-relaxed text-muted-foreground"><p>{extraGuestPolicy.label}.</p><p>{spaSurcharge.short}.</p><p>{waterEquipmentPolicy}</p></div><TextLink href="/prices">Смотреть цены</TextLink></div><ul className="grid gap-x-12 sm:grid-cols-2">{includedInStay.map((item) => <li key={item} className="flex items-baseline gap-4 border-b border-border py-4 text-[15px] leading-relaxed text-foreground/85"><span aria-hidden className="mt-1 inline-block size-1 shrink-0 rounded-full bg-accent" />{item}</li>)}</ul></div></Container></Section>
 
-      {/* ===== Включено ===== */}
-      <Section tone="base">
-        <Container size="wide">
-          <div data-reveal className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-            <div className="flex flex-col gap-8">
-              <SectionHeading
-                eyebrow="Включено"
-                title="Без скрытых доплат"
-                lead={`Единственная услуга сверх проживания — баня с чаном, ${spaSurcharge.priceLabel} ${spaSurcharge.unit}.`}
-              />
-              <TextLink href="/prices">Смотреть цены</TextLink>
-            </div>
-
-            <ul className="grid gap-x-12 sm:grid-cols-2">
-              {includedInStay.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-baseline gap-4 border-b border-border py-4 text-[15px] leading-relaxed text-foreground/85"
-                >
-                  <span aria-hidden className="mt-1 inline-block size-1 shrink-0 rounded-full bg-accent" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Container>
-      </Section>
-
-      <BookingCta
-        title="Посмотрите дом своими глазами"
-        lead="Расскажите, сколько вас и на какие даты — подберём подходящий сезон и пришлём подробные фотографии всех комнат."
-        image="/images/estate/fireplace.jpg"
-        imageAlt="Кирпичный камин в гостиной усадьбы"
-      />
+      <BookingCta title="Посмотрите дом своими глазами" lead="Расскажите, сколько вас и на какие даты — подтвердим размещение и пришлём дополнительные фотографии комнат." image="/images/estate/house-facade.jpg" imageAlt="Фасад бревенчатого дома усадьбы среди сосен" />
     </>
   )
 }
