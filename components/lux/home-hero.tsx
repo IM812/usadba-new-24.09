@@ -7,7 +7,7 @@ import { site } from "@/lib/site"
 
 export function HomeHero() {
   return (
-    <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
+    <section className="relative flex flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
       {/* Кадр усадьбы на весь экран с медленным наездом */}
       <div className="absolute inset-0">
         <Image
@@ -23,7 +23,7 @@ export function HomeHero() {
         <div className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-t from-background via-background/90 to-transparent sm:hidden" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-6 pt-24 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-32 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
         <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
