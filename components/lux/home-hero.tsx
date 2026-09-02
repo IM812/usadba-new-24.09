@@ -7,7 +7,7 @@ import { site } from "@/lib/site"
 
 export function HomeHero() {
   return (
-    <section className="relative flex min-h-[68svh] flex-col overflow-hidden pb-8 sm:min-h-[100svh] sm:justify-end sm:pb-0">
+    <section className="relative flex min-h-[86svh] flex-col overflow-hidden pb-7 sm:min-h-[100svh] sm:justify-end sm:pb-0">
       {/* Затемнение идет сверху вниз: текст читается, а нижняя половина
           остается открытой фотографией — без черной полосы. */}
       <div className="absolute inset-0">
@@ -24,7 +24,7 @@ export function HomeHero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background/85 to-transparent sm:hidden" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pt-28 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pt-28 min-[390px]:px-5 sm:block sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
         <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
@@ -53,7 +53,7 @@ export function HomeHero() {
         </p>
 
         <div
-          className="lux-rise mt-5 flex flex-col gap-2 [&>*]:h-11 [&>*]:w-full sm:mt-10 sm:flex-row sm:items-center sm:gap-3 sm:[&>*]:h-auto sm:[&>*]:w-auto"
+          className="lux-rise mt-auto flex flex-col gap-2.5 pt-10 [&>*]:h-12 [&>*]:w-full sm:mt-10 sm:flex-row sm:items-center sm:gap-3 sm:pt-0 sm:[&>*]:h-auto sm:[&>*]:w-auto"
           style={{ animationDelay: "480ms" }}
         >
           <BookButton>Забронировать даты</BookButton>
@@ -71,7 +71,7 @@ export function HomeHero() {
         {/* На телефоне показываем только три действительно полезных параметра,
             остальные детали остаются в полной десктопной полосе. */}
         <dl
-          className="lux-rise mt-2 grid grid-cols-3 gap-2 rounded-2xl border border-foreground/15 bg-background/50 p-3.5 backdrop-blur-md sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:border-border sm:bg-card/70 sm:p-7"
+          className="lux-rise mt-3 grid grid-cols-3 gap-2 rounded-2xl border border-foreground/15 bg-background/50 p-3.5 backdrop-blur-md sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:border-border sm:bg-card/70 sm:p-7"
           style={{ animationDelay: "620ms" }}
         >
           {[
