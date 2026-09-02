@@ -8,8 +8,8 @@ import { site } from "@/lib/site"
 export function HomeHero() {
   return (
     <section className="relative flex flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
-      {/* На телефоне фото и текст образуют один компактный первый экран. */}
-      <div className="absolute inset-x-0 top-0 h-[39rem] sm:inset-0 sm:h-auto">
+      {/* Фото заполняет весь hero без визуального обрыва под кнопками. */}
+      <div className="absolute inset-0">
         <Image
           src="/images/estate/house-lawn.jpg"
           alt="Бревенчатый дом усадьбы среди сосен"
@@ -23,7 +23,7 @@ export function HomeHero() {
         <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-background via-background/75 to-transparent sm:hidden" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-8 pt-64 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-6 pt-56 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
         <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
@@ -32,7 +32,7 @@ export function HomeHero() {
         </p>
 
         <h1
-          className="lux-rise mt-4 max-w-3xl text-balance font-display text-[2.5rem] font-extrabold leading-[0.98] tracking-[-0.045em] text-foreground [text-shadow:0_2px_18px_rgb(0_0_0/0.55)] min-[390px]:text-[2.85rem] sm:mt-7 sm:text-7xl sm:leading-[0.94] sm:[text-shadow:none] lg:text-[5.5rem]"
+          className="lux-rise mt-3 max-w-3xl text-balance font-display text-[2.15rem] font-extrabold leading-[1] tracking-[-0.04em] text-foreground [text-shadow:0_2px_18px_rgb(0_0_0/0.55)] min-[390px]:text-[2.35rem] sm:mt-7 sm:text-7xl sm:leading-[0.94] sm:[text-shadow:none] lg:text-[5.5rem]"
           style={{ animationDelay: "220ms" }}
         >
           Усадьба между
@@ -41,7 +41,7 @@ export function HomeHero() {
         </h1>
 
         <p
-          className="lux-rise mt-4 max-w-lg text-pretty text-base leading-[1.5] text-foreground/85 sm:mt-8 sm:text-lg"
+          className="lux-rise mt-3 max-w-lg text-pretty text-[15px] leading-[1.45] text-foreground/85 sm:mt-8 sm:text-lg"
           style={{ animationDelay: "360ms" }}
         >
           <span className="sm:hidden">Дом, баня, чан и свой причал. Вся усадьба — только для вашей компании.</span>
@@ -52,7 +52,7 @@ export function HomeHero() {
         </p>
 
         <div
-          className="lux-rise mt-6 flex flex-col gap-3 [&>*]:w-full sm:mt-10 sm:flex-row sm:items-center sm:[&>*]:w-auto"
+          className="lux-rise mt-5 flex flex-col gap-2 [&>*]:h-11 [&>*]:w-full sm:mt-10 sm:flex-row sm:items-center sm:gap-3 sm:[&>*]:h-auto sm:[&>*]:w-auto"
           style={{ animationDelay: "480ms" }}
         >
           <BookButton>Забронировать даты</BookButton>
@@ -66,7 +66,7 @@ export function HomeHero() {
         {/* На телефоне показываем только три действительно полезных параметра,
             остальные детали остаются в полной десктопной полосе. */}
         <dl
-          className="lux-rise mt-6 grid grid-cols-3 gap-2 border-t border-foreground/15 pt-4 sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:border sm:border-border sm:bg-card/70 sm:p-7 sm:backdrop-blur-md"
+          className="lux-rise mt-5 grid grid-cols-3 gap-2 border-t border-foreground/15 pt-3 sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:border sm:border-border sm:bg-card/70 sm:p-7 sm:backdrop-blur-md"
           style={{ animationDelay: "620ms" }}
         >
           {[
