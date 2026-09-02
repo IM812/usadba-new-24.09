@@ -23,7 +23,7 @@ export default function EstatePage() {
 
   return (
     <>
-      <PageHero eyebrow="Усадьба" title="Бревенчатый дом на 250 квадратных метров" lead="Дом из круглого бревна с гостиной и камином, четырьмя отдельными спальнями и полностью оборудованной кухней." image="/images/estate/house-lawn.jpg" imageAlt="Бревенчатый дом усадьбы на зелёной поляне среди сосен" meta={["250 м²", "4 спальни", "дом целиком", "до 8 гостей в базовой цене"]} />
+      <PageHero eyebrow="Усадьба" title="Бревенчатый дом на 250 квадратных метров" lead="Дом из круглого бревна с гостиной и камином, четырьмя отдельными спальнями и полностью оборудованной кухней." image="/images/estate/house-autumn.jpg" imageAlt="Бревенчатый дом усадьбы целиком среди золотого осеннего леса" meta={["250 м²", "4 спальни", "дом целиком", "до 8 гостей в базовой цене"]} />
 
       <Section tone="raised" className="py-16 sm:py-20"><Container size="wide"><div data-reveal><FactList items={estateFacts} /></div></Container></Section>
 

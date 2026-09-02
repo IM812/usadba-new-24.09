@@ -11,8 +11,8 @@ export function HomeHero() {
       {/* Кадр усадьбы на весь экран с медленным наездом */}
       <div className="absolute inset-0">
         <Image
-          src="/images/estate/house-lawn.jpg"
-          alt="Бревенчатый дом усадьбы в сосновом бору"
+          src="/images/estate/house-autumn.jpg"
+          alt="Бревенчатый дом усадьбы в золотом сосновом бору"
           fill
           priority
           sizes="100vw"

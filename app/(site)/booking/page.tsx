@@ -42,8 +42,8 @@ export default async function BookingPage() {
         eyebrow="Бронирование"
         title="Свободные даты усадьбы"
         lead={`Дом сдаётся целиком: до ${settings.max_guests} гостей, базовое размещение — ${settings.base_guests} человек. Отметьте даты, и мы сразу посчитаем стоимость.`}
-        image="/images/estate/house-lawn.jpg"
-        imageAlt="Усадьба и газон перед домом летом"
+        image="/images/estate/house-facade.jpg"
+        imageAlt="Фасад бревенчатого дома усадьбы среди сосен"
         size="short"
       />
 
