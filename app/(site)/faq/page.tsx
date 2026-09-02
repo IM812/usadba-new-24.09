@@ -63,6 +63,8 @@ export default async function FaqPage() {
           <p className="mt-12 text-pretty leading-relaxed text-muted-foreground">
             {"Остались вопросы? Напишите в "}
             <TextLink href={contacts.whatsapp}>WhatsApp</TextLink>
+            {", напишите в сообщество "}
+            <TextLink href={contacts.vk}>ВКонтакте</TextLink>
             {" или позвоните — "}
             <TextLink href={contacts.phoneHref}>{contacts.phoneLabel}</TextLink>
             {"."}
@@ -71,8 +73,8 @@ export default async function FaqPage() {
       </Section>
 
       <BookingCta
-        image="/images/estate/banya-fire.jpg"
-        imageAlt="Баня на дровах на фоне соснового леса"
+        image="/images/estate/house-lawn.jpg"
+        imageAlt="Бревенчатый дом усадьбы на зелёной поляне среди сосен"
         title="Проверим ваши даты"
         lead="Отправьте заявку — подтвердим свободные дни и пришлём условия."
       />

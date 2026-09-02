@@ -13,7 +13,7 @@ function fallbackFaq(s: RateSettings): FaqItem[] {
     {
       question: 'Сколько человек вмещает усадьба?',
       answer:
-        'В доме четыре просторные спальни, каждая со своим санузлом. Уточните состав вашей компании при бронировании — мы подтвердим подходящее размещение.',
+        `Усадьба рассчитана максимум на ${s.max_guests} гостей. В базовую стоимость входит проживание до ${s.base_guests} человек, за каждого дополнительного гостя предусмотрена доплата.`,
     },
     {
       question: 'Как далеко усадьба от Москвы и Петербурга?',
@@ -33,9 +33,9 @@ function fallbackFaq(s: RateSettings): FaqItem[] {
     {
       question: 'Есть ли минимальный срок аренды?',
       answer:
-        s.minimum_nights > 1
-          ? `Для доступных сейчас тарифов минимальный срок — ${s.minimum_nights} ночи. Для праздников и отдельных дат условия могут отличаться.`
-          : 'Минимальный срок зависит от выбранных дат. Актуальные условия покажет календарь, а окончательно их подтвердит администратор.',
+        s.minimum_nights === 1
+          ? 'Минимальный срок аренды — одни сутки.'
+          : `Минимальный срок аренды — ${s.minimum_nights} ночи.`,
     },
     {
       question: 'Как забронировать?',
@@ -56,7 +56,14 @@ export async function getFaq(): Promise<FaqItem[]> {
       .order('sort_order', { ascending: true })
 
     if (data?.length) {
-      return data.map((r) => ({ question: r.question, answer: r.answer }))
+      const verifiedAnswers = new Map(
+        fallbackFaq(settings).map((item) => [item.question, item.answer]),
+      )
+
+      return data.map((r) => ({
+        question: r.question,
+        answer: verifiedAnswers.get(r.question) ?? r.answer,
+      }))
     }
   } catch {
     // тихо переходим на резервный список

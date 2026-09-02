@@ -17,6 +17,7 @@ export const contacts = {
   phoneHref: 'tel:+79951558842',
   whatsapp: 'https://wa.me/79951558842',
   telegram: 'https://t.me/usadba_antropkovo',
+  vk: 'https://vk.com/usadba_antropkovo',
   email: 'hello@nuzhensite.site',
   emailHref: 'mailto:hello@nuzhensite.site',
   addressShort: 'Антропково, Новосокольнический р-н',
@@ -234,7 +235,7 @@ export const seasons = [
   },
 ] as const
 
-/** Фотографии усадьбы для галереи и лайтбокса. */
+/** Фотографии усадьбы для галереи и ��айтбокса. */
 export const galleryPhotos = [
   {
     src: '/images/estate/house-facade.jpg',
