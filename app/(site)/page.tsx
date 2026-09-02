@@ -19,7 +19,7 @@ import {
 import { LodgingJsonLd } from "@/components/json-ld"
 import { getRates } from "@/lib/rates"
 import { getReviews } from "@/lib/reviews"
-import { estateFacts, extraGuestPolicy, includedInStay, navigation, site, spaSurcharge, waterEquipmentPolicy } from "@/lib/site"
+import { estateFacts, includedInStay, navigation, site } from "@/lib/site"
 
 const chapters: {
   href: string
@@ -33,8 +33,8 @@ const chapters: {
   {
     href: "/estate",
     label: "Усадьба",
-    image: "/images/estate/living-sofas.jpg",
-    alt: "Гостиная усадьбы: большие диваны, книжные полки и бревенчатые стены",
+    image: "/images/estate/house-autumn.jpg",
+    alt: "Бревенчатый дом усадьбы с террасой среди сосен",
     line: "Четыре отдельные спальни и гостиная с камином, мягкими диванами и небольшим столом.",
   },
   {
@@ -167,7 +167,7 @@ export default async function HomePage() {
               <SectionHeading
                 eyebrow="Включено в проживание"
                 title="Уже в стоимости"
-                lead={`${extraGuestPolicy.label}. ${spaSurcharge.short}. ${waterEquipmentPolicy}`}
+                lead="Всё необходимое для спокойного отдыха без доплат и скрытых условий."
               />
               <ul className="flex flex-col">
                 {includedInStay.map((item) => (
