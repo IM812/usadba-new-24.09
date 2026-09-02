@@ -7,7 +7,7 @@ import { site } from "@/lib/site"
 
 export function HomeHero() {
   return (
-    <section className="relative flex min-h-[76svh] flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
+    <section className="relative flex min-h-[68svh] flex-col overflow-hidden pb-8 sm:min-h-[100svh] sm:justify-end sm:pb-0">
       {/* Затемнение идет сверху вниз: текст читается, а нижняя половина
           остается открытой фотографией — без черной полосы. */}
       <div className="absolute inset-0">
@@ -57,7 +57,11 @@ export function HomeHero() {
           style={{ animationDelay: "480ms" }}
         >
           <BookButton>Забронировать даты</BookButton>
-          <LuxLink href="/estate" variant="outline">
+          <LuxLink
+            href="/estate"
+            variant="outline"
+            className="border-foreground/30 bg-background/45 backdrop-blur-md sm:bg-transparent sm:backdrop-blur-none"
+          >
             Смотреть усадьбу
           </LuxLink>
         </div>
@@ -67,7 +71,7 @@ export function HomeHero() {
         {/* На телефоне показываем только три действительно полезных параметра,
             остальные детали остаются в полной десктопной полосе. */}
         <dl
-          className="lux-rise mb-6 mt-auto grid grid-cols-3 gap-2 rounded-2xl border border-foreground/15 bg-background/55 p-3.5 backdrop-blur-md sm:mb-0 sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:border-border sm:bg-card/70 sm:p-7"
+          className="lux-rise mt-2 grid grid-cols-3 gap-2 rounded-2xl border border-foreground/15 bg-background/50 p-3.5 backdrop-blur-md sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:border-border sm:bg-card/70 sm:p-7"
           style={{ animationDelay: "620ms" }}
         >
           {[
