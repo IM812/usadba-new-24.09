@@ -150,7 +150,7 @@ export default async function PricesPage() {
           </dl>
           <p className="mt-12 max-w-2xl text-pretty text-[15px] leading-relaxed text-muted-foreground">
             Если планируете приехать с питомцем или вам нужен нестандартный график заезда,
-            сообщите об этом заранее — подтвердим возможность и условия до бронирования.
+            сообщите об этом заранее — подтвердим воз��ожность и условия до бронирования.
           </p>
         </Container>
       </Section>

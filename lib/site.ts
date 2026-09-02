@@ -66,10 +66,10 @@ export const rooms = [
     id: 'bedrooms',
     name: 'Спальни',
     kind: 'Четыре комнаты',
-    image: '/images/estate/room-twin.jpg',
+    image: '/images/estate/room-green.jpg',
     images: [
-      '/images/estate/room-twin.jpg',
       '/images/estate/room-green.jpg',
+      '/images/estate/room-twin.jpg',
       '/images/estate/room-beds.jpg',
       '/images/estate/room-lamp.jpg',
     ],
@@ -114,33 +114,33 @@ export const groundExperiences = [
     id: 'pier',
     name: 'Свой причал',
     season: 'Май — октябрь',
-    image: '/images/estate/lake-aerial.jpg',
+    image: '/images/estate/chan-lake.jpg',
     description:
-      'Деревянный причал в двух минутах от дома. Утром здесь туман по воде, днём — купание, вечером — закат ровно напротив.',
+      'Деревянный причал в двух минутах от дома. Здесь можно спокойно посидеть у воды, выйти на озеро или встретить вечер.',
   },
   {
     id: 'boat',
     name: 'Лодка и сап-борды',
     season: 'Май — сентябрь',
-    image: '/images/estate/lake-wide.jpg',
+    image: '/images/estate/summer-forest.jpg',
     description:
-      'Для прогулок по воде доступны лодка и сап-борды за отдельную плату; стоимость уточняется при бронировании. Озеро подходит для спокойного отдыха и рыбалки.',
+      'У причала есть лодка и сап-борды. Инвентарь оплачивается отдельно, стоимость уточняется при бронировании.',
   },
   {
     id: 'fishing',
     name: 'Рыбалка',
     season: 'Весь год',
-    image: '/images/estate/chan-lake.jpg',
+    image: '/images/estate/lake-wide.jpg',
     description:
-      'Окунь, щука, лещ и линь. Зимой — подлёдная рыбалка в сотне метров от дома. Снасти привозите свои, места покажем.',
+      'Окунь, щука, лещ и линь. Снасти привозите свои — места для рыбалки на озере покажем.',
   },
   {
     id: 'forest',
     name: 'Лес и грибные места',
     season: 'Июль — октябрь',
-    image: '/images/estate/autumn-berries.jpg',
+    image: '/images/estate/summer-path.jpg',
     description:
-      'Сосновый бор начинается сразу за домом: белые, лисички, черника и брусника. Расскажем маршруты, из которых точно возвращаются с корзиной.',
+      'Сосновый бор начинается сразу за домом. Расскажем проверенные маршруты для прогулок и грибных походов.',
   },
 ] as const
 
@@ -334,7 +334,7 @@ export const galleryPhotos = [
   {
     src: '/images/estate/winter-forest.jpg',
     alt: 'Заснеженный сосновый лес вокруг усадьбы',
-    caption: 'Зимой лес вокруг стоит совершенно белый',
+    caption: 'Зимой лес вок��уг стоит совершенно белый',
   },
   {
     src: '/images/estate/copper-shelf.jpg',

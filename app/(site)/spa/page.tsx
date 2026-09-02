@@ -36,8 +36,8 @@ export default function SpaPage() {
         eyebrow="Баня и чан"
         title="Парная на дровах и чан под открытым небом"
         lead="Настоящая баня на дровах и сибирский чан под открытым небом дополняют спокойный отдых на берегу озера."
-        image="/images/estate/banya-fire.jpg"
-        imageAlt="Баня на дровах среди высоких сосен"
+        image="/images/estate/chan-night.jpg"
+        imageAlt="Сибирский чан с огнём у бревенчатой бани вечером"
         meta={[spaSurcharge.short, "Баня на дровах", "Сибирский чан", "Берег озера"]}
       />
 
