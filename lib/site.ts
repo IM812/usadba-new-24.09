@@ -71,8 +71,6 @@ export const rooms = [
     images: [
       '/images/estate/room-green.jpg',
       '/images/estate/room-twin.jpg',
-      '/images/estate/room-beds.jpg',
-      '/images/estate/room-lamp.jpg',
     ],
     description:
       'В доме четыре отдельные спальни. Заранее согласуем удобную схему размещения для вашей компании.',
@@ -112,36 +110,36 @@ export const spaRituals = [
 
 export const groundExperiences = [
   {
-    id: 'pier',
-    name: 'Свой причал',
-    season: 'Май — октябрь',
-    image: '/images/estate/lake-sunset-v2.jpg',
+    id: 'lake',
+    name: 'Озеро у усадьбы',
+    season: 'Круглый год',
+    image: '/images/estate/lake-wide.jpg',
     description:
-      'Деревянный причал в двух минутах от дома. Здесь можно спокойно посидеть у воды, выйти на озеро или встретить вечер.',
+      'Спокойное лесное озеро рядом с домом. У воды можно провести утро, встретить закат или выйти на рыбалку.',
   },
   {
-    id: 'boat',
-    name: 'Лодка и сап-борды',
-    season: 'Май — сентябрь',
+    id: 'chan',
+    name: 'Чан у воды',
+    season: 'По согласованию',
     image: '/images/estate/chan-lake.jpg',
     description:
-      'У причала есть лодка и сап-борды. Инвентарь оплачивается отдельно, стоимость уточняется при бронировании.',
+      'Сибирский чан стоит среди сосен рядом с озером. Подготовка и время отдыха согласуются при бронировании.',
   },
   {
-    id: 'fishing',
-    name: 'Рыбалка',
-    season: 'Весь год',
+    id: 'panorama',
+    name: 'Усадьба между озерами',
+    season: 'Круглый год',
     image: '/images/estate/lake-aerial.jpg',
     description:
-      'Окунь, щука, лещ и линь. Снасти привозите свои — места для рыбалки на озере покажем.',
+      'С высоты видно расположение дома среди соснового бора и озер. До воды можно дойти пешком.',
   },
   {
-    id: 'forest',
-    name: 'Лес и грибные места',
-    season: 'Июль — октябрь',
-    image: '/images/estate/autumn-berries.jpg',
+    id: 'winter-forest',
+    name: 'Сосновый лес зимой',
+    season: 'Зима',
+    image: '/images/estate/winter-forest.jpg',
     description:
-      'Сосновый бор начинается сразу за домом. Расскажем проверенные маршруты для прогулок и грибных походов.',
+      'Заснеженный лес начинается сразу за территорией. Здесь тихо и удобно гулять без долгой дороги.',
   },
 ] as const
 
@@ -235,7 +233,7 @@ export const seasons = [
   },
 ] as const
 
-/** Фотографии усадьбы для галереи и ��айтбокса. */
+/** Фотографии усадьбы для галереи и полноэкранного просмотра. */
 export const galleryPhotos = [
   {
     src: '/images/estate/house-autumn.jpg',
@@ -244,8 +242,8 @@ export const galleryPhotos = [
   },
   {
     src: '/images/estate/lake-wide.jpg',
-    alt: 'Усадьба, лес и озеро с высоты',
-    caption: 'Усадьба стоит между двумя озерами, в сосновом бору',
+    alt: 'Спокойная гладь лесного озера',
+    caption: 'Одно из озер рядом с усадьбой',
   },
   {
     src: '/images/estate/chan-night.jpg',
@@ -305,7 +303,7 @@ export const galleryPhotos = [
   {
     src: '/images/estate/house-lawn.jpg',
     alt: 'Дом усадьбы на зеленой поляне среди сосен',
-    caption: 'Осенью лес вокруг дома становится золотым',
+    caption: 'Дом на зеленой поляне среди соснового леса',
   },
   {
     src: '/images/estate/dining-window.jpg',
@@ -335,17 +333,17 @@ export const galleryPhotos = [
   {
     src: '/images/estate/winter-forest.jpg',
     alt: 'Заснеженный сосновый лес вокруг усадьбы',
-    caption: 'Зимой лес вок��уг стоит совершенно белый',
+    caption: 'Зимой сосновый лес покрыт снегом',
   },
   {
     src: '/images/estate/copper-shelf.jpg',
-    alt: 'Полка с медной пос��дой на кирпичной стене',
+    alt: 'Полка с медной посудой на кирпичной стене',
     caption: 'Дом собирали руками — из деталей, а не из каталога',
   },
   {
     src: '/images/estate/house-yard.jpg',
     alt: 'Дом усадьбы и двор с парковкой',
-    caption: 'Парковка на четыре м��шины прямо во дворе',
+    caption: 'Парковка для гостей находится во дворе',
   },
   {
     src: '/images/estate/terrace-table.jpg',

@@ -58,7 +58,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "py-20 sm:py-28 lg:py-36",
+        "py-14 sm:py-18 lg:py-20",
         // slab: тональная полоса читается как плита со своей кромкой и тенью,
         // а не как второй плоский прямоугольник, приставленный встык
         tone === "raised" && "slab relative bg-card",

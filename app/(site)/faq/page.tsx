@@ -26,9 +26,8 @@ export default async function FaqPage() {
         eyebrow="Вопросы и ответы"
         title="Все, что спрашивают до приезда"
         lead="Собрали настоящие вопросы гостей. Если своего не нашли — напишите, ответим лично."
-        image="/images/estate/winter-lights.jpg"
-        imageAlt="Подсвеченная усадьба зимним вечером"
-        size="short"
+        image="/images/estate/house-night.jpg"
+        imageAlt="Освещенный бревенчатый дом усадьбы вечером"
       />
 
       <Section>

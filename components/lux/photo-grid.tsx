@@ -43,10 +43,10 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
 
   return (
     <>
-      <div className={cn("grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-6", className)}>
+      <div className={cn("grid grid-flow-dense grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-6", className)}>
         {photos.map((p, i) => {
-          // Ритм сетки: каждый пятый кадр занимает больше места
-          const wide = i % 5 === 0
+          // Один опорный широкий кадр, остальные заполняют сетку без пустых колонок.
+          const wide = i === 0
           return (
             <button
               key={p.src + i}

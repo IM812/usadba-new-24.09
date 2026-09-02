@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import { BookingCta } from "@/components/lux/booking-cta"
 import { PageHero } from "@/components/lux/page-hero"
-import { Container, Divider, Eyebrow, FactList, Section, SectionHeading, TextLink } from "@/components/lux/ui"
-import { estateFacts, includedInStay, rooms, spaSurcharge, extraGuestPolicy, waterEquipmentPolicy } from "@/lib/site"
+import { Container, Divider, Eyebrow, Section, SectionHeading, TextLink } from "@/components/lux/ui"
+import { includedInStay, rooms, spaSurcharge, extraGuestPolicy, waterEquipmentPolicy } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Усадьба",
@@ -25,8 +25,6 @@ export default function EstatePage() {
     <>
       <PageHero eyebrow="Усадьба" title="Бревенчатый дом на 250 квадратных метров" lead="Дом из круглого бревна с гостиной и камином, четырьмя отдельными спальнями и полностью оборудованной кухней." image="/images/estate/house-autumn.jpg" imageAlt="Бревенчатый дом усадьбы целиком среди золотого осеннего леса" meta={["250 м²", "4 спальни", "дом целиком", "до 8 гостей в базовой цене"]} />
 
-      <Section tone="raised" className="py-16 sm:py-20"><Container size="wide"><div data-reveal><FactList items={estateFacts} /></div></Container></Section>
-
       <Section tone="base">
         <Container size="wide">
           <div data-reveal className="max-w-5xl"><SectionHeading eyebrow="Внутри дома" title="Просторные комнаты для отдыха всей компанией" lead="Четыре отдельные спальни, общая гостиная с камином и полностью оборудованная кухня. Показываем фактическую обстановку дома и заранее согласуем размещение." /></div>
@@ -38,7 +36,7 @@ export default function EstatePage() {
 
           <article data-reveal className="mt-24 lg:mt-32">
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16"><div className="flex flex-col gap-5"><Eyebrow>{bedrooms.kind}</Eyebrow><h2 className="text-balance font-display text-[1.75rem] font-semibold leading-tight text-foreground sm:text-4xl">{bedrooms.name}</h2><p className="text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">{bedrooms.description}</p></div><ul className="flex flex-wrap gap-x-6 gap-y-2 lg:justify-end">{bedrooms.features.map((feature) => <li key={feature} className="text-[13px] tracking-wide text-foreground/70">{feature}</li>)}</ul></div>
-            <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">{bedrooms.images?.map((src, index) => <figure key={src} className="relative aspect-3/4 overflow-hidden rounded-2xl bg-secondary"><Image src={src} alt={`Одна из четырех спален усадьбы, фотография ${index + 1}`} fill sizes="(max-width: 640px) 50vw, 25vw" className="object-cover" /></figure>)}</div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-6">{bedrooms.images?.map((src, index) => <figure key={src} className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary"><Image src={src} alt={`Спальня усадьбы, фотография ${index + 1}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" /></figure>)}</div>
           </article>
         </Container>
       </Section>

@@ -12,6 +12,17 @@ export const metadata: Metadata = {
     "Фотографии усадьбы в Антропково: дом, гостиная с камином, спальни, баня, сибирский чан, озеро и причал во все четыре сезона.",
 }
 
+const featuredGalleryPhotos = [
+  galleryPhotos[0],
+  galleryPhotos[11],
+  galleryPhotos[12],
+  galleryPhotos[8],
+  galleryPhotos[7],
+  galleryPhotos[4],
+  galleryPhotos[9],
+  galleryPhotos[17],
+]
+
 export default function GalleryPage() {
   return (
     <>
@@ -21,13 +32,13 @@ export default function GalleryPage() {
         lead="Все фотографии сделаны здесь, в разные годы и сезоны. Мы не заказывали рендеры и не переставляли мебель ради кадра."
         image="/images/estate/house-autumn.jpg"
         imageAlt="Бревенчатый дом усадьбы среди осеннего соснового леса"
-        meta={["8 фотографий", "4 сезона", "дом, баня, чан, озеро"]}
+        meta={["8 фотографий", "дом и комнаты", "озеро, чан и зима"]}
       />
 
       <Section tone="base">
         <Container size="wide">
           <div data-reveal>
-            <PhotoGrid photos={galleryPhotos.slice(0, 8)} />
+            <PhotoGrid photos={featuredGalleryPhotos} />
           </div>
         </Container>
       </Section>
