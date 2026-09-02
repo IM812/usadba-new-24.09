@@ -192,9 +192,9 @@ export default async function HomePage() {
             </div>
 
             <FrameImage
-              src="/images/estate/chan-day.jpg"
-              alt="Сибирский чан с подсветкой вечером на фоне осеннего леса"
-              className="aspect-4/5 w-full lg:aspect-auto lg:min-h-full"
+              src="/images/estate/chan-lake.jpg"
+              alt="Сибирский чан на дровах рядом с домом и озером"
+              className="aspect-3/2 w-full sm:aspect-16/10 lg:aspect-auto lg:min-h-full"
               sizes="(max-width: 1024px) 100vw, 45vw"
             />
           </div>
