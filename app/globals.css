@@ -332,7 +332,21 @@
 @media (max-width: 640px) {
   .lux-ken-burns {
     animation: none;
-    transform: scale(1.06);
+    transform: scale(1.02);
+  }
+
+  .lux-rise {
+    animation-duration: 0.45s;
+  }
+
+  .reveal-ready [data-reveal],
+  [data-reveal],
+  [data-reveal="left"],
+  [data-reveal="right"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
   }
 }
 

@@ -126,9 +126,17 @@ export default async function HomePage() {
             </TextLink>
           </div>
 
-          <div data-reveal className="mt-9 grid gap-9 sm:mt-14 sm:gap-8 md:grid-cols-3 lg:gap-12">
+          <div
+            data-reveal
+            aria-label="Разделы усадьбы"
+            className="no-scrollbar -mx-4 mt-9 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 min-[390px]:-mx-5 min-[390px]:px-5 sm:mt-14 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:gap-12"
+          >
             {chapters.map((c) => (
-              <Link key={c.href} href={c.href} className="group flex flex-col">
+              <Link
+                key={c.href}
+                href={c.href}
+                className="group flex w-[calc(100vw-3rem)] max-w-[24rem] shrink-0 snap-center flex-col min-[390px]:w-[calc(100vw-4rem)] md:w-auto md:max-w-none"
+              >
                 <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-secondary md:aspect-4/5">
                   <Image
                     src={c.image || "/placeholder.svg"}

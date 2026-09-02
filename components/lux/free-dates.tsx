@@ -32,9 +32,18 @@ export async function FreeDates() {
 
         {windows.length ? (
           <>
-            <div data-reveal className="mt-10 grid gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+            <div
+              data-reveal
+              aria-label="Ближайшие свободные даты"
+              className="no-scrollbar -mx-4 mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-2 min-[390px]:-mx-5 min-[390px]:px-5 sm:mx-0 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3"
+            >
               {windows.map((w, i) => (
-                <FreeDateCard key={`${w.start}-${w.nights}`} window={w} featured={i === 0} />
+                <div
+                  key={`${w.start}-${w.nights}`}
+                  className="w-[calc(100vw-2.75rem)] max-w-[23rem] shrink-0 snap-center min-[390px]:w-[calc(100vw-3.5rem)] sm:w-auto sm:max-w-none"
+                >
+                  <FreeDateCard window={w} featured={i === 0} />
+                </div>
               ))}
             </div>
 

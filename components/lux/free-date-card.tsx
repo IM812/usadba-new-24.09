@@ -54,7 +54,7 @@ export function FreeDateCard({
         // surface даёт верхний отблеск и собственную тень БЕЗ hover: на
         // телефоне наведения не бывает, а прежняя тень висела только на
         // hover — поэтому все карточки там выглядели плоскими наклейками.
-        "group relative flex w-full flex-col overflow-hidden rounded-2xl border bg-card p-5 text-left transition-all duration-500 sm:p-6",
+        "group relative flex h-full min-h-[22rem] w-full flex-col overflow-hidden rounded-2xl border bg-card p-5 text-left transition-all duration-300 sm:min-h-0 sm:p-6",
         "surface hover:-translate-y-0.5 hover:shadow-elev-3",
         featured ? "border-accent/45 shadow-elev-2" : "border-border hover:border-accent/40",
       )}
