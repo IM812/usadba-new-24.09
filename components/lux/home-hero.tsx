@@ -1,9 +1,10 @@
 import Image from "next/image"
-import { ArrowDown, Star } from "lucide-react"
+import { ArrowDown, ExternalLink, Star } from "lucide-react"
 import { BookButton } from "@/components/lux/book-button"
 import { LuxLink } from "@/components/lux/ui"
 import { WeatherBadge } from "@/components/weather-badge"
-import { site } from "@/lib/site"
+import { YANDEX_REVIEWS_URL } from "@/lib/reviews"
+import { contacts, site } from "@/lib/site"
 
 export function HomeHero() {
   return (
@@ -27,10 +28,18 @@ export function HomeHero() {
       <div className="relative mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 pt-28 min-[390px]:px-5 sm:block sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
-        <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
+        <a
+          href={contacts.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${site.region}, ${site.shortName} — открыть точку на Яндекс Картах`}
+          className="lux-rise eyebrow chip w-fit transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          style={{ animationDelay: "100ms" }}
+        >
           <span aria-hidden="true" className="inline-block size-1.5 rounded-full bg-accent" />
           {site.region} · {site.shortName}
-        </p>
+          <ExternalLink className="size-3" aria-hidden />
+        </a>
 
         <h1
           className="lux-rise mt-3 max-w-3xl text-balance font-display text-[2.15rem] font-extrabold leading-[1] tracking-[-0.04em] text-foreground [text-shadow:0_2px_18px_rgb(0_0_0/0.55)] min-[390px]:text-[2.35rem] sm:mt-7 sm:text-7xl sm:leading-[0.94] sm:[text-shadow:none] lg:text-[5.5rem]"
@@ -75,24 +84,37 @@ export function HomeHero() {
           style={{ animationDelay: "620ms" }}
         >
           {[
-            { k: "Рейтинг", v: site.rating.value, sub: `${site.rating.count} отзыв на Яндекс Картах` },
-            { k: "Площадь", v: "250 м²", sub: "4 спальни с санузлом" },
-            { k: "Формат", v: "целиком", sub: "только для вашей компании" },
-            { k: "От Москвы", v: "≈ 5 часов", sub: "по трассе М9 через Великие Луки" },
-          ].map((f) => (
-            <div key={f.k} className={f.k === "Площадь" ? "hidden sm:block" : undefined}>
-              <dt className="text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground sm:eyebrow">{f.k}</dt>
-              <dd className="mt-1.5 flex items-center gap-1 font-display text-base font-extrabold tracking-[-0.03em] text-foreground min-[390px]:text-lg sm:mt-2.5 sm:gap-1.5 sm:text-3xl">
-                {f.v}
-                {f.k === "Рейтинг" ? (
-                  <Star className="size-3.5 fill-accent text-accent sm:size-4" aria-hidden />
-                ) : null}
-              </dd>
-              <dd className="mt-1 hidden text-xs leading-snug text-muted-foreground sm:mt-1.5 sm:block">
-                {f.sub}
-              </dd>
-            </div>
-          ))}
+            { k: "Рейтинг", v: site.rating.value, sub: `${site.rating.count} отзыв на Яндекс Картах`, href: YANDEX_REVIEWS_URL },
+            { k: "Площадь", v: "250 м²", sub: "4 спальни с санузлом", href: "/estate" },
+            { k: "Формат", v: "дом целиком", sub: "только для вашей компании", href: "/estate" },
+            { k: "От Москвы", v: "≈ 5 часов", sub: "точка на Яндекс Картах", href: contacts.mapsUrl },
+          ].map((f) => {
+            const external = f.href.startsWith("http")
+            return (
+              <div key={f.k} className={f.k === "Площадь" ? "hidden sm:block" : undefined}>
+                <a
+                  href={f.href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  className="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <dt className="flex items-center gap-1 text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground transition-colors group-hover:text-accent sm:eyebrow">
+                    {f.k}
+                    {external ? <ExternalLink className="size-2.5" aria-hidden /> : null}
+                  </dt>
+                  <dd className={`mt-1.5 flex items-center gap-1 whitespace-nowrap font-display font-extrabold tracking-[-0.03em] text-foreground sm:mt-2.5 sm:gap-1.5 sm:text-3xl ${f.k === "Формат" ? "text-[15px] min-[390px]:text-base" : "text-base min-[390px]:text-lg"}`}>
+                    {f.v}
+                    {f.k === "Рейтинг" ? (
+                      <Star className="size-3.5 fill-accent text-accent sm:size-4" aria-hidden />
+                    ) : null}
+                  </dd>
+                  <dd className="mt-1 hidden text-xs leading-snug text-muted-foreground sm:mt-1.5 sm:block">
+                    {f.sub}
+                  </dd>
+                </a>
+              </div>
+            )
+          })}
         </dl>
       </div>
 
