@@ -115,7 +115,7 @@ export const groundExperiences = [
     id: 'pier',
     name: 'Свой причал',
     season: 'Май — октябрь',
-    image: '/images/estate/lake-wide.jpg',
+    image: '/images/estate/lake-sunset-v2.jpg',
     description:
       'Деревянный причал в двух минутах от дома. Здесь можно спокойно посидеть у воды, выйти на озеро или встретить вечер.',
   },
@@ -131,7 +131,7 @@ export const groundExperiences = [
     id: 'fishing',
     name: 'Рыбалка',
     season: 'Весь год',
-    image: '/images/estate/lake-wide.jpg',
+    image: '/images/estate/lake-aerial.jpg',
     description:
       'Окунь, щука, лещ и линь. Снасти привозите свои — места для рыбалки на озере покажем.',
   },
