@@ -115,8 +115,8 @@ export default function GroundsPage() {
           <div data-reveal className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
             <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-secondary">
               <Image
-                src="/images/estate/chan-lake.jpg"
-                alt="Чан и лодка на берегу озера"
+                src="/images/estate/house-lawn.jpg"
+                alt="Бревенчатый дом усадьбы на поляне среди сосен"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

@@ -114,7 +114,7 @@ export const groundExperiences = [
     id: 'pier',
     name: 'Свой причал',
     season: 'Май — октябрь',
-    image: '/images/estate/chan-lake.jpg',
+    image: '/images/estate/lake-wide.jpg',
     description:
       'Деревянный причал в двух минутах от дома. Здесь можно спокойно посидеть у воды, выйти на озеро или встретить вечер.',
   },
@@ -122,7 +122,7 @@ export const groundExperiences = [
     id: 'boat',
     name: 'Лодка и сап-борды',
     season: 'Май — сентябрь',
-    image: '/images/estate/summer-forest.jpg',
+    image: '/images/estate/chan-lake.jpg',
     description:
       'У причала есть лодка и сап-борды. Инвентарь оплачивается отдельно, стоимость уточняется при бронировании.',
   },
@@ -138,7 +138,7 @@ export const groundExperiences = [
     id: 'forest',
     name: 'Лес и грибные места',
     season: 'Июль — октябрь',
-    image: '/images/estate/summer-path.jpg',
+    image: '/images/estate/autumn-berries.jpg',
     description:
       'Сосновый бор начинается сразу за домом. Расскажем проверенные маршруты для прогулок и грибных походов.',
   },

@@ -19,8 +19,8 @@ export default function GalleryPage() {
         eyebrow="Галерея"
         title="Усадьба без ретуши"
         lead="Все фотографии сделаны здесь, в разные годы и сезоны. Мы не заказывали рендеры и не переставляли мебель ради кадра."
-        image="/images/estate/lake-wide.jpg"
-        imageAlt="Вид на озеро сквозь стволы сосен"
+        image="/images/estate/house-autumn.jpg"
+        imageAlt="Бревенчатый дом усадьбы среди осеннего соснового леса"
         meta={[`${galleryPhotos.length} фотографий`, "4 сезона", "дом, баня, чан, озеро"]}
       />
 
