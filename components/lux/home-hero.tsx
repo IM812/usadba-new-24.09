@@ -7,8 +7,9 @@ import { site } from "@/lib/site"
 
 export function HomeHero() {
   return (
-    <section className="relative flex min-h-[90svh] flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
-      {/* Фото заполняет весь hero без визуального обрыва под кнопками. */}
+    <section className="relative flex min-h-[76svh] flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
+      {/* Затемнение идет сверху вниз: текст читается, а нижняя половина
+          остается открытой фотографией — без черной полосы. */}
       <div className="absolute inset-0">
         <Image
           src="/images/estate/house-lawn.jpg"
@@ -16,14 +17,14 @@ export function HomeHero() {
           fill
           priority
           sizes="100vw"
-          className="lux-ken-burns object-cover object-[52%_45%]"
+          className="lux-ken-burns object-cover object-[50%_58%] sm:object-[52%_45%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/10 to-background sm:from-background/75 sm:via-background/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/45 via-background/10 to-transparent sm:from-background/70 sm:via-background/20" />
-        <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-background via-background/75 to-transparent sm:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/92 via-background/55 to-transparent sm:from-background/75 sm:via-background/20 sm:to-background" />
+        <div className="absolute inset-0 hidden bg-gradient-to-r from-background/70 via-background/20 to-transparent sm:block" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background/85 to-transparent sm:hidden" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 pb-6 pt-32 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
+      <div className="relative mx-auto w-full max-w-6xl px-4 pt-28 min-[390px]:px-5 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
         <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
@@ -66,7 +67,7 @@ export function HomeHero() {
         {/* На телефоне показываем только три действительно полезных параметра,
             остальные детали остаются в полной десктопной полосе. */}
         <dl
-          className="lux-rise mt-5 grid grid-cols-3 gap-2 border-t border-foreground/15 pt-3 sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:border sm:border-border sm:bg-card/70 sm:p-7 sm:backdrop-blur-md"
+          className="lux-rise mb-6 mt-auto grid grid-cols-3 gap-2 rounded-2xl border border-foreground/15 bg-background/55 p-3.5 backdrop-blur-md sm:mb-0 sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:border-border sm:bg-card/70 sm:p-7"
           style={{ animationDelay: "620ms" }}
         >
           {[
