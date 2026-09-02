@@ -102,7 +102,7 @@ export function HomeHero() {
                     {f.k}
                     {external ? <ExternalLink className="size-2.5" aria-hidden /> : null}
                   </dt>
-                  <dd className={`mt-1.5 flex items-center gap-1 whitespace-nowrap font-display font-extrabold tracking-[-0.03em] text-foreground sm:mt-2.5 sm:gap-1.5 sm:text-3xl ${f.k === "Формат" ? "text-[15px] min-[390px]:text-base" : "text-base min-[390px]:text-lg"}`}>
+                  <dd className={`mt-1.5 flex items-center gap-1 font-display font-extrabold tracking-[-0.03em] text-foreground sm:mt-2.5 sm:gap-1.5 sm:text-3xl ${f.k === "Формат" ? "max-w-16 text-base leading-tight min-[390px]:text-lg" : "whitespace-nowrap text-base min-[390px]:text-lg"}`}>
                     {f.v}
                     {f.k === "Рейтинг" ? (
                       <Star className="size-3.5 fill-accent text-accent sm:size-4" aria-hidden />
