@@ -41,11 +41,11 @@ export default async function ReviewsPage() {
         eyebrow="Отзывы"
         title={
           <>
-            Рейтинг {site.rating.value} — <br className="hidden sm:block" />
-            и ни одной оценки ниже
+            Рейтинг {site.rating.value}. <br className="hidden sm:block" />
+            Ни одной оценки ниже
           </>
         }
-        lead={`${site.rating.count} отзыв на Яндекс Картах. Мы ничего не отбираем и не редактируем: ниже — то, что гости написали сами.`}
+        lead={`${site.rating.count} отзыв на Яндекс Картах — без отбора и редактуры.`}
         image="/images/estate/fireplace.jpg"
         imageAlt="Гостиная усадьбы с кирпичным камином"
         meta={[`${site.rating.count} отзыв`, "Оценка 5,0", "Яндекс Карты"]}

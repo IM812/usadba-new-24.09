@@ -80,7 +80,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+          "fixed inset-x-0 top-0 z-50 transition-colors duration-150 sm:duration-300",
           // blur включаем только с планшета: на телефоне он заставляет
           // перерисовывать всю полосу на каждом кадре скролла
           solid
@@ -164,7 +164,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               className="-ml-3 flex min-h-11 items-center gap-3 px-3 text-foreground transition-colors hover:text-accent"
             >
               <X className="size-5" aria-hidden="true" />
-              <span className="eyebrow hidden sm:inline">Закрыть</span>
+              <span className="eyebrow hidden sm:inline">Закрыт��</span>
             </button>
             <Wordmark className="absolute left-1/2 -translate-x-1/2" />
             <span className="eyebrow hidden text-muted-foreground lg:inline">

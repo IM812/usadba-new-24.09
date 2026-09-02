@@ -25,10 +25,10 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative flex items-end overflow-hidden pt-20 sm:pt-28",
+        "relative flex items-end overflow-hidden bg-background pb-10 pt-24 sm:pt-28",
         size === "default"
-          ? "min-h-[72svh] pb-8 min-[390px]:min-h-[66svh] sm:min-h-[62svh] sm:pb-16"
-          : "min-h-[58svh] pb-8 min-[390px]:min-h-[52svh] sm:min-h-[48svh] sm:pb-14",
+          ? "sm:min-h-[62svh] sm:pb-16"
+          : "sm:min-h-[48svh] sm:pb-14",
       )}
     >
       <Image
@@ -37,11 +37,11 @@ export function PageHero({
         fill
         priority
         sizes="100vw"
-        className="lux-ken-burns object-cover"
+        className="lux-ken-burns hidden object-cover sm:block"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30"
+        className="absolute inset-0 hidden bg-gradient-to-t from-background via-background/70 to-background/30 sm:block"
       />
 
       <Container size="wide" className="relative">

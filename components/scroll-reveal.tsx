@@ -20,8 +20,12 @@ export function ScrollReveal() {
     const reveal = (el: Element) => el.classList.add("revealed")
     const revealAll = () => all().forEach(reveal)
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      window.matchMedia("(max-width: 640px)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       revealAll()
+      document.documentElement.classList.remove("reveal-ready")
       return
     }
 
