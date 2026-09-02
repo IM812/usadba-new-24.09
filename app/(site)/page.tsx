@@ -126,10 +126,10 @@ export default async function HomePage() {
             </TextLink>
           </div>
 
-          <div data-reveal className="mt-14 grid gap-10 sm:gap-8 md:grid-cols-3 lg:gap-12">
+          <div data-reveal className="mt-9 grid gap-9 sm:mt-14 sm:gap-8 md:grid-cols-3 lg:gap-12">
             {chapters.map((c) => (
               <Link key={c.href} href={c.href} className="group flex flex-col">
-                <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl bg-secondary">
+                <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl bg-secondary md:aspect-4/5">
                   <Image
                     src={c.image || "/placeholder.svg"}
                     alt={c.alt}
@@ -205,7 +205,7 @@ export default async function HomePage() {
               Все отзывы
             </TextLink>
           </div>
-          <div data-reveal className="mt-14">
+          <div data-reveal className="mt-9 sm:mt-14">
             <ReviewsRail reviews={reviews} />
           </div>
         </Container>

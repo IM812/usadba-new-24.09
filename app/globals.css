@@ -130,12 +130,15 @@
     /* якорные переходы не уезжают под фиксированную шапку */
     scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground;
     /* никакого горизонтального «люфта» на телефоне */
-    overflow-x: hidden;
+    overflow-x: clip;
+    padding-bottom: env(safe-area-inset-bottom);
     -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
   }
 
   /* Плёночное зерно поверх всей страницы. Именно его отсутствие делает

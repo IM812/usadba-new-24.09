@@ -37,13 +37,13 @@ export function ReviewsRail({ reviews }: { reviews: GuestReview[] }) {
     <div className="relative">
       <div
         ref={trackRef}
-        className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-8 overflow-x-auto overscroll-x-contain px-5 pb-2 sm:mx-0 sm:px-0"
+        className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain px-4 pb-2 min-[390px]:-mx-5 min-[390px]:px-5 sm:mx-0 sm:gap-8 sm:px-0"
       >
         {reviews.map((r) => (
           <ReviewCard
             key={r.id}
             review={r}
-            className="w-[85vw] shrink-0 snap-start sm:w-[26rem]"
+            className="w-[82vw] max-w-[21rem] shrink-0 snap-start sm:w-[26rem] sm:max-w-none"
           />
         ))}
       </div>

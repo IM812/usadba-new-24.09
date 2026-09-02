@@ -25,10 +25,10 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative flex items-end overflow-hidden pt-28",
+        "relative flex items-end overflow-hidden pt-20 sm:pt-28",
         size === "default"
-          ? "min-h-[56svh] pb-12 sm:min-h-[62svh] sm:pb-16"
-          : "min-h-[42svh] pb-10 sm:min-h-[48svh] sm:pb-14",
+          ? "min-h-[72svh] pb-8 min-[390px]:min-h-[66svh] sm:min-h-[62svh] sm:pb-16"
+          : "min-h-[58svh] pb-8 min-[390px]:min-h-[52svh] sm:min-h-[48svh] sm:pb-14",
       )}
     >
       <Image
@@ -45,7 +45,7 @@ export function PageHero({
       />
 
       <Container size="wide" className="relative">
-        <nav aria-label="Хлебные крошки" className="mb-6">
+        <nav aria-label="Хлебные крошки" className="mb-3 sm:mb-6">
           <ol className="eyebrow flex items-center gap-2 text-muted-foreground">
             <li>
               <Link
@@ -60,18 +60,18 @@ export function PageHero({
           </ol>
         </nav>
 
-        <h1 className="max-w-4xl text-balance font-display text-[2.5rem] font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+        <h1 className="max-w-4xl text-balance font-display text-[2.15rem] font-semibold leading-[1.06] tracking-tight text-foreground min-[390px]:text-[2.5rem] sm:text-6xl lg:text-7xl">
           {title}
         </h1>
 
         {lead ? (
-          <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mt-4 max-w-2xl text-pretty text-[15px] leading-relaxed text-foreground/75 sm:mt-6 sm:text-lg">
             {lead}
           </p>
         ) : null}
 
         {meta?.length ? (
-          <ul className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-border pt-6">
+          <ul className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border pt-4 sm:mt-10 sm:gap-x-8 sm:gap-y-3 sm:pt-6">
             {meta.map((m) => (
               <li key={m} className="text-[13px] tracking-wide text-foreground/75">
                 {m}

@@ -98,7 +98,7 @@ function MonthGrid({
                 aria-label={`${longDate(d)}${busy ? " — занято" : ""}`}
                 aria-pressed={Boolean(isIn || isOut)}
                 className={[
-                  "relative flex aspect-square w-full items-center justify-center rounded-full text-sm transition-colors duration-200",
+                  "relative flex aspect-square min-h-10 w-full items-center justify-center rounded-full text-sm transition-colors duration-200 min-[390px]:min-h-11",
                   isIn || isOut
                     ? "bg-accent font-medium text-accent-foreground"
                     : busy
@@ -204,10 +204,10 @@ export function BookingCalendar() {
   }
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[1fr_360px] lg:gap-16">
+    <div className="grid gap-6 sm:gap-10 lg:grid-cols-[1fr_360px] lg:gap-16">
       {/* Календарь */}
       <div>
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-4 flex items-center justify-between sm:mb-6">
           <button
             type="button"
             onClick={() => shift(-1)}
@@ -253,7 +253,7 @@ export function BookingCalendar() {
           ) : null}
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-border pt-6 text-[13px] text-muted-foreground">
+        <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-4 text-[12px] text-muted-foreground sm:mt-8 sm:gap-x-6 sm:gap-y-3 sm:pt-6 sm:text-[13px]">
           <span className="flex items-center gap-2">
             <span aria-hidden className="inline-block size-2.5 rounded-full bg-accent" />
             Ваши даты
@@ -272,10 +272,10 @@ export function BookingCalendar() {
 
       {/* Сводка */}
       <aside className="lg:sticky lg:top-28 lg:self-start">
-        <div className="surface-2 rounded-2xl border border-border bg-card p-7">
+        <div className="surface-2 rounded-2xl border border-border bg-card p-5 min-[390px]:p-6 sm:p-7">
           <p className="eyebrow text-accent">Ваша поездка</p>
 
-          <dl className="mt-7 flex flex-col gap-5">
+          <dl className="mt-5 flex flex-col gap-4 sm:mt-7 sm:gap-5">
             <div className="flex items-baseline justify-between gap-4 border-b border-border pb-4">
               <dt className="text-[13px] uppercase tracking-[0.12em] text-muted-foreground">Заезд</dt>
               <dd className="font-display text-lg font-semibold text-foreground">
@@ -350,7 +350,7 @@ export function BookingCalendar() {
                   <span className="text-[13px] uppercase tracking-[0.12em] text-muted-foreground">
                     Итого
                   </span>
-                  <span className="font-display text-4xl font-semibold text-accent">
+                  <span className="font-display text-3xl font-semibold text-accent min-[390px]:text-4xl">
                     {money(quote.total)} ₽
                   </span>
                 </div>
@@ -371,7 +371,7 @@ export function BookingCalendar() {
             )}
           </div>
 
-          <LuxButton onClick={submit} className="mt-8 w-full">
+          <LuxButton onClick={submit} className="mt-6 w-full sm:mt-8">
             {quote ? "Отправить заявку" : "Написать нам"}
           </LuxButton>
 

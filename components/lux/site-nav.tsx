@@ -101,7 +101,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
           />
         ) : null}
 
-        <nav className="relative mx-auto flex h-18 max-w-[1600px] items-center justify-between gap-4 px-4 sm:h-20 sm:px-8 lg:h-24 lg:px-12">
+        <nav className="relative mx-auto flex h-16 max-w-[1600px] items-center justify-between gap-2 px-3 min-[390px]:px-4 sm:h-20 sm:px-8 lg:h-24 lg:px-12">
           <button
             type="button"
             onClick={openMenu}
@@ -135,9 +135,10 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               onClick={() => openBooking()}
               /* Залитая лаймовая пилюля обычным кеглем — главное действие
                  должно читаться как кнопка, а не как капительная надпись. */
-              className="inline-flex min-h-10 shrink-0 items-center rounded-full bg-accent px-4 text-[13px] font-semibold tracking-[-0.01em] text-accent-foreground transition-all duration-200 hover:brightness-110 active:scale-[0.97] sm:min-h-11 sm:px-6 sm:text-[14px]"
+              className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-accent px-3 text-[12px] font-semibold tracking-[-0.01em] text-accent-foreground transition-all duration-200 hover:brightness-110 active:scale-[0.97] min-[390px]:px-4 min-[390px]:text-[13px] sm:px-6 sm:text-[14px]"
             >
-              Забронировать
+              <span className="min-[360px]:hidden">Даты</span>
+              <span className="hidden min-[360px]:inline">Забронировать</span>
             </button>
           </div>
         </nav>
@@ -153,8 +154,8 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
       >
         <div className="absolute inset-0 bg-background" />
 
-        <div className="relative flex h-full flex-col overflow-y-auto">
-          <div className="flex h-18 shrink-0 items-center justify-between px-4 sm:h-20 sm:px-8 lg:h-24 lg:px-12">
+        <div className="relative flex h-full flex-col overflow-y-auto pb-[env(safe-area-inset-bottom)]">
+          <div className="flex h-16 shrink-0 items-center justify-between px-3 min-[390px]:px-4 sm:h-20 sm:px-8 lg:h-24 lg:px-12">
             <button
               type="button"
               onClick={() => setMenuOpen(false)}
@@ -171,7 +172,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
             </span>
           </div>
 
-          <div className="mx-auto grid w-full max-w-[1600px] flex-1 gap-12 px-5 pb-16 pt-6 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:px-12">
+          <div className="mx-auto grid w-full max-w-[1600px] flex-1 gap-7 px-4 pb-8 pt-2 min-[390px]:px-5 sm:px-8 sm:pb-16 sm:pt-6 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:px-12">
             <ul className="flex flex-col">
               {navigation.map((item, i) => {
                 const active = pathname === item.href
@@ -181,13 +182,13 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
                       href={item.href}
                       style={{ transitionDelay: menuOpen ? `${120 + i * 45}ms` : "0ms" }}
                       className={cn(
-                        "group flex items-baseline justify-between gap-6 py-4 transition-all duration-500 sm:py-5",
+                        "group flex min-h-12 items-center justify-between gap-6 py-2.5 transition-all duration-500 min-[390px]:py-3 sm:py-5",
                         menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
                       )}
                     >
                       <span
                         className={cn(
-                          "font-display text-[1.75rem] font-semibold leading-none transition-colors sm:text-4xl lg:text-[2.75rem]",
+                          "font-display text-[1.45rem] font-semibold leading-none transition-colors min-[390px]:text-[1.65rem] sm:text-4xl lg:text-[2.75rem]",
                           active ? "text-accent" : "text-foreground group-hover:text-accent",
                         )}
                       >

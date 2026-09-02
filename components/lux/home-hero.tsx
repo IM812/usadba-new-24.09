@@ -22,7 +22,7 @@ export function HomeHero() {
         <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/20 to-transparent" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 pb-10 pt-28 sm:px-8 sm:pb-20 lg:px-12">
+      <div className="relative mx-auto w-full max-w-6xl px-4 pb-5 pt-20 min-[390px]:px-5 min-[390px]:pb-7 sm:px-8 sm:pb-20 sm:pt-28 lg:px-12">
         {/* Чип вместо хайрлайна: тонкая линейка-засечка была самой «взрослой»
             деталью первого экрана. */}
         <p className="lux-rise eyebrow chip w-fit" style={{ animationDelay: "100ms" }}>
@@ -31,7 +31,7 @@ export function HomeHero() {
         </p>
 
         <h1
-          className="lux-rise mt-5 max-w-3xl text-balance font-display text-[2.75rem] font-extrabold leading-[0.9] tracking-[-0.045em] text-foreground sm:mt-7 sm:text-7xl lg:text-[5.5rem]"
+          className="lux-rise mt-4 max-w-3xl text-balance font-display text-[2.35rem] font-extrabold leading-[0.94] tracking-[-0.045em] text-foreground min-[390px]:text-[2.75rem] sm:mt-7 sm:text-7xl lg:text-[5.5rem]"
           style={{ animationDelay: "220ms" }}
         >
           Усадьба между
@@ -40,7 +40,7 @@ export function HomeHero() {
         </h1>
 
         <p
-          className="lux-rise mt-5 max-w-lg text-pretty text-[15px] leading-relaxed text-foreground/70 sm:mt-8 sm:text-lg"
+          className="lux-rise mt-4 max-w-lg text-pretty text-[14px] leading-[1.5] text-foreground/78 min-[390px]:text-[15px] sm:mt-8 sm:text-lg"
           style={{ animationDelay: "360ms" }}
         >
           Бревенчатый дом 250 м² в сосновом бору. Баня на дровах, сибирский чан под звездами и
@@ -48,7 +48,7 @@ export function HomeHero() {
         </p>
 
         <div
-          className="lux-rise mt-7 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center"
+          className="lux-rise mt-5 flex flex-col gap-2.5 [&>*]:w-full min-[390px]:mt-6 sm:mt-10 sm:flex-row sm:items-center sm:gap-3 sm:[&>*]:w-auto"
           style={{ animationDelay: "480ms" }}
         >
           <BookButton>Забронировать даты</BookButton>
@@ -57,12 +57,12 @@ export function HomeHero() {
           </LuxLink>
         </div>
 
-        <WeatherBadge className="lux-rise mt-6 inline-block text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-accent sm:mt-8" />
+        <WeatherBadge className="lux-rise mt-4 inline-block text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-accent min-[390px]:mt-5 sm:mt-8 sm:text-xs sm:tracking-[0.18em]" />
 
         {/* Полоса ключевых фактов. На телефоне подписи убраны — крупные значения
             читаются и без них, а герой перестает вылезать за экран. */}
         <dl
-          className="lux-rise mt-8 grid grid-cols-2 gap-x-6 gap-y-5 rounded-3xl border border-border bg-card/55 p-5 backdrop-blur-md sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:p-7"
+          className="lux-rise mt-4 grid grid-cols-2 gap-x-3 gap-y-3 rounded-2xl border border-border bg-card/70 p-3 min-[390px]:mt-5 min-[390px]:gap-x-5 min-[390px]:gap-y-4 min-[390px]:p-4 sm:mt-12 sm:grid-cols-4 sm:gap-x-8 sm:rounded-3xl sm:p-7 sm:backdrop-blur-md"
           style={{ animationDelay: "620ms" }}
         >
           {[
@@ -73,7 +73,7 @@ export function HomeHero() {
           ].map((f) => (
             <div key={f.k}>
               <dt className="eyebrow text-muted-foreground">{f.k}</dt>
-              <dd className="mt-1.5 flex items-center gap-1.5 font-display text-xl font-extrabold tracking-[-0.03em] text-foreground sm:mt-2.5 sm:text-3xl">
+              <dd className="mt-1 flex items-center gap-1.5 font-display text-[1.05rem] font-extrabold tracking-[-0.03em] text-foreground min-[390px]:text-xl sm:mt-2.5 sm:text-3xl">
                 {f.v}
                 {f.k === "Рейтинг" ? (
                   <Star className="size-3.5 fill-accent text-accent sm:size-4" aria-hidden />

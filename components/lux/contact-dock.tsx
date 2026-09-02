@@ -45,7 +45,7 @@ export function ContactDock() {
         // нажатия на невидимой области ~154x208 px: ссылки и кнопки под правым
         // нижним углом было не нажать. Клики принимают только сама кнопка и
         // раскрытые ссылки, поэтому контейнер всегда прозрачен для указателя.
-        "pointer-events-none fixed right-4 bottom-4 z-40 flex flex-col items-end gap-2 transition-all duration-500 sm:right-6 sm:bottom-6",
+        "pointer-events-none fixed right-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 flex flex-col items-end gap-2 transition-all duration-500 sm:right-6 sm:bottom-6",
         visible ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0",
       )}
     >

@@ -31,7 +31,7 @@ export function Container({
   return (
     <div
       className={cn(
-        "mx-auto w-full px-5 sm:px-8 lg:px-12",
+        "mx-auto w-full px-4 min-[390px]:px-5 sm:px-8 lg:px-12",
         size === "narrow" && "max-w-3xl",
         size === "default" && "max-w-6xl",
         size === "wide" && "max-w-[1600px]",
@@ -58,7 +58,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "py-14 sm:py-18 lg:py-20",
+        "py-11 min-[390px]:py-12 sm:py-18 lg:py-20",
         // slab: тональная полоса читается как плита со своей кромкой и тенью,
         // а не как второй плоский прямоугольник, приставленный встык
         tone === "raised" && "slab relative bg-card",
@@ -93,7 +93,7 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="max-w-3xl text-balance font-display text-[2rem] font-extrabold leading-[1.02] tracking-[-0.035em] text-foreground sm:text-5xl lg:text-6xl">
+      <h2 className="max-w-3xl text-balance font-display text-[1.85rem] font-extrabold leading-[1.06] tracking-[-0.035em] text-foreground min-[390px]:text-[2.1rem] sm:text-5xl lg:text-6xl">
         {title}
       </h2>
       {lead ? (
@@ -110,7 +110,7 @@ export function SectionHeading({
 /* Кнопки-пилюли обычным кеглем вместо разряженной капители: капитель
    читалась «отельно», строчная и скругление до круга — молодо. */
 const buttonBase =
-  "inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-7 text-[15px] font-semibold tracking-[-0.01em] transition-all duration-300 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
+  "inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-6 text-[15px] font-semibold tracking-[-0.01em] transition-all duration-300 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50 sm:px-7"
 
 const buttonVariants = {
   brass: "bg-accent text-accent-foreground hover:brightness-110",
@@ -263,10 +263,10 @@ export function FactList({
   className?: string
 }) {
   return (
-    <dl className={cn("grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4", className)}>
+    <dl className={cn("grid grid-cols-2 gap-x-4 gap-y-6 min-[390px]:gap-x-6 sm:grid-cols-4 sm:gap-y-8", className)}>
       {items.map((f) => (
         <div key={f.label} className="border-t border-border pt-4">
-          <dt className="font-display text-4xl font-extrabold leading-none tracking-[-0.03em] text-accent sm:text-5xl">
+          <dt className="font-display text-[2rem] font-extrabold leading-none tracking-[-0.03em] text-accent min-[390px]:text-4xl sm:text-5xl">
             {f.value}
             {f.unit ? <span className="ml-1 text-2xl sm:text-3xl">{f.unit}</span> : null}
           </dt>

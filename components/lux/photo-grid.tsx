@@ -72,7 +72,7 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
                 className="absolute inset-0 bg-background/0 transition-colors duration-500 group-hover:bg-background/20"
               />
               {p.caption ? (
-                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-4 text-left text-[13px] text-foreground/90 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-3 text-left text-[12px] leading-snug text-foreground/90 opacity-100 transition-opacity duration-300 sm:p-4 sm:text-[13px] sm:opacity-0 sm:group-hover:opacity-100">
                   {p.caption}
                 </span>
               ) : null}
