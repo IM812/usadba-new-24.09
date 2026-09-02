@@ -7,7 +7,7 @@ import { site } from "@/lib/site"
 
 export function HomeHero() {
   return (
-    <section className="relative flex flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
+    <section className="relative flex min-h-[90svh] flex-col overflow-hidden sm:min-h-[100svh] sm:justify-end">
       {/* Фото заполняет весь hero без визуального обрыва под кнопками. */}
       <div className="absolute inset-0">
         <Image
