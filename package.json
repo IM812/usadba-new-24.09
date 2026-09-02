@@ -35,11 +35,5 @@
     "sharp": "^0.35.3",
     "tailwindcss": "^4.2.0",
     "typescript": "5.7.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "hono": "4.12.25",
-      "@supabase/storage-js": "2.112.4"
-    }
   }
 }

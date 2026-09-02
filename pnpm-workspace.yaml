@@ -1,3 +1,7 @@
 minimumReleaseAgeExclude:
   - '@next/*'
   - next
+
+overrides:
+  hono: 4.12.25
+  '@supabase/storage-js': 2.112.4
