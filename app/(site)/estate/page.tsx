@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { BookingCta } from "@/components/lux/booking-cta"
+import { FloorPlan, FloorPlanLegend } from "@/components/lux/floor-plan"
 import { PageHero } from "@/components/lux/page-hero"
 import { Container, Divider, Eyebrow, Section, SectionHeading, TextLink } from "@/components/lux/ui"
 import { includedInStay, rooms, spaSurcharge, extraGuestPolicy, waterEquipmentPolicy } from "@/lib/site"
@@ -38,6 +39,25 @@ export default function EstatePage() {
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16"><div className="flex flex-col gap-5"><Eyebrow>{bedrooms.kind}</Eyebrow><h2 className="text-balance font-display text-[1.75rem] font-semibold leading-tight text-foreground sm:text-4xl">{bedrooms.name}</h2><p className="text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">{bedrooms.description}</p></div><ul className="flex flex-wrap gap-x-6 gap-y-2 lg:justify-end">{bedrooms.features.map((feature) => <li key={feature} className="text-[13px] tracking-wide text-foreground/70">{feature}</li>)}</ul></div>
             <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-6">{bedrooms.images?.map((src, index) => <figure key={src} className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary"><Image src={src} alt={`Спальня усадьбы, фотография ${index + 1}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" /></figure>)}</div>
           </article>
+        </Container>
+      </Section>
+
+      <Section tone="raised">
+        <Container size="wide">
+          <div data-reveal className="max-w-2xl">
+            <SectionHeading
+              eyebrow="Планировка"
+              title="Как устроен дом внутри"
+              lead="Гостиная с камином перетекает в столовую и кухню, а спальня с собственным санузлом отделена коридором — компании не мешают друг другу."
+            />
+          </div>
+
+          <div data-reveal className="mt-12 grid gap-10 rounded-3xl border border-border bg-card/60 p-5 sm:p-8 lg:grid-cols-[1.55fr_1fr] lg:gap-14 lg:p-12">
+            <FloorPlan />
+            <div className="flex flex-col lg:justify-center">
+              <FloorPlanLegend />
+            </div>
+          </div>
         </Container>
       </Section>
 
