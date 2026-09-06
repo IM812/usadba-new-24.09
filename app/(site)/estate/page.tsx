@@ -42,13 +42,13 @@ export default function EstatePage() {
         </Container>
       </Section>
 
-      <Section tone="raised">
+      <Section id="floor-plan" tone="raised">
         <Container size="wide">
-          <div data-reveal className="max-w-2xl">
+          <div data-reveal className="max-w-2xl scroll-mt-24">
             <SectionHeading
-              eyebrow="Планировка"
-              title="Как устроен дом внутри"
-              lead="Гостиная с камином перетекает в столовую и кухню, а спальня с собственным санузлом отделена коридором — компании не мешают друг другу."
+              eyebrow="Обмерный план"
+              title="Планировка дома"
+              lead="Точный исходный чертёж без изменений геометрии. Добавлены только обозначения помещений по вашей разметке."
             />
           </div>
 

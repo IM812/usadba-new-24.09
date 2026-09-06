@@ -67,11 +67,11 @@ export function HomeHero() {
         >
           <BookButton>Забронировать даты</BookButton>
           <LuxLink
-            href="/estate"
+            href="/estate#floor-plan"
             variant="outline"
             className="border-foreground/30 bg-background/45 backdrop-blur-md sm:bg-transparent sm:backdrop-blur-none"
           >
-            Смотреть усадьбу
+            Смотреть планировку
           </LuxLink>
         </div>
 
