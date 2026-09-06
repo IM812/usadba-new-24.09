@@ -2,27 +2,30 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 
 const legend = [
-  { code: "С", label: "Спальня", detail: "четыре комнаты в левом крыле" },
-  { code: "Т", label: "Туалет", detail: "возле лестницы" },
-  { code: "Х", label: "Хозяйственное помещение", detail: "котельная и техническая зона" },
-  { code: "Г", label: "Гостиная", detail: "центральное помещение" },
-  { code: "К", label: "Столовая", detail: "нижняя левая комната" },
-  { code: "СТ", label: "Кухня", detail: "нижняя правая комната" },
+  { code: "1", label: "Спальня" },
+  { code: "2", label: "Спальня" },
+  { code: "3", label: "Спальня" },
+  { code: "4", label: "Спальня" },
+  { code: "5", label: "Туалет" },
+  { code: "6", label: "Хозяйственное помещение / котельная" },
+  { code: "7", label: "Гостиная" },
+  { code: "8", label: "Столовая" },
+  { code: "9", label: "Кухня" },
 ]
 
 export function FloorPlan({ className }: { className?: string }) {
   return (
     <figure className={cn("min-w-0", className)}>
       <a
-        href="/images/estate/floor-plan-styled.png"
+        href="/images/estate/floor-plan-numbered.png"
         target="_blank"
         rel="noopener noreferrer"
         className="group block overflow-hidden rounded-2xl border border-accent/25 bg-background p-2 shadow-2xl shadow-background/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-3"
         aria-label="Открыть обмерный план дома в полном размере"
       >
         <Image
-          src="/images/estate/floor-plan-styled.png"
-          alt="Исходный обмерный план дома с обозначениями четырех спален, туалета, хозяйственного помещения, гостиной, столовой и кухни"
+          src="/images/estate/floor-plan-numbered.png"
+          alt="Точный обмерный план дома с цифровыми обозначениями помещений от 1 до 9"
           width={1875}
           height={1035}
           sizes="(max-width: 1024px) 100vw, 70vw"
@@ -38,23 +41,22 @@ export function FloorPlan({ className }: { className?: string }) {
 
 export function FloorPlanLegend({ className }: { className?: string }) {
   return (
-    <div className={cn("flex flex-col", className)}>
-      <p className="eyebrow text-accent">Обозначения</p>
-      <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+    <div className={cn("flex flex-col border-t border-border pt-7", className)}>
+      <p className="eyebrow text-accent">Экспликация помещений</p>
+      <dl className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
         {legend.map((item) => (
-          <div key={item.code} className="flex items-center gap-4 border-b border-border pb-3">
-            <dt className="flex size-10 shrink-0 items-center justify-center rounded-full border border-accent/70 bg-secondary font-display text-sm font-bold text-foreground">
+          <div key={item.code} className="flex min-w-0 items-center gap-3 border-b border-border pb-3">
+            <dt className="flex size-9 shrink-0 items-center justify-center rounded-full border border-accent/70 bg-secondary font-display text-sm font-bold text-foreground">
               {item.code}
             </dt>
-            <dd className="min-w-0">
-              <p className="font-display text-base font-semibold text-foreground">{item.label}</p>
-              <p className="text-xs leading-relaxed text-muted-foreground">{item.detail}</p>
+            <dd className="min-w-0 font-display text-sm font-semibold leading-snug text-foreground sm:text-base">
+              {item.label}
             </dd>
           </div>
         ))}
       </dl>
       <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-        Нажмите на план, чтобы открыть исходный масштаб и рассмотреть размерные линии.
+        Нажмите на план, чтобы открыть его в полном размере и рассмотреть размерные линии.
       </p>
     </div>
   )

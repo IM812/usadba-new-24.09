@@ -52,11 +52,9 @@ export default function EstatePage() {
             />
           </div>
 
-          <div data-reveal className="mt-12 grid gap-10 rounded-3xl border border-border bg-card/60 p-5 sm:p-8 lg:grid-cols-[1.55fr_1fr] lg:gap-14 lg:p-12">
+          <div data-reveal className="mt-12 flex flex-col gap-8 rounded-3xl border border-border bg-card/60 p-5 sm:p-8 lg:p-12">
             <FloorPlan />
-            <div className="flex flex-col lg:justify-center">
-              <FloorPlanLegend />
-            </div>
+            <FloorPlanLegend />
           </div>
         </Container>
       </Section>
