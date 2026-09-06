@@ -14,14 +14,14 @@ export function FloorPlan({ className }: { className?: string }) {
   return (
     <figure className={cn("min-w-0", className)}>
       <a
-        href="/images/estate/floor-plan-labeled.png"
+        href="/images/estate/floor-plan-styled.png"
         target="_blank"
         rel="noopener noreferrer"
-        className="group block overflow-hidden rounded-2xl border border-border bg-foreground p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-3"
+        className="group block overflow-hidden rounded-2xl border border-accent/25 bg-background p-2 shadow-2xl shadow-background/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:p-3"
         aria-label="Открыть обмерный план дома в полном размере"
       >
         <Image
-          src="/images/estate/floor-plan-labeled.png"
+          src="/images/estate/floor-plan-styled.png"
           alt="Исходный обмерный план дома с обозначениями четырех спален, туалета, хозяйственного помещения, гостиной, столовой и кухни"
           width={1875}
           height={1035}
