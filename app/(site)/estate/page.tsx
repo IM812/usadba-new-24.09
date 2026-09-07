@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { BookingCta } from "@/components/lux/booking-cta"
-import { FloorPlan, FloorPlanLegend } from "@/components/lux/floor-plan"
+import { FloorPlan } from "@/components/lux/floor-plan"
 import { PageHero } from "@/components/lux/page-hero"
 import { Container, Divider, Eyebrow, Section, SectionHeading, TextLink } from "@/components/lux/ui"
 import { includedInStay, rooms, spaSurcharge, extraGuestPolicy, waterEquipmentPolicy } from "@/lib/site"
@@ -46,15 +46,14 @@ export default function EstatePage() {
         <Container size="wide">
           <div data-reveal className="max-w-2xl scroll-mt-24">
             <SectionHeading
-              eyebrow="Обмерный план"
-              title="Планировка дома"
-              lead="Подробная планировка усадьбы с расположением всех помещений."
+              eyebrow="Планировка"
+              title="Дом, в котором всем хватает места"
+              lead="Объёмная схема помогает увидеть расположение четырёх спален, просторной гостиной, столовой и кухни."
             />
           </div>
 
-          <div data-reveal className="mt-12 flex flex-col gap-8 rounded-3xl border border-border bg-card/60 p-5 sm:p-8 lg:p-12">
+          <div data-reveal className="mt-12">
             <FloorPlan />
-            <FloorPlanLegend />
           </div>
         </Container>
       </Section>
