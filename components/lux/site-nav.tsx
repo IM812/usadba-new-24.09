@@ -188,7 +188,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
                     >
                       <span
                         className={cn(
-                          "font-display text-[1.45rem] font-semibold leading-none transition-colors min-[390px]:text-[1.65rem] sm:text-4xl lg:text-[1.375rem]",
+                          "font-display text-[1.45rem] font-semibold leading-none transition-colors min-[390px]:text-[1.65rem] sm:text-4xl lg:!text-[1.375rem]",
                           active ? "text-accent" : "text-foreground group-hover:text-accent",
                         )}
                       >
