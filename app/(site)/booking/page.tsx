@@ -42,12 +42,12 @@ export default async function BookingPage() {
         eyebrow="Бронирование"
         title="Свободные даты усадьбы"
         lead={`Дом сдается целиком: до ${settings.max_guests} гостей, базовое размещение — ${settings.base_guests} человек. Отметьте даты, и мы сразу посчитаем стоимость.`}
-        image="/images/estate/house-facade.jpg"
-        imageAlt="Фасад бревенчатого дома усадьбы среди сосен"
+        image="/images/estate/autumn-house-new.webp"
+        imageAlt="Бревенчатый дом усадьбы среди осенних сосен"
         size="short"
       />
 
-      <Section>
+      <Section id="calendar" className="scroll-mt-24">
         <Container size="wide">
           <BookingCalendar />
         </Container>

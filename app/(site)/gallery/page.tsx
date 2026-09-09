@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
-import Image from "next/image"
 import { BookingCta } from "@/components/lux/booking-cta"
 import { PageHero } from "@/components/lux/page-hero"
 import { PhotoGrid } from "@/components/lux/photo-grid"
 import { Container, Section, SectionHeading } from "@/components/lux/ui"
-import { galleryPhotos, seasons } from "@/lib/site"
+import { galleryPhotos } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Галерея",
@@ -12,16 +11,32 @@ export const metadata: Metadata = {
     "Фотографии усадьбы в Антропково: дом, гостиная с камином, спальни, баня, сибирский чан, озеро и причал во все четыре сезона.",
 }
 
-const featuredGalleryPhotos = [
-  galleryPhotos[0],
-  galleryPhotos[11],
-  galleryPhotos[12],
-  galleryPhotos[8],
-  galleryPhotos[7],
-  galleryPhotos[4],
-  galleryPhotos[9],
-  galleryPhotos[17],
-]
+const gallerySections = [
+  {
+    eyebrow: "Дом и комнаты",
+    title: "Пространство для общей жизни и личной тишины",
+    lead: "Гостиная, кухня, столовая и четыре разные спальни — без повторов одного и того же номера.",
+    photos: galleryPhotos.slice(0, 10),
+  },
+  {
+    eyebrow: "Территория и озеро",
+    title: "Дом стоит среди сосен между двумя озёрами",
+    lead: "Показываем масштаб с земли и воздуха: берег, причал, лес и расположение усадьбы.",
+    photos: galleryPhotos.slice(10, 18),
+  },
+  {
+    eyebrow: "Баня и чан",
+    title: "Актуальная баня у воды",
+    lead: "Светлая парная, комната отдыха и чан под открытым небом — так пространство выглядит сейчас.",
+    photos: galleryPhotos.slice(18, 24),
+  },
+  {
+    eyebrow: "Четыре сезона",
+    title: "Одно место, четыре разных характера",
+    lead: "Весна, лето, осень и зима сняты в разные месяцы и в разных фотосессиях.",
+    photos: galleryPhotos.slice(24, 32),
+  },
+] as const
 
 export default function GalleryPage() {
   return (
@@ -29,61 +44,30 @@ export default function GalleryPage() {
       <PageHero
         eyebrow="Галерея"
         title="Усадьба без ретуши"
-        lead="Все фотографии сделаны здесь, в разные годы и сезоны. Мы не заказывали рендеры и не переставляли мебель ради кадра."
-        image="/images/estate/house-autumn.jpg"
-        imageAlt="Бревенчатый дом усадьбы среди осеннего соснового леса"
-        meta={["8 фотографий", "дом и комнаты", "озеро, чан и зима"]}
+        lead="Все фотографии сделаны здесь. В подборке — актуальный дом, четыре разные спальни, баня, чан, территория и четыре настоящих сезона."
+        image="/images/estate/autumn-house-wide-new.webp"
+        imageAlt="Бревенчатый дом усадьбы среди золотых осенних сосен"
+        meta={["32 фотографии", "дом и четыре спальни", "озёра, баня и сезоны"]}
       />
 
-      <Section tone="base">
-        <Container size="wide">
-          <div data-reveal>
-            <PhotoGrid photos={featuredGalleryPhotos} />
-          </div>
-        </Container>
-      </Section>
-
-      {/* ===== Сезоны ===== */}
-      <Section tone="raised">
-        <Container size="wide">
-          <div data-reveal>
-            <SectionHeading
-              eyebrow="Сезоны"
-              title="Одно место, четыре характера"
-              lead="Гости, приехавшие зимой и летом, рассказывают о разных усадьбах — и оба раза правы."
-            />
-          </div>
-
-          <div data-reveal className="mt-14 grid gap-8 sm:grid-cols-2">
-            {seasons.map((s) => (
-              <article key={s.id} className="group flex flex-col">
-                <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl bg-secondary">
-                  <Image
-                    src={s.image || "/placeholder.svg"}
-                    alt={`Усадьба в сезон: ${s.name.toLowerCase()}`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
-                  />
-                </div>
-                <div className="mt-5 flex items-baseline justify-between gap-4">
-                  <h3 className="font-display text-2xl font-semibold text-foreground">{s.name}</h3>
-                  <span className="eyebrow text-accent">{s.months}</span>
-                </div>
-                <p className="mt-3 text-pretty text-[15px] leading-relaxed text-muted-foreground">
-                  {s.line}
-                </p>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      {gallerySections.map((section, index) => (
+        <Section key={section.eyebrow} tone={index % 2 === 0 ? "base" : "raised"}>
+          <Container size="wide">
+            <div data-reveal>
+              <SectionHeading eyebrow={section.eyebrow} title={section.title} lead={section.lead} />
+            </div>
+            <div data-reveal className="mt-10 sm:mt-14">
+              <PhotoGrid photos={section.photos} />
+            </div>
+          </Container>
+        </Section>
+      ))}
 
       <BookingCta
         title="Хотите увидеть больше?"
-        lead="Напишите нам — пришлем свежие фотографии и видео с территории, снятые на этой неделе."
-        image="/images/estate/house-lawn.jpg"
-        imageAlt="Усадьба и газон перед домом летом"
+        lead="Напишите нам — пришлём свежие фотографии и видео с территории."
+        image="/images/estate/aerial-estate-new.webp"
+        imageAlt="Усадьба среди соснового леса с высоты"
       />
     </>
   )

@@ -3,7 +3,7 @@ import Image from "next/image"
 import { BookingCta } from "@/components/lux/booking-cta"
 import { PageHero } from "@/components/lux/page-hero"
 import { Container, Divider, Eyebrow, Section, SectionHeading } from "@/components/lux/ui"
-import { spaRituals, spaSurcharge } from "@/lib/site"
+import { spaOptions, spaSurcharge } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Баня и сибирский чан",
@@ -36,24 +36,24 @@ export default function SpaPage() {
         eyebrow="Баня и чан"
         title="Парная на дровах и чан под открытым небом"
         lead="Настоящая баня на дровах и сибирский чан под открытым небом дополняют спокойный отдых на берегу озера."
-        image="/images/estate/chan-night.jpg"
-        imageAlt="Сибирский чан с огнем у бревенчатой бани вечером"
-        meta={[spaSurcharge.short, "Баня на дровах", "Сибирский чан", "Берег озера"]}
+        image="/images/estate/spring-banya-exterior-new.webp"
+        imageAlt="Актуальная баня среди молодых сосен вечером"
+        meta={[spaSurcharge.short, "Баня на дровах", "Сибирский чан"]}
       />
 
-      {/* ===== Ритуалы ===== */}
+      {/* ===== Баня и чан ===== */}
       <Section tone="base">
         <Container size="wide">
           <div data-reveal>
             <SectionHeading
-              eyebrow="Ритуалы"
-              title="Три способа согреться"
+              eyebrow="Две возможности"
+              title="Баня на дровах и сибирский чан"
               lead={spaSurcharge.full}
             />
           </div>
 
           <div className="mt-16 flex flex-col gap-20 lg:gap-28">
-            {spaRituals.map((r, i) => (
+            {spaOptions.map((r, i) => (
               <article
                 key={r.id}
                 data-reveal
@@ -129,8 +129,8 @@ export default function SpaPage() {
       <BookingCta
         title="Добавьте баню и чан к отдыху"
         lead="Баня и чан стоят 7 700 ₽ за топку. Сообщите об этом при бронировании — подтвердим доступность и время подготовки."
-        image="/images/estate/chan-steam.jpg"
-        imageAlt="Пар над сибирским чаном во дворе усадьбы"
+        image="/images/estate/spring-chan-new.webp"
+        imageAlt="Сибирский чан под открытым небом рядом с баней"
       />
     </>
   )

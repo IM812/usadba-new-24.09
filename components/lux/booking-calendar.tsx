@@ -159,6 +159,16 @@ export function BookingCalendar() {
     return () => mq.removeEventListener("change", sync)
   }, [])
 
+  useEffect(() => {
+    if (window.location.hash !== "#calendar") return
+    const scrollToCalendar = () => {
+      document.getElementById("calendar")?.scrollIntoView({ block: "start" })
+    }
+    requestAnimationFrame(scrollToCalendar)
+    const timer = window.setTimeout(scrollToCalendar, 500)
+    return () => window.clearTimeout(timer)
+  }, [])
+
   const pick = useCallback(
     (d: Date) => {
       if (!checkIn || checkOut) {
@@ -340,7 +350,7 @@ export function BookingCalendar() {
                   ) : null}
                   {quote.cleaningFee > 0 ? (
                     <div className="flex justify-between gap-4">
-                      <span>Уборка</span>
+                      <span>Убор��а</span>
                       <span className="text-foreground/90">{money(quote.cleaningFee)} ₽</span>
                     </div>
                   ) : null}

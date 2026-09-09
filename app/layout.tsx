@@ -64,6 +64,7 @@ export default function RootLayout({
     // гидратации, поэтому серверная и клиентская разметка тут расходятся штатно.
     <html
       lang="ru"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`bg-background ${manrope.variable} ${inter.variable}`}
     >

@@ -11,6 +11,13 @@ export const metadata: Metadata = {
   description: "Бревенчатый дом 250 м² с гостиной и камином, четырьмя спальнями и оборудованной кухней. Дом сдается целиком.",
 }
 
+const bedroomAlts = [
+  "Первая спальня с двумя отдельными кроватями",
+  "Вторая спальня с широкой кроватью и окном на лес",
+  "Третья спальня с двуспальной кроватью",
+  "Четвёртая спальня с окном и деревянной отделкой",
+]
+
 const houseNotes = [
   { title: "Кухня", text: "Полностью оборудованная кухня, посудомоечная машина и все необходимое для приготовления еды во время отдыха." },
   { title: "Гостиная", text: "Общая зона с настоящим камином, мягкими диванами, книжными полками и небольшим столом." },
@@ -24,7 +31,7 @@ export default function EstatePage() {
 
   return (
     <>
-      <PageHero eyebrow="Усадьба" title="Бревенчатый дом на 250 квадратных метров" lead="Дом из круглого бревна с гостиной и камином, четырьмя отдельными спальнями и полностью оборудованной кухней." image="/images/estate/house-autumn.jpg" imageAlt="Бревенчатый дом усадьбы целиком среди золотого осеннего леса" meta={["250 м²", "4 спальни", "дом целиком", "до 8 гостей в базовой цене"]} />
+      <PageHero eyebrow="Усадьба" title="Бревенчатый дом на 250 квадратных метров" lead="Дом из круглого бревна с гостиной и камином, четырьмя отдельными спальнями и полностью оборудованной кухней." image="/images/estate/autumn-house-wide-new.webp" imageAlt="Бревенчатый дом усадьбы целиком среди золотого осеннего леса" meta={["250 м²", "4 спальни", "дом целиком", "до 8 гостей в базовой цене"]} />
 
       <Section tone="base">
         <Container size="wide">
@@ -37,7 +44,7 @@ export default function EstatePage() {
 
           <article data-reveal className="mt-24 lg:mt-32">
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16"><div className="flex flex-col gap-5"><Eyebrow>{bedrooms.kind}</Eyebrow><h2 className="text-balance font-display text-[1.75rem] font-semibold leading-tight text-foreground sm:text-4xl">{bedrooms.name}</h2><p className="text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">{bedrooms.description}</p></div><ul className="flex flex-wrap gap-x-6 gap-y-2 lg:justify-end">{bedrooms.features.map((feature) => <li key={feature} className="text-[13px] tracking-wide text-foreground/70">{feature}</li>)}</ul></div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-6">{bedrooms.images?.map((src, index) => <figure key={src} className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary"><Image src={src} alt={`Спальня усадьбы, фотография ${index + 1}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" /></figure>)}</div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-6">{bedrooms.images?.map((src, index) => <figure key={src} className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary"><Image src={src} alt={bedroomAlts[index] ?? `Спальня усадьбы, фотография ${index + 1}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" /></figure>)}</div>
           </article>
         </Container>
       </Section>
@@ -62,7 +69,7 @@ export default function EstatePage() {
 
       <Section tone="base"><Container size="wide"><div data-reveal className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20"><div className="flex flex-col gap-8"><SectionHeading eyebrow="Включено" title="Что входит в проживание" lead="Дополнительные услуги и размещение сверх восьми гостей считаются отдельно." /><div className="flex flex-col gap-2 text-[14px] leading-relaxed text-muted-foreground"><p>{extraGuestPolicy.label}.</p><p>{spaSurcharge.short}.</p><p>{waterEquipmentPolicy}</p></div><TextLink href="/prices">Смотреть цены</TextLink></div><ul className="grid gap-x-12 sm:grid-cols-2">{includedInStay.map((item) => <li key={item} className="flex items-baseline gap-4 border-b border-border py-4 text-[15px] leading-relaxed text-foreground/85"><span aria-hidden className="mt-1 inline-block size-1 shrink-0 rounded-full bg-accent" />{item}</li>)}</ul></div></Container></Section>
 
-      <BookingCta title="Посмотрите дом своими глазами" lead="Расскажите, сколько вас и на какие даты — подтвердим размещение и пришлем дополнительные фотографии комнат." image="/images/estate/house-facade.jpg" imageAlt="Фасад бревенчатого дома усадьбы среди сосен" />
+      <BookingCta title="Посмотрите дом своими глазами" lead="Расскажите, сколько вас и на какие даты — подтвердим размещение и пришлем дополнительные фотографии комнат." image="/images/estate/autumn-house-new.webp" imageAlt="Фасад бревенчатого дома усадьбы среди осенних сосен" />
     </>
   )
 }

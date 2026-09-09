@@ -129,8 +129,8 @@ export default function LocationPage() {
       </Section>
 
       <BookingCta
-        image="/images/estate/chan-lake.jpg"
-        imageAlt="Чан и лодка на берегу озера"
+        image="/images/estate/spring-chan-new.webp"
+        imageAlt="Сибирский чан рядом с актуальной баней"
         title="Готовы приехать?"
         lead="Подскажем удобный автомобильный маршрут и ответим на вопросы перед поездкой."
       />

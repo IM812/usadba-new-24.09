@@ -33,21 +33,21 @@ const chapters: {
   {
     href: "/estate",
     label: "Усадьба",
-    image: "/images/estate/house-autumn.jpg",
+    image: "/images/estate/autumn-house-wide-new.webp",
     alt: "Бревенчатый дом усадьбы с террасой среди сосен",
     line: "Четыре отдельные спальни и гостиная с камином, мягкими диванами и небольшим столом.",
   },
   {
     href: "/spa",
     label: "Баня и чан",
-    image: "/images/estate/chan-night.jpg",
-    alt: "Чугунный чан с горячей водой парит вечером у подсвеченной бани",
+    image: "/images/estate/spring-banya-exterior-new.webp",
+    alt: "Актуальная баня среди молодых сосен вечером",
     line: "Парная на дровах и сибирский чан под открытым небом у озера.",
   },
   {
     href: "/grounds",
     label: "Территория",
-    image: "/images/estate/lake-aerial.jpg",
+    image: "/images/estate/aerial-between-lakes-new.webp",
     alt: "Лесное озеро с высоты: вода отражает облака, вокруг сосновый бор",
     // Кадр широкий, а карточка вертикальная: центральная обрезка съедала
     // берег с горизонтом и оставляла одну воду. Тянем кадр к верху.
@@ -74,14 +74,14 @@ export default async function HomePage() {
           <div data-reveal className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-24">
             <div className="relative">
               <ArchImage
-                src="/images/estate/terrace-lounge.jpg"
-                alt="Терраса усадьбы с подвесным креслом в золотую осень"
+                src="/images/estate/autumn-veranda-new.webp"
+                alt="Открытая терраса усадьбы среди золотых осенних сосен"
                 className="aspect-3/4 w-full"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
               <p className="mt-6 max-w-xs text-[13px] leading-relaxed text-muted-foreground">
-                Терраса с видом в бор — здесь проходит половина отпуска: утренний кофе, вечернее
-                вино, дождь по навесу.
+                Открытая терраса с видом в бор — место для утреннего кофе, неспешного ужина и
+                долгих разговоров среди сосен.
               </p>
             </div>
 
@@ -192,8 +192,8 @@ export default async function HomePage() {
             </div>
 
             <FrameImage
-              src="/images/estate/chan-lake.jpg"
-              alt="Сибирский чан на дровах рядом с домом и озером"
+              src="/images/estate/interior-kitchen-wide-new.webp"
+              alt="Полностью оборудованная кухня, которая входит в стоимость проживания"
               className="aspect-3/2 w-full sm:aspect-16/10 lg:aspect-auto lg:min-h-full"
               sizes="(max-width: 1024px) 100vw, 45vw"
             />

@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -14,8 +15,19 @@ export type Photo = { src: string; alt: string; caption?: string }
 export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; className?: string }) {
   const [open, setOpen] = useState<number | null>(null)
   const touchStart = useRef<number | null>(null)
+  const triggerRef = useRef<HTMLButtonElement | null>(null)
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null)
+  const dialogRef = useRef<HTMLDivElement | null>(null)
 
-  const close = useCallback(() => setOpen(null), [])
+  const openPhoto = useCallback((index: number, trigger: HTMLButtonElement) => {
+    triggerRef.current = trigger
+    setOpen(index)
+  }, [])
+
+  const close = useCallback(() => {
+    setOpen(null)
+    requestAnimationFrame(() => triggerRef.current?.focus())
+  }, [])
   const next = useCallback(
     () => setOpen((i) => (i === null ? null : (i + 1) % photos.length)),
     [photos.length],
@@ -29,10 +41,24 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
     if (open === null) return
     const previous = document.body.style.overflow
     document.body.style.overflow = "hidden"
+    closeButtonRef.current?.focus()
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") close()
       if (e.key === "ArrowRight") next()
       if (e.key === "ArrowLeft") prev()
+      if (e.key === "Tab") {
+        const controls = dialogRef.current?.querySelectorAll<HTMLButtonElement>("button")
+        if (!controls?.length) return
+        const first = controls[0]
+        const last = controls[controls.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
     }
     window.addEventListener("keydown", onKey)
     return () => {
@@ -51,7 +77,7 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
             <button
               key={p.src + i}
               type="button"
-              onClick={() => setOpen(i)}
+              onClick={(event) => openPhoto(i, event.currentTarget)}
               aria-label={`Открыть фотографию: ${p.alt}`}
               className={cn(
                 "group relative overflow-hidden rounded-2xl bg-secondary",
@@ -81,12 +107,13 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
         })}
       </div>
 
-      {open !== null ? (
+      {open !== null ? createPortal(
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label="Просмотр фотографии"
-          className="fixed inset-0 z-70 flex flex-col bg-background/97 backdrop-blur-sm"
+          className="fixed inset-0 z-70 flex h-dvh max-h-dvh flex-col overflow-hidden bg-background/97 backdrop-blur-sm"
           onTouchStart={(e) => {
             touchStart.current = e.touches[0].clientX
           }}
@@ -97,11 +124,12 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
             touchStart.current = null
           }}
         >
-          <div className="flex shrink-0 items-center justify-between px-4 py-4 sm:px-8">
+          <div className="flex shrink-0 items-center justify-between px-4 py-3 sm:px-8">
             <span className="eyebrow text-muted-foreground">
               {open + 1} / {photos.length}
             </span>
             <button
+              ref={closeButtonRef}
               type="button"
               onClick={close}
               aria-label="Закрыть просмотр"
@@ -122,7 +150,7 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
             />
           </div>
 
-          <div className="flex shrink-0 items-center justify-between gap-4 px-4 py-5 pb-safe sm:px-8">
+          <div className="flex shrink-0 items-center justify-between gap-3 px-4 py-3 pb-safe sm:px-8">
             <button
               type="button"
               onClick={prev}
@@ -143,7 +171,8 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
               <ChevronRight className="size-5" aria-hidden />
             </button>
           </div>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </>
   )

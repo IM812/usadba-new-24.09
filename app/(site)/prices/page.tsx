@@ -38,8 +38,8 @@ export default async function PricesPage() {
         eyebrow="Цены"
         title={<>От {formatMoney(minPrice)} ₽ за дом целиком</>}
         lead="Вы арендуете усадьбу целиком. Цена зависит от сезона, дня недели и количества гостей; дополнительные услуги оплачиваются отдельно."
-        image="/images/estate/terrace-lounge.jpg"
-        imageAlt="Терраса усадьбы в золотую осень"
+        image="/images/estate/autumn-terrace-new.webp"
+        imageAlt="Терраса усадьбы среди золотых осенних сосен"
       />
 
       {/* Сезонные тарифы */}
@@ -96,8 +96,8 @@ export default async function PricesPage() {
 
           <div className="mt-12 flex flex-col gap-4 sm:flex-row">
             <BookButton>Проверить даты</BookButton>
-            <LuxLink href="/booking" variant="outline">
-              Календарь и расчет
+            <LuxLink href="/booking#calendar" variant="outline">
+              Календарь и расчёт
             </LuxLink>
           </div>
         </Container>
@@ -155,8 +155,8 @@ export default async function PricesPage() {
       </Section>
 
       <BookingCta
-        image="/images/estate/house-lawn.jpg"
-        imageAlt="Бревенчатый дом усадьбы на зеленой поляне среди сосен"
+        image="/images/estate/summer-house-new.webp"
+        imageAlt="Бревенчатый дом усадьбы на зелёной поляне летом"
         title="Посчитаем ваши даты"
         lead="Откройте календарь — свободные дни, точная сумма и минимальный срок появятся сразу."
       />
