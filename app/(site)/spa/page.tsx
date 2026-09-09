@@ -36,8 +36,8 @@ export default function SpaPage() {
         eyebrow="Баня и чан"
         title="Парная на дровах и чан под открытым небом"
         lead="Настоящая баня на дровах и сибирский чан под открытым небом дополняют спокойный отдых на берегу озера."
-        image="/images/estate/spring-banya-exterior-new.webp"
-        imageAlt="Актуальная баня среди молодых сосен вечером"
+        image="/images/estate/chan-close.jpg"
+        imageAlt="Сибирский чан с паром на берегу озера"
         meta={[spaSurcharge.short, "Баня на дровах", "Сибирский чан"]}
       />
 
@@ -129,8 +129,8 @@ export default function SpaPage() {
       <BookingCta
         title="Добавьте баню и чан к отдыху"
         lead="Баня и чан стоят 7 700 ₽ за топку. Сообщите об этом при бронировании — подтвердим доступность и время подготовки."
-        image="/images/estate/spring-chan-new.webp"
-        imageAlt="Сибирский чан под открытым небом рядом с баней"
+        image="/images/estate/chan-night.jpg"
+        imageAlt="Сибирский чан с паром вечером у бани"
       />
     </>
   )

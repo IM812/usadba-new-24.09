@@ -350,7 +350,7 @@ export function BookingCalendar() {
                   ) : null}
                   {quote.cleaningFee > 0 ? (
                     <div className="flex justify-between gap-4">
-                      <span>Убор��а</span>
+                      <span>Уборка</span>
                       <span className="text-foreground/90">{money(quote.cleaningFee)} ₽</span>
                     </div>
                   ) : null}

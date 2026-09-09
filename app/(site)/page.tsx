@@ -40,8 +40,8 @@ const chapters: {
   {
     href: "/spa",
     label: "Баня и чан",
-    image: "/images/estate/spring-banya-exterior-new.webp",
-    alt: "Актуальная баня среди молодых сосен вечером",
+    image: "/images/estate/chan-close.jpg",
+    alt: "Сибирский чан с паром на берегу озера",
     line: "Парная на дровах и сибирский чан под открытым небом у озера.",
   },
   {

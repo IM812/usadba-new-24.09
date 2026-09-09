@@ -71,12 +71,10 @@ export const rooms = [
     images: [
       '/images/estate/interior-twin-new.webp',
       '/images/estate/bedroom-one-new.webp',
-      '/images/estate/bedroom-two-new.webp',
-      '/images/estate/bedroom-three-new.webp',
     ],
     description:
-      'Показываем четыре разные спальни дома. Заранее согласуем удобную схему размещения для вашей компании.',
-    features: ['4 отдельные спальни', 'Фактические фотографии каждой комнаты', 'Размещение согласуем заранее'],
+      'В доме четыре отдельные спальни. Здесь показываем две разные конфигурации: с отдельными и с широкой кроватью. Размещение для вашей компании согласуем заранее.',
+    features: ['4 отдельные спальни', 'Две конфигурации кроватей', 'Размещение согласуем заранее'],
   },
 ] as const
 
@@ -94,7 +92,7 @@ export const spaOptions = [
     id: 'chan',
     name: 'Сибирский чан',
     duration: 'по согласованию',
-    image: '/images/estate/spring-chan-new.webp',
+    image: '/images/estate/chan-close.jpg',
     description:
       'Сибирский чан стоит под открытым небом рядом с баней, среди соснового леса.',
     includes: ['Под открытым небом', 'Рядом с баней', 'Среди сосен'],
@@ -114,7 +112,7 @@ export const groundExperiences = [
     id: 'chan',
     name: 'Чан у воды',
     season: 'По согласованию',
-    image: '/images/estate/spring-chan-new.webp',
+    image: '/images/estate/chan-lake.jpg',
     description:
       'Сибирский чан стоит среди сосен рядом с озером. Подготовка и время отдыха согласуются при бронировании.',
   },
@@ -178,7 +176,7 @@ export const routes = [
   },
   {
     id: 'spb',
-    from: 'Из Санкт-��етербурга',
+    from: 'Из Санкт-Петербурга',
     duration: '≈ 4 часа',
     distance: 'через Псков',
     description: 'М20 (Е95) через Псков до Новосокольников. Живописный маршрут по Псковской области.',
@@ -229,10 +227,10 @@ export const seasons = [
 /** Актуальная подборка для галереи и полноэкранного просмотра. */
 export const galleryPhotos = [
   { src: '/images/estate/autumn-house-wide-new.webp', alt: 'Дом усадьбы среди золотых сосен', caption: 'Бревенчатый дом и осенний лес' },
-  { src: '/images/estate/interior-twin-new.webp', alt: 'Первая спальня с двумя отдельными кроватями', caption: 'Первая спальня — две отдельные кровати' },
-  { src: '/images/estate/bedroom-one-new.webp', alt: 'Вторая спальня с широкой кроватью у окна', caption: 'Вторая спальня — широкая кровать и окно на лес' },
-  { src: '/images/estate/bedroom-two-new.webp', alt: 'Третья спальня с двуспальной кроватью', caption: 'Третья отдельная спальня' },
-  { src: '/images/estate/bedroom-three-new.webp', alt: 'Четвёртая спальня с окном', caption: 'Четвёртая отдельная спальня' },
+  { src: '/images/estate/interior-twin-new.webp', alt: 'Спальня с двумя отдельными кроватями', caption: 'Спальня с двумя отдельными кроватями' },
+  { src: '/images/estate/bedroom-one-new.webp', alt: 'Спальня с широкой кроватью у окна', caption: 'Спальня с широкой кроватью и окном на лес' },
+  { src: '/images/estate/interior-kitchen-wide-new.webp', alt: 'Оборудованная кухня с деревянной отделкой', caption: 'Кухня для самостоятельного приготовления еды' },
+  { src: '/images/estate/interior-bathroom-new.webp', alt: 'Санузел с душевой в доме усадьбы', caption: 'Один из санузлов дома' },
   { src: '/images/estate/interior-living-new.webp', alt: 'Гостиная с диваном и панорамными окнами', caption: 'Общая гостиная для всей компании' },
   { src: '/images/estate/interior-fireplace-new.webp', alt: 'Кирпичный камин с живым огнём', caption: 'Настоящий дровяной камин в гостиной' },
   { src: '/images/estate/interior-kitchen-new.webp', alt: 'Большая кухня с кирпичной стеной', caption: 'Полностью оборудованная кухня' },
@@ -250,7 +248,7 @@ export const galleryPhotos = [
   { src: '/images/estate/summer-banya-new.webp', alt: 'Светлая парная с банными принадлежностями', caption: 'Парная в бане у озера' },
   { src: '/images/estate/spring-stove-new.webp', alt: 'Дровяная печь в новой бане', caption: 'Дровяная печь в парной' },
   { src: '/images/estate/autumn-banya-new.webp', alt: 'Комната отдыха в бане с деревянными стенами', caption: 'Комната отдыха в актуальной бане' },
-  { src: '/images/estate/spring-chan-new.webp', alt: 'Сибирский чан рядом с баней', caption: 'Чан под открытым небом' },
+  { src: '/images/estate/chan-close.jpg', alt: 'Сибирский чан с паром на берегу озера', caption: 'Чан под открытым небом у воды' },
   { src: '/images/estate/winter-banya-new.webp', alt: 'Баня под снегом зимним вечером', caption: 'Баня среди зимнего леса' },
   { src: '/images/estate/winter-house-new.webp', alt: 'Дом усадьбы в снегу зимним вечером', caption: 'Зима 2026 — дом после снегопада' },
   { src: '/images/estate/winter-forest-color-new.webp', alt: 'Заснеженные сосны в вечерней подсветке', caption: 'Зима 2026 — подсвеченный сосновый лес' },
