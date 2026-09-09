@@ -1,7 +1,63 @@
 import { cache } from 'react'
+import { site } from '@/lib/site'
 
 export const YANDEX_REVIEWS_URL =
   'https://yandex.ru/maps/org/usadba_v_antropkovo/216703670267/reviews/'
+
+export type YandexRating = {
+  value: string
+  count: number
+  reviewCount: number
+}
+
+function readMetaNumber(html: string, itemProp: string) {
+  const match = html.match(
+    new RegExp(`<meta[^>]+itemProp=["']${itemProp}["'][^>]+content=["']([^"']+)["']`, 'i'),
+  )
+  return match ? Number(match[1]) : Number.NaN
+}
+
+/** Актуальные данные карточки; при недоступности Яндекса остаются последние подтверждённые значения. */
+export const getYandexRating = cache(async function getYandexRating(): Promise<YandexRating> {
+  const fallback = {
+    value: site.rating.value,
+    count: site.rating.count,
+    reviewCount: site.rating.reviewCount,
+  }
+
+  try {
+    const response = await fetch(YANDEX_REVIEWS_URL, {
+      headers: {
+        'Accept-Language': 'ru-RU,ru;q=0.9',
+        'User-Agent': 'Mozilla/5.0 (compatible; AntropkovoWebsite/1.0)',
+      },
+      next: { revalidate: 21600 },
+      signal: AbortSignal.timeout(5000),
+    })
+
+    if (!response.ok) return fallback
+
+    const html = await response.text()
+    const ratingValue = readMetaNumber(html, 'ratingValue')
+    const ratingCount = readMetaNumber(html, 'ratingCount')
+    const reviewCount = readMetaNumber(html, 'reviewCount')
+
+    if (!Number.isFinite(ratingValue) || !Number.isInteger(ratingCount) || ratingCount < 1) {
+      return fallback
+    }
+
+    return {
+      value: ratingValue.toLocaleString('ru-RU', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }),
+      count: ratingCount,
+      reviewCount: Number.isInteger(reviewCount) ? reviewCount : fallback.reviewCount,
+    }
+  } catch {
+    return fallback
+  }
+})
 
 export type GuestReview = {
   id: string

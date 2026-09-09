@@ -10,7 +10,7 @@ import { YANDEX_REVIEWS_URL, getReviews } from "@/lib/reviews"
 export const metadata: Metadata = {
   title: "Отзывы гостей",
   description:
-    "Рейтинг 5,0 на основе 41 отзыва. Что пишут гости, которые уже провели несколько дней в усадьбе между двумя озерами.",
+    "Рейтинг 5,0 на основе 75 оценок. Что пишут гости, которые уже провели несколько дней в усадьбе между двумя озерами.",
 }
 
 /** Из чего складывается репутация — по повторяющимся мотивам в отзывах. */
@@ -45,10 +45,10 @@ export default async function ReviewsPage() {
             Ни одной оценки ниже
           </>
         }
-        lead={`${site.rating.count} отзыв на Яндекс Картах — без отбора и редактуры.`}
+        lead={`${site.rating.count} оценок и ${site.rating.reviewCount} отзыва на Яндекс Картах.`}
         image="/images/estate/fireplace.jpg"
         imageAlt="Гостиная усадьбы с кирпичным камином"
-        meta={[`${site.rating.count} отзыв`, "Оценка 5,0", "Яндекс Карты"]}
+        meta={[`${site.rating.count} оценок`, `${site.rating.reviewCount} отзыва`, "Яндекс Карты"]}
       />
 
       {/* Сводка рейтинга */}
@@ -66,7 +66,7 @@ export default async function ReviewsPage() {
                   ))}
                 </span>
                 <span className="text-sm text-muted-foreground">
-                  {`Средняя оценка по ${site.rating.count} отзыву`}
+                  {`Средняя оценка по ${site.rating.count} оценкам`}
                 </span>
               </div>
             </div>

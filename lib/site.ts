@@ -9,7 +9,7 @@ export const site = {
   shortName: 'Антропково',
   tagline: 'Гостевой дом между двумя озерами',
   region: 'Псковская область',
-  rating: { value: '5,0', count: 41, source: 'Яндекс Карты' },
+  rating: { value: '5,0', count: 75, reviewCount: 42, source: 'Яндекс Карты' },
 } as const
 
 export const contacts = {
@@ -35,7 +35,7 @@ export const navigation = [
   { href: '/grounds', label: 'Территория', note: 'Озера, причал, активности' },
   { href: '/gallery', label: 'Галерея', note: 'Фотографии по сезонам' },
   { href: '/prices', label: 'Цены', note: 'Тарифы и что включено' },
-  { href: '/reviews', label: 'Отзывы', note: '41 отзыв, рейтинг 5,0' },
+  { href: '/reviews', label: 'Отзывы', note: '75 оценок, рейтинг 5,0' },
   { href: '/location', label: 'Как добраться', note: 'Маршруты и карта' },
   { href: '/contacts', label: 'Контакты', note: 'Связь и реквизиты' },
 ] as const

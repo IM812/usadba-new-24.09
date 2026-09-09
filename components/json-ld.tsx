@@ -58,7 +58,8 @@ export function LodgingJsonLd({ checkIn, checkOut }: { checkIn: string; checkOut
         aggregateRating: {
           "@type": "AggregateRating",
           ratingValue: site.rating.value.replace(",", "."),
-          reviewCount: site.rating.count,
+          ratingCount: site.rating.count,
+          reviewCount: site.rating.reviewCount,
           bestRating: "5",
         },
         sameAs: [contacts.mapsUrl, contacts.telegram],

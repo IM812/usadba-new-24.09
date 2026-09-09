@@ -1,12 +1,13 @@
 import Link from "next/link"
-import { MapPin, Phone, Send } from "lucide-react"
+import { ExternalLink, MapPin, Phone, Send } from "lucide-react"
 import { contacts, navigation, secondaryNavigation, site } from "@/lib/site"
 import { Container, Eyebrow } from "@/components/lux/ui"
 import { getRates } from "@/lib/rates"
+import { getYandexRating, YANDEX_REVIEWS_URL } from "@/lib/reviews"
 
 export async function SiteFooter() {
   const year = new Date().getFullYear()
-  const { settings } = await getRates()
+  const [{ settings }, rating] = await Promise.all([getRates(), getYandexRating()])
 
   return (
     <footer className="border-t border-border bg-card">
@@ -22,10 +23,18 @@ export async function SiteFooter() {
               Бревенчатый дом на 250 м² в сосновом бору между двумя озерами. Сдается целиком, без
               соседей и посторонних.
             </p>
-            <p className="text-[13px] text-muted-foreground">
-              <span className="text-accent">{site.rating.value}</span> из 5,0 · {site.rating.count}{" "}
-              отзыв на {site.rating.source}
-            </p>
+            <a
+              href={YANDEX_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${rating.value} из 5,0, ${rating.count} оценок — открыть отзывы на Яндекс Картах`}
+              className="inline-flex min-h-11 w-fit items-center gap-1.5 text-[13px] text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-0"
+            >
+              <span>
+                <span className="text-accent">{rating.value}</span> из 5,0 · {rating.count} оценок на Яндекс Картах
+              </span>
+              <ExternalLink className="size-3 shrink-0" aria-hidden />
+            </a>
           </div>
 
           {/* Разделы */}

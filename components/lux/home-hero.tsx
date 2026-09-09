@@ -84,7 +84,7 @@ export function HomeHero() {
           style={{ animationDelay: "620ms" }}
         >
           {[
-            { k: "Рейтинг", v: site.rating.value, sub: `${site.rating.count} отзыв на Яндекс Картах`, href: YANDEX_REVIEWS_URL },
+            { k: "Рейтинг", v: site.rating.value, sub: `${site.rating.count} оценок на Яндекс Картах`, href: YANDEX_REVIEWS_URL },
             { k: "Площадь", v: "250 м²", sub: "4 спальни с санузлом", href: "/estate" },
             { k: "Формат", v: "дом целиком", sub: "только для вашей компании", href: "/estate" },
             { k: "От Москвы", v: "≈ 5 часов", sub: "точка на Яндекс Картах", href: contacts.mapsUrl },

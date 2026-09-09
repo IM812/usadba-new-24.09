@@ -206,7 +206,7 @@ export default async function HomePage() {
         <Container size="wide">
           <div data-reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading
-              eyebrow={`${site.rating.value} из 5,0 · ${site.rating.count} отзыв`}
+              eyebrow={`${site.rating.value} из 5,0 · ${site.rating.count} оценок`}
               title="Что говорят гости"
             />
             <TextLink href="/reviews" className="shrink-0">
