@@ -154,8 +154,8 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
       >
         <div className="absolute inset-0 bg-background" />
 
-        <div className="relative flex h-full flex-col overflow-y-auto pb-[env(safe-area-inset-bottom)]">
-          <div className="flex h-16 shrink-0 items-center justify-between px-3 min-[390px]:px-4 sm:h-20 sm:px-8 lg:h-24 lg:px-12">
+        <div className="relative flex h-full flex-col overflow-y-auto pb-[env(safe-area-inset-bottom)] lg:overflow-hidden">
+          <div className="flex h-16 shrink-0 items-center justify-between px-3 min-[390px]:px-4 sm:h-20 sm:px-8 lg:px-12">
             <button
               type="button"
               onClick={() => setMenuOpen(false)}
@@ -164,7 +164,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               className="-ml-3 flex min-h-11 items-center gap-3 px-3 text-foreground transition-colors hover:text-accent"
             >
               <X className="size-5" aria-hidden="true" />
-              <span className="eyebrow hidden sm:inline">Закрыт��</span>
+              <span className="eyebrow hidden sm:inline">Закрыть</span>
             </button>
             <Wordmark className="absolute left-1/2 -translate-x-1/2" />
             <span className="eyebrow hidden text-muted-foreground lg:inline">
@@ -172,7 +172,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
             </span>
           </div>
 
-          <div className="mx-auto grid w-full max-w-[1600px] flex-1 gap-7 px-4 pb-8 pt-2 min-[390px]:px-5 sm:px-8 sm:pb-16 sm:pt-6 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:px-12">
+          <div className="mx-auto grid min-h-0 w-full max-w-[1600px] flex-1 gap-7 px-4 pb-8 pt-2 min-[390px]:px-5 sm:px-8 sm:pb-16 sm:pt-6 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:px-12 lg:pb-6 lg:pt-2">
             <ul className="flex flex-col">
               {navigation.map((item, i) => {
                 const active = pathname === item.href
@@ -182,19 +182,19 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
                       href={item.href}
                       style={{ transitionDelay: menuOpen ? `${120 + i * 45}ms` : "0ms" }}
                       className={cn(
-                        "group flex min-h-12 items-center justify-between gap-6 py-2.5 transition-all duration-500 min-[390px]:py-3 sm:py-5",
+                        "group flex min-h-12 items-center justify-between gap-6 py-2.5 transition-all duration-500 min-[390px]:py-3 sm:py-5 lg:py-2",
                         menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
                       )}
                     >
                       <span
                         className={cn(
-                          "font-display text-[1.45rem] font-semibold leading-none transition-colors min-[390px]:text-[1.65rem] sm:text-4xl lg:text-[2.75rem]",
+                          "font-display text-[1.45rem] font-semibold leading-none transition-colors min-[390px]:text-[1.65rem] sm:text-4xl lg:text-[1.375rem]",
                           active ? "text-accent" : "text-foreground group-hover:text-accent",
                         )}
                       >
                         {item.label}
                       </span>
-                      <span className="hidden max-w-[14rem] text-right text-xs leading-snug text-muted-foreground sm:block">
+                      <span className="hidden max-w-[14rem] text-right text-xs leading-snug text-muted-foreground sm:block lg:text-sm">
                         {item.note}
                       </span>
                     </Link>
@@ -203,14 +203,14 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               })}
             </ul>
 
-            <div className="flex flex-col justify-between gap-8">
+            <div className="flex min-h-0 flex-col justify-between gap-5">
               {/* Кадр грузится только после первого открытия меню — телефон
                   не тратит трафик и память на скрытую картинку */}
-              <div className="relative hidden aspect-4/5 w-full max-w-sm overflow-hidden rounded-2xl bg-secondary sm:block lg:ml-auto">
+              <div className="relative hidden aspect-4/5 w-full max-w-sm overflow-hidden rounded-2xl bg-secondary sm:block lg:ml-auto lg:h-[42vh] lg:max-h-[22rem] lg:aspect-auto">
                 {everOpened ? (
                   <Image
-                    src="/images/estate/winter-lights.jpg"
-                    alt="Ночная подсветка соснового леса вокруг усадьбы зимой"
+                    src="/images/estate/house-autumn.jpg"
+                    alt="Деревянный дом усадьбы среди золотой осенней листвы"
                     fill
                     sizes="(max-width: 1024px) 60vw, 30vw"
                     className={cn(
