@@ -27,7 +27,7 @@ export default function LocationPage() {
         lead="Усадьба стоит в сосновом лесу Новосокольнического района Псковской области. Дорога асфальтовая до самых ворот."
         image="/images/estate/house-lawn.jpg"
         imageAlt="Усадьба на своем участке среди сосен"
-        meta={[contacts.addressShort, "56.3746, 29.9030"]}
+        meta={[contacts.addressShort, "56.3839, 29.8311"]}
       />
 
       {/* Маршруты */}
@@ -36,7 +36,7 @@ export default function LocationPage() {
           <SectionHeading
             eyebrow="Три способа доехать"
             title="Выберите свой маршрут"
-            lead="Нажмите на карточку с машиной — построится маршрут в Яндекс Картах прямо до ворот."
+            lead="Выберите маршрут из Москвы или Санкт-Петербурга — откроются Яндекс Карты с дорогой до усадьбы. Вариант на поезде приведён для справки."
           />
           <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border lg:grid-cols-3">
             {routes.map((r) => {

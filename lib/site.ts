@@ -18,14 +18,12 @@ export const contacts = {
   whatsapp: 'https://wa.me/79951558842',
   telegram: 'https://t.me/usadba_antropkovo',
   vk: 'https://vk.com/usadba_antropkovo',
-  email: 'hello@nuzhensite.site',
-  emailHref: 'mailto:hello@nuzhensite.site',
   addressShort: 'Антропково, Новосокольнический р-н',
   addressFull: 'Псковская область, Новосокольнический район, д. Антропково',
   mapsUrl: 'https://yandex.ru/maps/org/usadba_v_antropkovo/216703670267/',
   mapWidget:
-    'https://yandex.ru/map-widget/v1/?ll=29.902963%2C56.374633&z=14&pt=29.902963%2C56.374633&l=map&org=216703670267',
-  coords: { lat: 56.374633, lon: 29.902963 },
+    'https://yandex.ru/map-widget/v1/?ll=29.831097%2C56.383947&z=15&pt=29.831097%2C56.383947&l=map&oid=216703670267',
+  coords: { lat: 56.383947, lon: 29.831097 },
 } as const
 
 /** Основная навигация. Порядок = порядок в меню и в футере. */
@@ -33,7 +31,7 @@ export const navigation = [
   { href: '/estate', label: 'Усадьба', note: 'Дом, спальни, интерьеры' },
   { href: '/spa', label: 'Баня и чан', note: 'Парная на дровах и сибирский чан' },
   { href: '/grounds', label: 'Территория', note: 'Озера, причал, активности' },
-  { href: '/gallery', label: 'Галерея', note: 'Фотографии по сезонам' },
+  { href: '/gallery', label: 'Галерея', note: 'Дом, территория, баня и озёра' },
   { href: '/prices', label: 'Цены', note: 'Тарифы и что включено' },
   { href: '/reviews', label: 'Отзывы', note: '75 оценок, рейтинг 5,0' },
   { href: '/location', label: 'Как добраться', note: 'Маршруты и карта' },
@@ -70,11 +68,11 @@ export const rooms = [
     image: '/images/estate/interior-twin-new.webp',
     images: [
       '/images/estate/interior-twin-new.webp',
-      '/images/estate/bedroom-one-new.webp',
+      '/images/estate/interior-double-new.webp',
     ],
     description:
-      'В доме четыре отдельные спальни. Здесь показываем две разные конфигурации: с отдельными и с широкой кроватью. Размещение для вашей компании согласуем заранее.',
-    features: ['4 отдельные спальни', 'Две конфигурации кроватей', 'Размещение согласуем заранее'],
+      'В доме четыре отдельные спальни. Здесь показаны две разные комнаты: с раздельными кроватями и с одной широкой кроватью. Размещение для вашей компании согласуем заранее.',
+    features: ['4 отдельные спальни', 'Разные варианты кроватей', 'Размещение согласуем заранее'],
   },
 ] as const
 
@@ -172,7 +170,7 @@ export const routes = [
     duration: '≈ 5 часов',
     distance: 'через Великие Луки',
     description: 'М9 «Балтия» через Великие Луки до Новосокольников. Дорога хорошая.',
-    href: 'https://yandex.ru/maps/?rtext=~56.374633%2C29.902963&rtt=auto',
+    href: 'https://yandex.ru/maps/?rtext=~56.383947%2C29.831097&rtt=auto',
   },
   {
     id: 'spb',
@@ -180,7 +178,7 @@ export const routes = [
     duration: '≈ 4 часа',
     distance: 'через Псков',
     description: 'М20 (Е95) через Псков до Новосокольников. Живописный маршрут по Псковской области.',
-    href: 'https://yandex.ru/maps/?rtext=~56.374633%2C29.902963&rtt=auto',
+    href: 'https://yandex.ru/maps/?rtext=~56.383947%2C29.831097&rtt=auto',
   },
   {
     id: 'train',
@@ -227,15 +225,15 @@ export const seasons = [
 /** Актуальная подборка для галереи и полноэкранного просмотра. */
 export const galleryPhotos = [
   { src: '/images/estate/autumn-house-wide-new.webp', alt: 'Дом усадьбы среди золотых сосен', caption: 'Бревенчатый дом и осенний лес' },
-  { src: '/images/estate/interior-twin-new.webp', alt: 'Спальня с двумя отдельными кроватями', caption: 'Спальня с двумя отдельными кроватями' },
-  { src: '/images/estate/bedroom-one-new.webp', alt: 'Спальня с широкой кроватью у окна', caption: 'Спальня с широкой кроватью и окном на лес' },
+  { src: '/images/estate/interior-twin-new.webp', alt: 'Спальня с двумя отдельными кроватями', caption: 'Комната с двумя отдельными кроватями' },
+  { src: '/images/estate/interior-double-new.webp', alt: 'Другая спальня с одной широкой кроватью', caption: 'Отдельная комната с широкой кроватью' },
   { src: '/images/estate/interior-kitchen-wide-new.webp', alt: 'Оборудованная кухня с деревянной отделкой', caption: 'Кухня для самостоятельного приготовления еды' },
   { src: '/images/estate/interior-bathroom-new.webp', alt: 'Санузел с душевой в доме усадьбы', caption: 'Один из санузлов дома' },
   { src: '/images/estate/interior-living-new.webp', alt: 'Гостиная с диваном и панорамными окнами', caption: 'Общая гостиная для всей компании' },
   { src: '/images/estate/interior-fireplace-new.webp', alt: 'Кирпичный камин с живым огнём', caption: 'Настоящий дровяной камин в гостиной' },
   { src: '/images/estate/interior-kitchen-new.webp', alt: 'Большая кухня с кирпичной стеной', caption: 'Полностью оборудованная кухня' },
   { src: '/images/estate/interior-dining-new.webp', alt: 'Обеденный стол у окон с видом на лес', caption: 'Столовая рядом с панорамными окнами' },
-  { src: '/images/estate/interior-bathroom-new.webp', alt: 'Санузел в доме с деревянной отделкой', caption: 'Один из санузлов усадьбы' },
+  { src: '/images/estate/interior-reading-new.webp', alt: 'Место для чтения у камина в гостиной', caption: 'Гостиная у настоящего камина' },
   { src: '/images/estate/aerial-between-lakes-new.webp', alt: 'Усадьба на лесном полуострове между озёрами', caption: 'Расположение усадьбы между двумя озёрами' },
   { src: '/images/estate/aerial-lake-new.webp', alt: 'Лесное озеро с высоты', caption: 'Озеро и сосновый лес с высоты' },
   { src: '/images/estate/aerial-estate-new.webp', alt: 'Территория усадьбы с высоты', caption: 'Дом, лес и берег в одном кадре' },
@@ -249,15 +247,15 @@ export const galleryPhotos = [
   { src: '/images/estate/spring-stove-new.webp', alt: 'Дровяная печь в новой бане', caption: 'Дровяная печь в парной' },
   { src: '/images/estate/autumn-banya-new.webp', alt: 'Комната отдыха в бане с деревянными стенами', caption: 'Комната отдыха в актуальной бане' },
   { src: '/images/estate/chan-close.jpg', alt: 'Сибирский чан с паром на берегу озера', caption: 'Чан под открытым небом у воды' },
-  { src: '/images/estate/winter-banya-new.webp', alt: 'Баня под снегом зимним вечером', caption: 'Баня среди зимнего леса' },
-  { src: '/images/estate/winter-house-new.webp', alt: 'Дом усадьбы в снегу зимним вечером', caption: 'Зима 2026 — дом после снегопада' },
-  { src: '/images/estate/winter-forest-color-new.webp', alt: 'Заснеженные сосны в вечерней подсветке', caption: 'Зима 2026 — подсвеченный сосновый лес' },
-  { src: '/images/estate/spring-daffodils-new.webp', alt: 'Нарциссы у каменной стены весной', caption: 'Весна — апрельские цветы у дома' },
-  { src: '/images/estate/spring-banya-night-new.webp', alt: 'Баня и сосны весенней ночью', caption: 'Весна — вечер на территории' },
-  { src: '/images/estate/summer-house-new.webp', alt: 'Дом на зелёной поляне летом', caption: 'Лето — дом среди зелёных сосен' },
-  { src: '/images/estate/aerial-house-new.webp', alt: 'Летний вид на дом и лес с высоты', caption: 'Лето — территория с высоты' },
-  { src: '/images/estate/autumn-terrace-new.webp', alt: 'Терраса дома в золотую осень', caption: 'Осень 2025 — терраса у дома' },
-  { src: '/images/estate/autumn-berries-new.webp', alt: 'Красные осенние ягоды у бревенчатого дома', caption: 'Осень 2025 — ягоды у фасада' },
+  { src: '/images/estate/winter-banya-new.webp', alt: 'Баня под снегом вечером', caption: 'Баня среди заснеженного леса' },
+  { src: '/images/estate/winter-house-new.webp', alt: 'Дом усадьбы в снегу вечером', caption: 'Дом после снегопада' },
+  { src: '/images/estate/winter-forest-color-new.webp', alt: 'Заснеженные сосны в вечерней подсветке', caption: 'Подсвеченный сосновый лес' },
+  { src: '/images/estate/spring-daffodils-new.webp', alt: 'Нарциссы у каменной стены', caption: 'Цветы у дома' },
+  { src: '/images/estate/spring-banya-night-new.webp', alt: 'Баня и сосны ночью', caption: 'Вечер на территории' },
+  { src: '/images/estate/summer-house-new.webp', alt: 'Дом на зелёной поляне', caption: 'Дом среди зелёных сосен' },
+  { src: '/images/estate/aerial-house-new.webp', alt: 'Дом и лес с высоты', caption: 'Территория с высоты' },
+  { src: '/images/estate/autumn-terrace-new.webp', alt: 'Открытая терраса дома среди сосен', caption: 'Открытая терраса у дома' },
+  { src: '/images/estate/autumn-berries-new.webp', alt: 'Красные ягоды у бревенчатого дома', caption: 'Ягоды у фасада' },
 ] as const
 
 export type Season = (typeof seasons)[number]

@@ -7,10 +7,10 @@ import { useBooking } from "@/components/lux/booking-provider"
 import { Container, Eyebrow } from "@/components/lux/ui"
 
 export function BookingCta({
-  title = "Дом свободен чаще, чем кажется",
-  lead = "Напишите желаемые даты — ответим в течение часа и подскажем, какой сезон подойдет вашей компании больше.",
-  image = "/images/estate/chan-day.jpg",
-  imageAlt = "Сибирский чан с дымом на фоне осеннего леса",
+  title = "Проверьте свободные даты",
+  lead = "Выберите даты в календаре — сразу увидите доступность и предварительную стоимость проживания.",
+  image = "/images/estate/autumn-house-new.webp",
+  imageAlt = "Бревенчатый дом усадьбы среди сосен",
 }: {
   title?: string
   lead?: string
@@ -48,10 +48,10 @@ export function BookingCta({
             Проверить даты
           </button>
           <Link
-            href="/booking"
+            href="/booking#calendar"
             className="inline-flex min-h-13 items-center justify-center rounded-full border border-foreground/25 px-8 text-[15px] font-semibold tracking-[-0.01em] text-foreground transition-colors hover:border-accent hover:text-accent"
           >
-            Календарь и расчет
+            Календарь и расчёт
           </Link>
         </div>
 

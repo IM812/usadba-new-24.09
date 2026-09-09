@@ -113,7 +113,7 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
           role="dialog"
           aria-modal="true"
           aria-label="Просмотр фотографии"
-          className="fixed inset-0 z-70 flex h-dvh max-h-dvh flex-col overflow-hidden bg-background/97 backdrop-blur-sm"
+          className="fixed inset-0 z-70 grid h-[100dvh] w-screen grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden overscroll-none bg-background/97 backdrop-blur-sm"
           onTouchStart={(e) => {
             touchStart.current = e.touches[0].clientX
           }}

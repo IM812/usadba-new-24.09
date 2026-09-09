@@ -73,7 +73,7 @@ export async function SiteFooter() {
               className="flex min-h-11 items-center gap-3 text-sm text-foreground/75 transition-colors hover:text-accent sm:min-h-0 sm:items-start"
             >
               <Send className="size-4 shrink-0 text-accent sm:mt-0.5" aria-hidden="true" />
-              WhatsApp и Telegram
+              WhatsApp
             </a>
             <a
               href={contacts.mapsUrl}

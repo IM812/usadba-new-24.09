@@ -25,7 +25,7 @@ export async function FreeDates() {
               </>
             }
           />
-          <TextLink href="/booking" className="shrink-0">
+          <TextLink href="/booking#calendar" className="shrink-0">
             Весь календарь
           </TextLink>
         </div>

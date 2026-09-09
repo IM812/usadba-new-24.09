@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { ArrowUpRight, Phone, MessageCircle, Send, Mail, MapPin } from "lucide-react"
+import { ArrowUpRight, Phone, MessageCircle, Send, MapPin } from "lucide-react"
 import { PageHero } from "@/components/lux/page-hero"
 import { Container, Section, SectionHeading, Eyebrow } from "@/components/lux/ui"
 import { BookButton } from "@/components/lux/book-button"
@@ -9,7 +9,7 @@ import { getRates } from "@/lib/rates"
 export const metadata: Metadata = {
   title: "Контакты",
   description:
-    "Телефон, WhatsApp, Telegram и почта усадьбы в Антропково. Отвечаем ежедневно с 9:00 до 22:00 по московскому времени.",
+    "Телефон, WhatsApp и Telegram усадьбы в Антропково. Отвечаем ежедневно с 9:00 до 22:00 по московскому времени.",
 }
 
 const channels = [
@@ -34,13 +34,7 @@ const channels = [
     href: contacts.telegram,
     external: true,
   },
-  {
-    icon: Mail,
-    label: "Почта",
-    value: contacts.email,
-    href: contacts.emailHref,
-    external: false,
-  },
+
 ]
 
 export default async function ContactsPage() {
@@ -48,7 +42,7 @@ export default async function ContactsPage() {
 
   const facts = [
     { k: "Адрес", v: contacts.addressFull },
-    { k: "Координаты", v: "56.374633, 29.902963" },
+    { k: "Координаты", v: "56.383947, 29.831097" },
     { k: "Заезд и выезд", v: `с ${settings.check_in_time} · до ${settings.check_out_time}` },
     { k: "Мы на связи", v: "Ежедневно 9:00 — 22:00 (МСК)" },
   ]
@@ -73,7 +67,7 @@ export default async function ContactsPage() {
             lead="Обычно отвечаем в течение часа в рабочее время."
           />
 
-          <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
+          <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {channels.map((c) => (
               <a
                 key={c.label}

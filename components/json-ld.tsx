@@ -28,7 +28,6 @@ export function LodgingJsonLd({ checkIn, checkOut }: { checkIn: string; checkOut
         description: `Бревенчатый дом 250 м² в сосновом бору между двумя озёрами. Баня на дровах, сибирский чан, собственный причал. ${site.region}.`,
         url: abs("/"),
         telephone: contacts.phoneLabel,
-        email: contacts.email,
         address: {
           "@type": "PostalAddress",
           addressCountry: "RU",
