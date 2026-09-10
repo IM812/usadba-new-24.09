@@ -37,11 +37,11 @@ export function PageHero({
         fill
         priority
         sizes="100vw"
-        className="lux-ken-burns hidden object-cover sm:block"
+        className="lux-ken-burns object-cover"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 hidden bg-gradient-to-t from-background via-background/70 to-background/30 sm:block"
+        className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/45 sm:via-background/70 sm:to-background/30"
       />
 
       <Container size="wide" className="relative">
