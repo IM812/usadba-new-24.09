@@ -50,6 +50,7 @@ export default async function ContactsPage() {
         image="/images/estate/autumn-veranda-golden.webp"
         imageAlt="Веранда усадьбы среди золотого осеннего леса"
         size="short"
+        showImageOnMobile
       />
 
       {/* Каналы связи */}

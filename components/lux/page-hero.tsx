@@ -12,6 +12,7 @@ export function PageHero({
   imageAlt,
   meta,
   size = "default",
+  showImageOnMobile = false,
 }: {
   eyebrow: string
   title: React.ReactNode
@@ -21,6 +22,8 @@ export function PageHero({
   meta?: readonly string[]
   /** «short» — для утилитарных страниц, где важнее контент под хиро. */
   size?: "default" | "short"
+  /** Включает фотографию на узком экране только для выбранных страниц. */
+  showImageOnMobile?: boolean
 }) {
   return (
     <section
@@ -37,11 +40,19 @@ export function PageHero({
         fill
         priority
         sizes="100vw"
-        className="lux-ken-burns object-cover"
+        className={cn(
+          "lux-ken-burns object-cover",
+          !showImageOnMobile && "hidden sm:block",
+        )}
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/45 sm:via-background/70 sm:to-background/30"
+        className={cn(
+          "absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30",
+          showImageOnMobile
+            ? "via-background/80 to-background/45 sm:via-background/70 sm:to-background/30"
+            : "hidden sm:block",
+        )}
       />
 
       <Container size="wide" className="relative">
