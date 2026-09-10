@@ -50,7 +50,7 @@ export function PageHero({
         className={cn(
           "absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30",
           showImageOnMobile
-            ? "via-background/80 to-background/45 sm:via-background/70 sm:to-background/30"
+            ? "from-background/80 via-background/30 to-background/10 sm:from-background sm:via-background/70 sm:to-background/30"
             : "hidden sm:block",
         )}
       />
