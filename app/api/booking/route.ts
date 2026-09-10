@@ -146,7 +146,7 @@ export async function POST(req: Request) {
     const [{ data: settings }, { data: seasons }] = await Promise.all([
       supabase
         .from('settings')
-        .select('base_price, weekend_price, price_mode, extra_guest_price, base_guests, max_guests, avito_ics_url')
+        .select('base_price, weekend_price, price_mode, extra_guest_price, base_guests, max_guests, telegram_bot_token, telegram_chat_id, avito_ics_url, site_url')
         .eq('id', 1)
         .single(),
       supabase
@@ -172,7 +172,10 @@ export async function POST(req: Request) {
       )
     }
 
+    const botToken = settings?.telegram_bot_token ?? ''
+    const chatId = settings?.telegram_chat_id ?? ''
     const avitoUrl = settings?.avito_ics_url ?? ''
+    const siteUrl = settings?.site_url ?? ''
 
     // --- Check Supabase confirmed bookings ---
     const { data: existing } = await supabase
@@ -239,6 +242,53 @@ export async function POST(req: Request) {
     }
 
     const bookingId = booking?.id
+
+    // --- Send Telegram notification ---
+    const priceLines = [
+      `💰 *Стоимость:*`,
+      ...buildPriceBreakdown(nightsList),
+      extraGuests > 0
+        ? `   Доп. гостей: ${extraGuests} × ${formatRub(extraGuestPrice)} × ${nights} н. = ${formatRub(extraGuestTotal)}`
+        : null,
+      spaCount > 0
+        ? `   Баня и чан: ${spaCount} × ${formatRub(spaSurcharge.price)} = ${formatRub(spaTotal)}`
+        : null,
+      `   Итого за ${nights} ${nightsWord(nights)}: *${formatRub(total)}*`,
+    ].filter(Boolean)
+
+    const text = [
+      '🏡 *Новая заявка на бронирование*',
+      '',
+      `📅 Заезд: *${formatDate(arrival)}*`,
+      `📅 Выезд: *${formatDate(departure)}*`,
+      `👥 Гостей: *${guests}*`,
+      spaCount > 0 ? `🔥 Баня и чан: *${spaCount} ${spaCount === 1 ? 'топка' : spaCount < 5 ? 'топки' : 'топок'}*` : null,
+      '',
+      ...priceLines,
+      '',
+      `👤 Имя: *${name.trim()}*`,
+      `📞 Телефон: *${phone.trim()}*`,
+      comment ? `💬 Комментарий: ${comment.trim()}` : null,
+    ]
+      .filter(Boolean)
+      .join('\n')
+
+    const confirmUrl = siteUrl
+      ? `${siteUrl}/api/telegram/confirm?id=${bookingId}&action=confirm`
+      : null
+    const cancelUrl = siteUrl
+      ? `${siteUrl}/api/telegram/confirm?id=${bookingId}&action=cancel`
+      : null
+
+    const keyboard =
+      confirmUrl && cancelUrl
+        ? [[
+            { text: '✅ Подтвердить', url: confirmUrl },
+            { text: '❌ Отклонить', url: cancelUrl },
+          ]]
+        : null
+
+    await sendTelegramMessage(botToken, chatId, text, keyboard ?? undefined)
 
     return NextResponse.json({ ok: true, id: bookingId })
   } catch (err) {

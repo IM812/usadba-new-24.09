@@ -11,6 +11,7 @@ import {
   Image,
   Star,
   HelpCircle,
+  MessageSquare,
   CalendarSync,
   LogOut,
   Menu,
@@ -33,6 +34,7 @@ const navItems = [
   { href: '/admin/settings/reviews', label: 'Отзывы', icon: Star },
   { href: '/admin/settings/faq', label: 'FAQ', icon: HelpCircle },
   { href: null, label: 'Интеграции', icon: null, section: true },
+  { href: '/admin/settings/telegram', label: 'Telegram', icon: MessageSquare },
   { href: '/admin/settings/ics', label: 'ICS Синхронизация', icon: CalendarSync },
 ]
 

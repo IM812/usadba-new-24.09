@@ -33,6 +33,8 @@ export interface Settings {
   title: string
   subtitle: string
   description: string
+  telegram_bot_token: string
+  telegram_chat_id: string
   avito_ics_url: string
   site_url: string
 }
