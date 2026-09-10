@@ -52,7 +52,7 @@ export default function SpaPage() {
             />
           </div>
 
-          <div className="mt-16 flex flex-col gap-20 lg:gap-28">
+          <div className="mt-8 flex flex-col gap-12 min-[390px]:mt-10 sm:mt-16 sm:gap-20 lg:gap-28">
             {spaOptions.map((r, i) => (
               <article
                 key={r.id}

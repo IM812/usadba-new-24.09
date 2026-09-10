@@ -38,9 +38,9 @@ export default async function FaqPage() {
             {items.map((item) => (
               <details
                 key={item.question}
-                className="group border-b border-border py-6 first:border-t"
+                className="group border-b border-border first:border-t"
               >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 [&::-webkit-details-marker]:hidden">
+                <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 [&::-webkit-details-marker]:hidden sm:min-h-20 sm:gap-6 sm:py-6">
                   <h2 className="text-pretty font-display text-xl font-semibold leading-snug text-foreground transition-colors group-open:text-accent sm:text-2xl">
                     {item.question}
                   </h2>
@@ -52,22 +52,21 @@ export default async function FaqPage() {
                     <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current transition-transform duration-300 group-open:scale-y-0" />
                   </span>
                 </summary>
-                <p className="mt-4 max-w-2xl text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+                <p className="max-w-2xl pb-5 text-pretty text-[15px] leading-relaxed text-muted-foreground sm:pb-6 sm:text-base">
                   {item.answer}
                 </p>
               </details>
             ))}
           </div>
 
-          <p className="mt-12 text-pretty leading-relaxed text-muted-foreground">
-            {"Остались вопросы? Напишите в "}
-            <TextLink href={contacts.whatsapp}>WhatsApp</TextLink>
-            {", напишите в сообщество "}
-            <TextLink href={contacts.vk}>ВКонтакте</TextLink>
-            {" или позвоните — "}
-            <TextLink href={contacts.phoneHref}>{contacts.phoneLabel}</TextLink>
-            {"."}
-          </p>
+          <div className="mt-10 border-t border-border pt-6">
+            <p className="text-pretty text-[15px] leading-relaxed text-muted-foreground">Остались вопросы? Свяжитесь с нами удобным способом.</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <TextLink href={contacts.whatsapp}>WhatsApp</TextLink>
+              <TextLink href={contacts.vk}>ВКонтакте</TextLink>
+              <TextLink href={contacts.phoneHref}>{contacts.phoneLabel}</TextLink>
+            </div>
+          </div>
         </Container>
       </Section>
 

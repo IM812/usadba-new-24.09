@@ -56,7 +56,7 @@ export default function GalleryPage() {
             <div data-reveal>
               <SectionHeading eyebrow={section.eyebrow} title={section.title} lead={section.lead} />
             </div>
-            <div data-reveal className="mt-10 sm:mt-14">
+            <div data-reveal className="mt-8 sm:mt-14">
               <PhotoGrid photos={section.photos} />
             </div>
           </Container>

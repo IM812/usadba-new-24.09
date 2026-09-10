@@ -71,12 +71,12 @@ export default async function HomePage() {
       {/* ===== Манифест ===== */}
       <Section tone="base">
         <Container size="wide">
-          <div data-reveal className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-24">
+          <div data-reveal className="grid gap-8 min-[390px]:gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-24">
             <div className="relative">
               <ArchImage
                 src="/images/estate/autumn-veranda-new.webp"
                 alt="Открытая терраса усадьбы среди золотых осенних сосен"
-                className="aspect-3/4 w-full"
+                className="aspect-4/3 w-full sm:aspect-3/4"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
               <p className="mt-6 max-w-xs text-[13px] leading-relaxed text-muted-foreground">
@@ -129,7 +129,7 @@ export default async function HomePage() {
           <div
             data-reveal
             aria-label="Разделы усадьбы"
-            className="no-scrollbar -mx-4 mt-9 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 min-[390px]:-mx-5 min-[390px]:px-5 sm:mt-14 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:gap-12"
+            className="mobile-snap-rail -mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-4 pb-3 min-[390px]:-mx-5 min-[390px]:px-5 sm:mt-14 md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:gap-12"
           >
             {chapters.map((c) => (
               <Link
@@ -170,7 +170,7 @@ export default async function HomePage() {
       {/* ===== Что включено ===== */}
       <Section tone="deep">
         <Container size="wide">
-          <div data-reveal className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-24">
+          <div data-reveal className="grid gap-8 min-[390px]:gap-10 lg:grid-cols-[1fr_1fr] lg:gap-24">
             <div className="flex flex-col gap-8">
               <SectionHeading
                 eyebrow="Включено в проживание"
@@ -194,7 +194,7 @@ export default async function HomePage() {
             <FrameImage
               src="/images/estate/interior-kitchen-wide-new.webp"
               alt="Полностью оборудованная кухня, которая входит в стоимость проживания"
-              className="aspect-3/2 w-full sm:aspect-16/10 lg:aspect-auto lg:min-h-full"
+              className="order-first aspect-3/2 w-full sm:aspect-16/10 lg:order-none lg:aspect-auto lg:min-h-full"
               sizes="(max-width: 1024px) 100vw, 45vw"
             />
           </div>
@@ -220,7 +220,7 @@ export default async function HomePage() {
       </Section>
 
       {/* ===== Карта разделов ===== */}
-      <Section tone="raised" className="py-16 sm:py-20">
+      <Section tone="raised" className="py-10 min-[390px]:py-12 sm:py-20">
         <Container size="wide">
           <div data-reveal className="flex flex-col gap-8">
             <Eyebrow>Разделы сайта</Eyebrow>

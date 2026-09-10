@@ -53,7 +53,7 @@ export default function GroundsPage() {
             />
           </div>
 
-          <div data-reveal className="mt-14 grid gap-10 sm:grid-cols-2 lg:gap-14">
+          <div data-reveal className="mt-8 grid gap-10 min-[390px]:mt-10 sm:mt-14 sm:grid-cols-2 lg:gap-14">
             {groundExperiences.map((e) => (
               <article key={e.id} className="group flex flex-col">
                 <div className="relative aspect-16/11 w-full overflow-hidden rounded-2xl bg-secondary">

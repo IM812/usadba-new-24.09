@@ -62,7 +62,7 @@ export default async function BookingPage() {
             className="items-center"
           />
 
-          <div className="mt-10 grid gap-8 sm:mt-16 sm:grid-cols-3 sm:gap-10">
+          <div className="mt-8 grid gap-6 min-[390px]:gap-7 sm:mt-16 sm:grid-cols-3 sm:gap-10">
             {steps.map((s) => (
               <div key={s.title} className="grid grid-cols-[2.5rem_1fr] gap-x-3 text-left sm:flex sm:flex-col sm:items-center sm:text-center">
                 <span className="flex size-10 items-center justify-center rounded-full bg-accent/10"><s.icon className="size-5 text-accent" aria-hidden="true" /></span>

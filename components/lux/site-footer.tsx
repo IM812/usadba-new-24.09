@@ -11,8 +11,8 @@ export async function SiteFooter() {
 
   return (
     <footer className="border-t border-border bg-card">
-      <Container size="wide" className="py-16 lg:py-24">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
+      <Container size="wide" className="py-10 min-[390px]:py-12 lg:py-24">
+        <div className="grid gap-9 min-[390px]:gap-10 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
           {/* Лого и подпись */}
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex flex-col leading-none">
@@ -87,7 +87,7 @@ export async function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-border pt-8 text-[12px] text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 text-[12px] text-muted-foreground sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:pt-8">
           <p>
             © {year} {site.name}
           </p>

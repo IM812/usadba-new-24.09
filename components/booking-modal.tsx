@@ -288,7 +288,7 @@ function Calendar({
   function getDayStyle(iso: string | null): string {
     // 40px на телефоне — комфортная зона тапа (было 32px, палец промахивался)
     const base =
-      "relative flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-full text-sm transition select-none overflow-hidden"
+      "relative flex aspect-square w-full min-w-0 items-center justify-center overflow-hidden rounded-full text-sm transition select-none"
     if (!iso) return base + " invisible"
     const isToday = iso === todayIso
     const isPast = iso < todayIso
@@ -327,7 +327,7 @@ function Calendar({
   }
 
   return (
-    <div className="rounded-xl border border-border bg-background p-3">
+    <div className="-mx-3 w-[calc(100%+1.5rem)] rounded-xl border border-border bg-background p-1 min-[390px]:mx-0 min-[390px]:w-auto min-[390px]:p-3">
       {/* Month navigation */}
       <div className="mb-2 flex items-center justify-between gap-2">
         <button
@@ -641,7 +641,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
 
       <div className="relative z-10 flex max-h-[94svh] w-full flex-col overflow-hidden rounded-t-2xl bg-card shadow-2xl sm:max-h-[92dvh] sm:max-w-lg sm:rounded-2xl">
         {/* Header — остаётся на месте при прокрутке формы */}
-        <div className="relative flex shrink-0 items-start justify-between gap-3 border-b border-border bg-secondary px-4 py-4 text-foreground sm:px-6 sm:py-5">
+        <div className="relative flex shrink-0 items-start justify-between gap-3 border-b border-border bg-secondary px-4 py-3 text-foreground min-[390px]:py-4 sm:px-6 sm:py-5">
           {/* латунная нить вместо плотной заливки — акцент, а не пятно */}
           <span aria-hidden className="absolute inset-x-0 top-0 h-px bg-accent/70" />
           <div>
@@ -801,7 +801,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
 
                   {/* Баня и чан — допуслуга, предлагаем сразу при брони */}
                   <div className="flex flex-col gap-3 rounded-xl border border-border bg-secondary/40 p-4">
-                    <div className="flex items-start justify-between gap-3">
+                    <div className="flex flex-col items-start justify-between gap-3 min-[390px]:flex-row">
                       <div className="flex min-w-0 flex-col gap-1">
                         <span className="flex items-center gap-2 text-sm font-medium text-foreground">
                           <Flame className="size-4 shrink-0 text-primary" />

@@ -399,3 +399,21 @@
     transition: none;
   }
 }
+
+/* Мобильные ленты остаются нативными: быстро прокручиваются пальцем,
+   фиксируются по карточке и не требуют тяжёлой карусельной библиотеки. */
+.mobile-snap-rail {
+  scrollbar-width: none;
+  scroll-padding-inline: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-snap-rail::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .mobile-snap-rail {
+    scrollbar-width: auto;
+  }
+}

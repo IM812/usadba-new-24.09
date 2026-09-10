@@ -50,7 +50,6 @@ export default async function ContactsPage() {
         image="/images/estate/autumn-veranda-golden.webp"
         imageAlt="Веранда усадьбы среди золотого осеннего леса"
         size="short"
-        showImageOnMobile
       />
 
       {/* Каналы связи */}
@@ -58,17 +57,17 @@ export default async function ContactsPage() {
         <Container>
           <SectionHeading
             eyebrow="Способы связи"
-            title="Выберите удобный канал"
+            title="Как с нами связаться"
             lead="Обычно отвечаем в течение часа в рабочее время."
           />
 
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="mt-8 grid grid-cols-1 gap-3 min-[390px]:mt-10 sm:mt-12 sm:grid-cols-2 sm:gap-4">
             {channels.map((c) => (
               <a
                 key={c.label}
                 href={c.href}
                 {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="surface-2 group flex min-h-56 min-w-0 flex-col justify-between rounded-3xl border border-border bg-card p-6 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-elev-3 sm:min-h-64 sm:p-8"
+                className="surface-2 group flex min-h-48 min-w-0 flex-col justify-between rounded-2xl border border-border bg-card p-5 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-elev-3 min-[390px]:min-h-52 sm:min-h-64 sm:rounded-3xl sm:p-8"
               >
                 <span className="flex items-start justify-between gap-4">
                   <span className="flex size-14 shrink-0 items-center justify-center rounded-full border border-accent/40 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-accent-foreground">
@@ -100,7 +99,7 @@ export default async function ContactsPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="flex flex-col">
               <SectionHeading eyebrow="Где мы находимся" title="Антропково" />
-              <dl className="mt-10 flex flex-col">
+              <dl className="mt-7 flex flex-col sm:mt-10">
                 {facts.map((f) => (
                   <div key={f.k} className="flex flex-col gap-1 border-b border-border py-5 first:border-t">
                     <dt className="eyebrow text-muted-foreground">{f.k}</dt>

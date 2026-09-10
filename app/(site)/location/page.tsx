@@ -38,7 +38,7 @@ export default function LocationPage() {
             title="Выберите свой маршрут"
             lead="Выберите маршрут из Москвы или Санкт-Петербурга — откроются Яндекс Карты с дорогой до усадьбы. Вариант на поезде приведён для справки."
           />
-          <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <div aria-label="Варианты маршрута" className="mobile-snap-rail -mx-4 mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-2 min-[390px]:-mx-5 min-[390px]:mt-10 min-[390px]:px-5 lg:mx-0 lg:mt-12 lg:grid lg:grid-cols-3 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0">
             {routes.map((r) => {
               const body = (
                 <>
@@ -77,14 +77,14 @@ export default function LocationPage() {
                   href={r.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="surface-2 group flex min-h-96 flex-col rounded-3xl border border-border bg-card p-6 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-elev-3 sm:p-8"
+                  className="surface-2 group flex min-h-80 w-[calc(100vw-3rem)] max-w-[22rem] shrink-0 snap-center flex-col rounded-2xl border border-border bg-card p-5 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-elev-3 min-[390px]:w-[calc(100vw-4rem)] sm:p-8 lg:min-h-96 lg:w-auto lg:max-w-none lg:snap-none lg:rounded-3xl"
                 >
                   {body}
                 </a>
               ) : (
                 <div
                   key={r.id}
-                  className="surface-2 group flex min-h-96 flex-col rounded-3xl border border-border bg-card p-6 sm:p-8"
+                  className="surface-2 group flex min-h-80 w-[calc(100vw-3rem)] max-w-[22rem] shrink-0 snap-center flex-col rounded-2xl border border-border bg-card p-5 min-[390px]:w-[calc(100vw-4rem)] sm:p-8 lg:min-h-96 lg:w-auto lg:max-w-none lg:snap-none lg:rounded-3xl"
                 >
                   {body}
                 </div>

@@ -37,7 +37,7 @@ export function ReviewsRail({ reviews }: { reviews: GuestReview[] }) {
     <div className="relative">
       <div
         ref={trackRef}
-        className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-2 min-[390px]:-mx-5 min-[390px]:px-5 sm:mx-0 sm:gap-8 sm:px-0"
+        className="mobile-snap-rail -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-2 min-[390px]:-mx-5 min-[390px]:px-5 sm:mx-0 sm:gap-8 sm:px-0"
       >
         {reviews.map((r) => (
           <ReviewCard

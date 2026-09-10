@@ -35,14 +35,14 @@ export default function EstatePage() {
         <Container size="wide">
           <div data-reveal className="max-w-5xl"><SectionHeading eyebrow="Внутри дома" title="Просторные комнаты для отдыха всей компанией" lead="Четыре отдельные спальни, общая гостиная с камином и полностью оборудованная кухня. Показываем фактическую обстановку дома и заранее согласуем размещение." /></div>
 
-          <article data-reveal className="mt-16 grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <article data-reveal className="mt-8 grid gap-6 min-[390px]:mt-10 lg:mt-16 lg:grid-cols-2 lg:items-center lg:gap-16">
             <figure className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary lg:aspect-3/2"><Image src={livingRoom.image} alt="Гостиная с мягкими диванами, книжными полками и окнами" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></figure>
             <div className="flex flex-col gap-5"><Eyebrow>{livingRoom.kind}</Eyebrow><h2 className="text-balance font-display text-[1.75rem] font-semibold leading-tight text-foreground sm:text-4xl">{livingRoom.name}</h2><p className="max-w-lg text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">{livingRoom.description}</p><Divider /><ul className="flex flex-wrap gap-x-6 gap-y-2">{livingRoom.features.map((feature) => <li key={feature} className="text-[13px] tracking-wide text-foreground/70">{feature}</li>)}</ul></div>
           </article>
 
-          <article data-reveal className="mt-24 lg:mt-32">
+          <article data-reveal className="mt-14 min-[390px]:mt-16 lg:mt-32">
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-16"><div className="flex flex-col gap-5"><Eyebrow>{bedrooms.kind}</Eyebrow><h2 className="text-balance font-display text-[1.75rem] font-semibold leading-tight text-foreground sm:text-4xl">{bedrooms.name}</h2><p className="text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">{bedrooms.description}</p></div><ul className="flex flex-wrap gap-x-6 gap-y-2 lg:justify-end">{bedrooms.features.map((feature) => <li key={feature} className="text-[13px] tracking-wide text-foreground/70">{feature}</li>)}</ul></div>
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-6">{bedrooms.images?.map((src, index) => <figure key={src} className="relative aspect-4/3 overflow-hidden rounded-2xl bg-secondary"><Image src={src} alt={bedroomAlts[index] ?? `Спальня усадьбы, фотография ${index + 1}`} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" /></figure>)}</div>
+            <div aria-label="Фотографии спален" className="mobile-snap-rail -mx-4 mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-2 min-[390px]:-mx-5 min-[390px]:px-5 sm:mx-0 sm:mt-10 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0">{bedrooms.images?.map((src, index) => <figure key={src} className="relative aspect-4/3 w-[calc(100vw-3.25rem)] shrink-0 snap-center overflow-hidden rounded-2xl bg-secondary min-[390px]:w-[calc(100vw-4rem)] sm:w-auto sm:snap-none"><Image src={src} alt={bedroomAlts[index] ?? `Спальня усадьбы, фотография ${index + 1}`} fill sizes="(max-width: 640px) 85vw, 50vw" className="object-cover" /></figure>)}</div>
           </article>
         </Container>
       </Section>

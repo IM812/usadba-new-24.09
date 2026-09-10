@@ -69,7 +69,13 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
 
   return (
     <>
-      <div className={cn("grid grid-flow-dense grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-6", className)}>
+      <div
+        aria-label="Фотографии усадьбы"
+        className={cn(
+          "mobile-snap-rail -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-3 min-[390px]:-mx-5 min-[390px]:px-5 sm:mx-0 sm:grid sm:grid-flow-dense sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-6",
+          className,
+        )}
+      >
         {photos.map((p, i) => {
           // Один опорный широкий кадр, остальные заполняют сетку без пустых колонок.
           const wide = i === 0
@@ -80,17 +86,17 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
               onClick={(event) => openPhoto(i, event.currentTarget)}
               aria-label={`Открыть фотографию: ${p.alt}`}
               className={cn(
-                "group relative overflow-hidden rounded-2xl bg-secondary",
+                "group relative shrink-0 snap-center overflow-hidden rounded-2xl bg-secondary sm:snap-none",
                 wide
-                  ? "col-span-2 aspect-4/3 lg:col-span-4 lg:row-span-2 lg:aspect-auto lg:min-h-[28rem]"
-                  : "aspect-square lg:col-span-2",
+                  ? "w-[calc(100vw-2.5rem)] aspect-4/3 sm:col-span-2 sm:w-auto lg:col-span-4 lg:row-span-2 lg:aspect-auto lg:min-h-[28rem]"
+                  : "w-[calc(100vw-4.25rem)] aspect-4/5 sm:w-auto sm:aspect-square lg:col-span-2",
               )}
             >
               <Image
                 src={p.src || "/placeholder.svg"}
                 alt={p.alt}
                 fill
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 40vw"
+                sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 40vw"
                 className="object-cover transition-transform duration-[1.1s] ease-out group-hover:scale-[1.05]"
               />
               <span

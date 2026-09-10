@@ -52,7 +52,7 @@ export default async function ReviewsPage() {
       />
 
       {/* Сводка рейтинга */}
-      <Section tone="raised" className="py-16 sm:py-20 lg:py-24">
+      <Section tone="raised" className="py-10 min-[390px]:py-12 sm:py-20 lg:py-24">
         <Container>
           <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-center gap-6">
@@ -86,7 +86,7 @@ export default async function ReviewsPage() {
             eyebrow="Что отмечают чаще всего"
             title="Три вещи, о которых пишут почти все"
           />
-          <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-14 sm:grid-cols-3 sm:rounded-none">
             {themes.map((t) => (
               <div key={t.title} className="flex flex-col gap-4 bg-background p-8 lg:p-10">
                 <span aria-hidden className="h-px w-10 bg-accent/60" />
@@ -106,7 +106,9 @@ export default async function ReviewsPage() {
         <Section tone="raised">
         <Container>
           <SectionHeading eyebrow="Слово гостям" title="Отзывы без правок" />
-          <ReviewsGrid reviews={reviews} />
+          <div className="mt-8 sm:mt-12">
+            <ReviewsGrid reviews={reviews} />
+          </div>
         </Container>
       </Section>
 

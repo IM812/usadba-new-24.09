@@ -51,7 +51,7 @@ export default async function PricesPage() {
             lead="Цена указана за весь дом при базовом размещении. Выходные — с вечера пятницы по воскресенье."
           />
 
-          <div className="mt-14 overflow-hidden rounded-2xl border border-border">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-border min-[390px]:mt-10 sm:mt-14">
             {/* Заголовок таблицы — только на планшете и шире */}
             <div className="hidden grid-cols-[1.4fr_1fr_1fr] gap-6 border-b border-border bg-secondary/60 px-7 py-4 sm:grid">
               <span className="eyebrow text-muted-foreground">Сезон</span>
@@ -62,7 +62,7 @@ export default async function PricesPage() {
             {seasons.map((s) => (
               <div
                 key={s.id}
-                className="grid gap-3 border-b border-border px-5 py-6 last:border-0 sm:grid-cols-[1.4fr_1fr_1fr] sm:items-baseline sm:gap-6 sm:px-7"
+                className="grid gap-2 border-b border-border px-4 py-4 last:border-0 min-[390px]:px-5 min-[390px]:py-5 sm:grid-cols-[1.4fr_1fr_1fr] sm:items-baseline sm:gap-6 sm:px-7 sm:py-6"
               >
                 <div>
                     <p className="font-display text-2xl font-semibold text-foreground">
@@ -94,9 +94,9 @@ export default async function PricesPage() {
             <p>{spaSurcharge.full}</p>
           </div>
 
-          <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-            <BookButton>Проверить даты</BookButton>
-            <LuxLink href="/booking#calendar" variant="outline">
+          <div className="mt-8 flex flex-col gap-3 sm:mt-12 sm:flex-row sm:gap-4">
+            <BookButton className="w-full sm:w-auto">Проверить даты</BookButton>
+            <LuxLink href="/booking#calendar" variant="outline" className="w-full sm:w-auto">
               Календарь и расчёт
             </LuxLink>
           </div>

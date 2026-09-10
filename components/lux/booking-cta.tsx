@@ -20,7 +20,7 @@ export function BookingCta({
   const { openBooking } = useBooking()
 
   return (
-    <section className="relative overflow-hidden py-16 sm:py-32">
+    <section className="relative overflow-hidden py-12 min-[390px]:py-14 sm:py-32">
       <Image
         src={image || "/placeholder.svg"}
         alt={imageAlt}
