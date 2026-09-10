@@ -154,19 +154,12 @@ function renderHtml(
   title: string,
   message: string,
   color: string,
-  booking: { guest_name: string; phone: string | null; email: string | null },
+  booking: { guest_name: string; phone: string | null },
   replyText: string,
 ) {
-  const contacts = [
-    booking.phone
-      ? `<a href="tel:${escapeHtml(booking.phone)}">${escapeHtml(booking.phone)}</a>`
-      : null,
-    booking.email
-      ? `<a href="mailto:${escapeHtml(booking.email)}">${escapeHtml(booking.email)}</a>`
-      : null,
-  ]
-    .filter(Boolean)
-    .join(' · ')
+  const contacts = booking.phone
+    ? `<a href="tel:${escapeHtml(booking.phone)}">${escapeHtml(booking.phone)}</a>`
+    : ''
 
   const waPhone = (booking.phone ?? '').replace(/\D/g, '')
 

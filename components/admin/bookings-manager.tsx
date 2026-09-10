@@ -47,7 +47,7 @@ const SOURCE_LABEL: Record<BookingSource, string> = {
 // ---- Add Booking Modal ----
 function AddBookingModal({ onClose, onSaved }: { onClose: () => void; onSaved: () => void }) {
   const [form, setForm] = useState({
-    guest_name: '', phone: '', email: '', guests_count: '2',
+    guest_name: '', phone: '', guests_count: '2',
     check_in: '', check_out: '', total_price: '', comment: '',
   })
   const [loading, setLoading] = useState(false)
@@ -103,7 +103,6 @@ function AddBookingModal({ onClose, onSaved }: { onClose: () => void; onSaved: (
             <Field label="Гостей" type="number" value={form.guests_count} onChange={(v) => update('guests_count', v)} />
             <Field label="Стоимость (₽)" type="number" value={form.total_price} onChange={(v) => update('total_price', v)} />
           </div>
-          <Field label="Email" type="email" value={form.email} onChange={(v) => update('email', v)} />
           <div className="flex flex-col gap-1.5">
             <label className="text-sm font-medium text-foreground">Комментарий</label>
             <textarea
@@ -228,7 +227,6 @@ function BookingDrawer({
           <div className="space-y-3">
             <Row label="Гость" value={booking.guest_name} />
             <Row label="Телефон" value={booking.phone} />
-            {booking.email && <Row label="Email" value={booking.email} />}
             <Row label="Гостей" value={String(booking.guests_count)} />
             <Row label="Заезд" value={formatDate(booking.check_in)} />
             <Row label="Выезд" value={formatDate(booking.check_out)} />

@@ -12,7 +12,7 @@ export function SiteSettings() {
 
   const [form, setForm] = useState({
     title: '', subtitle: '', description: '',
-    phone: '', email: '', address: '',
+    phone: '', address: '',
     telegram: '', whatsapp: '',
   })
 
@@ -22,7 +22,6 @@ export function SiteSettings() {
       subtitle: s.subtitle ?? '',
       description: s.description ?? '',
       phone: s.phone ?? '',
-      email: s.email ?? '',
       address: s.address ?? '',
       telegram: s.telegram ?? '',
       whatsapp: s.whatsapp ?? '',
@@ -61,12 +60,9 @@ export function SiteSettings() {
         </FieldRow>
       </SettingsForm>
 
-      <SettingsForm title="Контакты" onSubmit={() => save({ phone: form.phone, email: form.email, address: form.address, telegram: form.telegram, whatsapp: form.whatsapp })}>
+      <SettingsForm title="Контакты" onSubmit={() => save({ phone: form.phone, address: form.address, telegram: form.telegram, whatsapp: form.whatsapp })}>
         <FieldRow label="Телефон">
           <TextInput type="tel" value={form.phone} onChange={(v) => update('phone', v)} />
-        </FieldRow>
-        <FieldRow label="Email">
-          <TextInput type="email" value={form.email} onChange={(v) => update('email', v)} />
         </FieldRow>
         <FieldRow label="Адрес">
           <TextInput value={form.address} onChange={(v) => update('address', v)} />

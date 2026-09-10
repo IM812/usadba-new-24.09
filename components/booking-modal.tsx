@@ -9,7 +9,6 @@ import {
   Users,
   User,
   Phone,
-  Mail,
   Check,
   ArrowRight,
   ArrowLeft,
@@ -45,7 +44,6 @@ type FormState = {
   spaSessions: number
   name: string
   phone: string
-  email: string
 }
 
 const emptyForm: FormState = {
@@ -55,7 +53,6 @@ const emptyForm: FormState = {
   spaSessions: 0,
   name: "",
   phone: "",
-  email: "",
 }
 
 // ---------------------------------------------------------------------------
@@ -688,7 +685,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
             <div className="flex shrink-0 items-center gap-2 px-4 pt-4 sm:gap-3 sm:px-6 sm:pt-5">
               <StepDot index={1} label="Даты и гости" active={step === 1} done={step === 2} />
               <div className="h-px flex-1 bg-border" />
-              <StepDot index={2} label="Ваши контакты" active={step === 2} done={false} />
+              <StepDot index={2} label="Ваши контакт��" active={step === 2} done={false} />
             </div>
 
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pt-4 sm:px-6 sm:pt-5">
@@ -928,18 +925,6 @@ export function BookingModal({ open, onClose, prefill }: Props) {
                     value={form.phone}
                     onChange={(v) => update("phone", v)}
                   />
-                  <Field
-                    icon={<Mail className="size-4" />}
-                    label="E-mail (необязательно)"
-                    id="email"
-                    placeholder="you@example.com"
-                    inputMode="email"
-                    type="email"
-                    autoComplete="email"
-                    value={form.email}
-                    onChange={(v) => update("email", v)}
-                  />
-
                   <div className="mt-1 rounded-lg bg-secondary px-4 py-3 text-sm text-secondary-foreground">
                     <div>
                       Заезд <strong>{formatDate(form.arrival)}</strong> · Выезд{" "}

@@ -128,7 +128,7 @@ async function sendTelegramMessage(
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { arrival, departure, guests, name, phone, email, comment, spaSessions } = body
+    const { arrival, departure, guests, name, phone, comment, spaSessions } = body
 
     if (!arrival || !departure || !name || !phone) {
       return NextResponse.json({ ok: false, error: 'missing_fields' }, { status: 400 })
@@ -225,7 +225,6 @@ export async function POST(req: Request) {
       .insert({
         guest_name: name.trim(),
         phone: phone.trim(),
-        email: email?.trim() || null,
         guests_count: parseInt(guests) || 1,
         check_in: arrival,
         check_out: departure,
@@ -269,7 +268,6 @@ export async function POST(req: Request) {
       '',
       `👤 Имя: *${name.trim()}*`,
       `📞 Телефон: *${phone.trim()}*`,
-      email ? `✉️ Email: *${email.trim()}*` : null,
       comment ? `💬 Комментарий: ${comment.trim()}` : null,
     ]
       .filter(Boolean)
