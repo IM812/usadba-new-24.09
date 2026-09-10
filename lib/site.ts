@@ -186,7 +186,7 @@ export const routes = [
     duration: '30 минут от станции',
     distance: '35 км',
     description:
-      'Поезда из Москвы и Петербурга идут до Великих Лук. От вокзала до усадьбы — около 35 км.',
+      'Поезда из Москвы и Петербурга идут до Великих Лук. От вокзала до усадьбы — ��коло 35 км.',
     href: null,
   },
 ] as const
@@ -242,10 +242,10 @@ export const galleryPhotos = [
   { src: '/images/estate/summer-grounds-new.webp', alt: 'Зелёная территория перед озером', caption: 'Пространство для отдыха у воды' },
   { src: '/images/estate/summer-swing-new.webp', alt: 'Деревянные качели у озера', caption: 'Качели с видом на воду' },
   { src: '/images/estate/lake-wide.jpg', alt: 'Дневной вид на лесное озеро и усадьбу с высоты', caption: 'Озеро и усадьба среди леса' },
-  { src: '/images/estate/spring-banya-exterior-new.webp', alt: 'Современная баня среди молодых сосен', caption: 'Актуальная баня на территории усадьбы' },
-  { src: '/images/estate/summer-banya-new.webp', alt: 'Светлая парная с банными принадлежностями', caption: 'Парная в бане у озера' },
-  { src: '/images/estate/spring-stove-new.webp', alt: 'Дровяная печь в новой бане', caption: 'Дровяная печь в парной' },
-  { src: '/images/estate/autumn-banya-new.webp', alt: 'Комната отдыха в бане с деревянными стенами', caption: 'Комната отдыха в актуальной бане' },
+  { src: '/images/estate/summer-banya-new.webp', alt: 'Парная с банными принадлежностями усадьбы', caption: 'Парная в бане у озера' },
+  { src: '/images/estate/spring-stove-new.webp', alt: 'Дровяная печь в бане', caption: 'Дровяная печь в парной' },
+  { src: '/images/estate/banya-fire.jpg', alt: 'Подготовка дровяной печи перед баней', caption: 'Баню готовят к приезду гостей' },
+  { src: '/images/estate/chan-lake.jpg', alt: 'Сибирский чан на дровах у лесного озера', caption: 'Чан с видом на озеро' },
   { src: '/images/estate/chan-close.jpg', alt: 'Сибирский чан с паром на берегу озера', caption: 'Чан под открытым небом у воды' },
   { src: '/images/estate/winter-banya-new.webp', alt: 'Баня под снегом вечером', caption: 'Баня среди заснеженного леса' },
   { src: '/images/estate/winter-house-new.webp', alt: 'Дом усадьбы в снегу вечером', caption: 'Дом после снегопада' },
