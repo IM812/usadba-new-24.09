@@ -233,6 +233,7 @@ export const galleryPhotos = [
   { src: '/images/estate/interior-kitchen-new.webp', alt: 'Большая кухня с кирпичной стеной', caption: 'Полностью оборудованная кухня' },
   { src: '/images/estate/interior-dining-new.webp', alt: 'Обеденный стол у окон с видом на лес', caption: 'Столовая рядом с панорамными окнами' },
   { src: '/images/estate/interior-reading-new.webp', alt: 'Место для чтения у камина в гостиной', caption: 'Гостиная у настоящего камина' },
+  { src: '/images/estate/dining-celebration.webp', alt: 'Празднично накрытый большой стол в столовой усадьбы', caption: 'Большой стол для семейных праздников' },
   { src: '/images/estate/aerial-between-lakes-new.webp', alt: 'Усадьба на лесном полуострове между озёрами', caption: 'Расположение усадьбы между двумя озёрами' },
   { src: '/images/estate/aerial-lake-new.webp', alt: 'Лесное озеро с высоты', caption: 'Озеро и сосновый лес с высоты' },
   { src: '/images/estate/aerial-estate-new.webp', alt: 'Территория усадьбы с высоты', caption: 'Дом, лес и берег в одном кадре' },
@@ -241,6 +242,11 @@ export const galleryPhotos = [
   { src: '/images/estate/summer-grounds-new.webp', alt: 'Зелёная территория перед озером', caption: 'Пространство для отдыха у воды' },
   { src: '/images/estate/summer-swing-new.webp', alt: 'Деревянные качели у озера', caption: 'Качели с видом на воду' },
   { src: '/images/estate/lake-wide.jpg', alt: 'Дневной вид на лесное озеро и усадьбу с высоты', caption: 'Озеро и усадьба среди леса' },
+  { src: '/images/estate/guests-on-pier.webp', alt: 'Гости отдыхают в креслах на деревянном причале', caption: 'Спокойный вечер на причале' },
+  { src: '/images/estate/lake-evening-lights.webp', alt: 'Вечернее озеро и огни усадьбы на берегу', caption: 'Вечерний свет у воды' },
+  { src: '/images/estate/lake-morning-mist.webp', alt: 'Туман поднимается над гладью лесного озера', caption: 'Тихое утро над озером' },
+  { src: '/images/estate/lake-rainbow.webp', alt: 'Радуга над озером рядом с усадьбой', caption: 'Радуга над берегом после дождя' },
+  { src: '/images/estate/autumn-veranda-golden.webp', alt: 'Деревянная веранда дома в золотом осеннем лесу', caption: 'Веранда среди золотой листвы' },
   { src: '/images/estate/summer-banya-new.webp', alt: 'Парная с банными принадлежностями усадьбы', caption: 'Парная в бане у озера' },
   { src: '/images/estate/spring-stove-new.webp', alt: 'Дровяная печь в бане', caption: 'Дровяная печь в парной' },
   { src: '/images/estate/banya-fire.jpg', alt: 'Подготовка дровяной печи перед баней', caption: 'Баню готовят к приезду гостей' },
@@ -255,6 +261,7 @@ export const galleryPhotos = [
   { src: '/images/estate/aerial-house-new.webp', alt: 'Дом и лес с высоты', caption: 'Территория с высоты' },
   { src: '/images/estate/autumn-terrace-new.webp', alt: 'Открытая терраса дома среди сосен', caption: 'Открытая терраса у дома' },
   { src: '/images/estate/autumn-berries-new.webp', alt: 'Красные ягоды у бревенчатого дома', caption: 'Ягоды у фасада' },
+  { src: '/images/estate/winter-house-path.webp', alt: 'Освещённая дорожка к дому после снегопада', caption: 'Зимний вечер на территории' },
 ] as const
 
 export type Season = (typeof seasons)[number]

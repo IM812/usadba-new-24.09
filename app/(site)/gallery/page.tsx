@@ -16,25 +16,25 @@ const gallerySections = [
     eyebrow: "Дом и комнаты",
     title: "Пространство для общей жизни и личной тишины",
     lead: "Гостиная, кухня, столовая и разные спальни — без повторов одного и того же ракурса.",
-    photos: galleryPhotos.slice(0, 10),
+    photos: galleryPhotos.slice(0, 11),
   },
   {
     eyebrow: "Территория и озеро",
     title: "Дом стоит среди сосен между двумя озёрами",
     lead: "Показываем масштаб с земли и воздуха: берег, причал, лес и расположение усадьбы.",
-    photos: galleryPhotos.slice(10, 18),
+    photos: galleryPhotos.slice(11, 24),
   },
   {
     eyebrow: "Баня и чан",
     title: "Актуальная баня у воды",
     lead: "Парная на дровах и сибирский чан под открытым небом — так банный отдых выглядит сейчас.",
-    photos: galleryPhotos.slice(18, 24),
+    photos: galleryPhotos.slice(24, 30),
   },
   {
     eyebrow: "Вокруг дома",
     title: "Территория в деталях",
     lead: "Снег, зелень, вечерний свет и детали вокруг дома — без деления фотографий по сезонам.",
-    photos: galleryPhotos.slice(24, 32),
+    photos: galleryPhotos.slice(30, 39),
   },
 ] as const
 
@@ -47,7 +47,7 @@ export default function GalleryPage() {
         lead="Все фотографии сделаны здесь. В подборке — дом, разные спальни, баня, чан, озёра и территория усадьбы."
         image="/images/estate/autumn-house-wide-new.webp"
         imageAlt="Бревенчатый дом усадьбы среди сосен"
-        meta={["32 фотографии", "дом и спальни", "озёра, баня и территория"]}
+        meta={["39 фотографий", "дом и спальни", "озёра, баня и территория"]}
       />
 
       {gallerySections.map((section, index) => (

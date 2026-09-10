@@ -47,8 +47,8 @@ export default async function ContactsPage() {
         eyebrow="Контакты"
         title="Напишите нам напрямую"
         lead="Усадьбой занимаются хозяева, а не отдел бронирования. Ответим на любой вопрос — от свободных дат до того, какие сапоги брать в ноябре."
-        image="/images/estate/house-yard.jpg"
-        imageAlt="Усадьба и подъезд к дому"
+        image="/images/estate/autumn-veranda-golden.webp"
+        imageAlt="Веранда усадьбы среди золотого осеннего леса"
         size="short"
       />
 
