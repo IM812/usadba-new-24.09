@@ -16,7 +16,8 @@ const channels = [
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "Ответим быстрее всего",
+    value: "Написать в WhatsApp",
+    note: "Самый быстрый способ связаться",
     href: contacts.whatsapp,
     external: true,
   },
@@ -24,6 +25,7 @@ const channels = [
     icon: Phone,
     label: "Телефон",
     value: contacts.phoneLabel,
+    note: "Ежедневно с 9:00 до 22:00",
     href: contacts.phoneHref,
     external: false,
   },
@@ -59,24 +61,32 @@ export default async function ContactsPage() {
             lead="Обычно отвечаем в течение часа в рабочее время."
           />
 
-          <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {channels.map((c) => (
               <a
                 key={c.label}
                 href={c.href}
                 {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="group flex min-w-0 items-center gap-4 bg-background p-6 transition-colors hover:bg-card sm:gap-5 sm:p-8 lg:p-10"
+                className="surface-2 group flex min-h-56 min-w-0 flex-col justify-between rounded-3xl border border-border bg-card p-6 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-elev-3 sm:min-h-64 sm:p-8"
               >
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-full border border-accent/40 text-accent transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
-                  <c.icon className="size-5" />
-                </span>
-                <span className="flex min-w-0 flex-col gap-1">
-                  <Eyebrow className="text-muted-foreground">{c.label}</Eyebrow>
-                  <span className="truncate font-display text-xl font-semibold text-foreground">
-                    {c.value}
+                <span className="flex items-start justify-between gap-4">
+                  <span className="flex size-14 shrink-0 items-center justify-center rounded-full border border-accent/40 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-accent-foreground">
+                    <c.icon className="size-6" aria-hidden="true" />
+                  </span>
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors duration-300 group-hover:border-accent/40 group-hover:text-accent">
+                    <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
                   </span>
                 </span>
-                <ArrowUpRight className="ml-auto size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent" />
+
+                <span className="flex min-w-0 flex-col gap-3">
+                  <Eyebrow className="text-accent">{c.label}</Eyebrow>
+                  <span className="text-balance font-display text-2xl font-semibold tracking-[-0.03em] text-foreground sm:text-3xl lg:text-4xl">
+                    {c.value}
+                  </span>
+                  <span className="text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+                    {c.note}
+                  </span>
+                </span>
               </a>
             ))}
           </div>
