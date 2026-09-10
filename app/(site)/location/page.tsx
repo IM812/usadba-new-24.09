@@ -38,25 +38,37 @@ export default function LocationPage() {
             title="Выберите свой маршрут"
             lead="Выберите маршрут из Москвы или Санкт-Петербурга — откроются Яндекс Карты с дорогой до усадьбы. Вариант на поезде приведён для справки."
           />
-          <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-3">
             {routes.map((r) => {
               const body = (
                 <>
-                  <div className="flex items-baseline justify-between gap-4">
-                    <Eyebrow className="text-muted-foreground">{r.from}</Eyebrow>
-                    {r.href ? (
-                      <ArrowUpRight className="size-4 shrink-0 text-accent" />
-                    ) : null}
-                  </div>
-                  <div className="mt-6 flex items-end gap-3">
-                    <span className="font-display text-4xl font-semibold leading-none text-foreground">
-                      {r.duration.replace("≈ ", "")}
+                  <div className="flex items-start justify-between gap-4">
+                    <Eyebrow className="text-accent">{r.from}</Eyebrow>
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors duration-300 group-hover:border-accent/40 group-hover:text-accent">
+                      <ArrowUpRight
+                        className={`size-5 transition-transform duration-300 ${r.href ? "group-hover:translate-x-0.5 group-hover:-translate-y-0.5" : "rotate-45"}`}
+                        aria-hidden="true"
+                      />
                     </span>
-                    <span className="pb-1 text-sm text-muted-foreground">{r.distance}</span>
                   </div>
-                  <p className="mt-5 text-pretty text-[15px] leading-relaxed text-muted-foreground">
+
+                  <div className="mt-10 flex min-w-0 flex-col gap-4">
+                    <span className="text-balance font-display text-4xl font-semibold leading-tight tracking-[-0.04em] text-foreground">
+                      {r.duration}
+                    </span>
+                    <span className="self-start rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
+                      {r.distance}
+                    </span>
+                  </div>
+
+                  <p className="mt-6 text-pretty text-[15px] leading-relaxed text-muted-foreground">
                     {r.description}
                   </p>
+
+                  <span className="mt-auto flex items-center gap-2 pt-8 text-sm font-semibold text-foreground/80 transition-colors group-hover:text-accent">
+                    {r.href ? "Открыть маршрут" : "Справочная информация"}
+                    {r.href ? <ArrowUpRight className="size-4" aria-hidden="true" /> : null}
+                  </span>
                 </>
               )
               return r.href ? (
@@ -65,12 +77,15 @@ export default function LocationPage() {
                   href={r.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col bg-background p-8 transition-colors hover:bg-card lg:p-10"
+                  className="surface-2 group flex min-h-96 flex-col rounded-3xl border border-border bg-card p-6 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-elev-3 sm:p-8"
                 >
                   {body}
                 </a>
               ) : (
-                <div key={r.id} className="flex flex-col bg-background p-8 lg:p-10">
+                <div
+                  key={r.id}
+                  className="surface-2 group flex min-h-96 flex-col rounded-3xl border border-border bg-card p-6 sm:p-8"
+                >
                   {body}
                 </div>
               )

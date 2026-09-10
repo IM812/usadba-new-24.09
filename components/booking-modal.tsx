@@ -685,7 +685,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
             <div className="flex shrink-0 items-center gap-2 px-4 pt-4 sm:gap-3 sm:px-6 sm:pt-5">
               <StepDot index={1} label="Даты и гости" active={step === 1} done={step === 2} />
               <div className="h-px flex-1 bg-border" />
-              <StepDot index={2} label="Ваши контакт��" active={step === 2} done={false} />
+              <StepDot index={2} label="Ваши контакты" active={step === 2} done={false} />
             </div>
 
             <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pt-4 sm:px-6 sm:pt-5">

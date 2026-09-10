@@ -185,7 +185,7 @@ export const routes = [
     duration: '30 минут от станции',
     distance: '35 км',
     description:
-      'Поезда из Москвы и Петербурга идут до Великих Лук. От вокзала до усадьбы — ��коло 35 км.',
+      'Поезда из Москвы и Петербурга идут до Великих Лук. От вокзала до усадьбы — около 35 км.',
     href: null,
   },
 ] as const
@@ -226,7 +226,7 @@ export const galleryPhotos = [
   { src: '/images/estate/autumn-house-wide-new.webp', alt: 'Дом усадьбы среди золотых сосен', caption: 'Бревенчатый дом и осенний лес' },
   { src: '/images/estate/interior-twin-new.webp', alt: 'Спальня с двумя отдельными кроватями', caption: 'Комната с двумя отдельными кроватями' },
   { src: '/images/estate/interior-double-new.webp', alt: 'Другая спальня с одной широкой кроватью', caption: 'Отдельная комната с широкой кроватью' },
-  { src: '/images/estate/interior-kitchen-wide-new.webp', alt: 'Оборудованная кухня с деревянной отделкой', caption: '��ухня для самостоятельного приготовления еды' },
+  { src: '/images/estate/interior-kitchen-wide-new.webp', alt: 'Оборудованная кухня с деревянной отделкой', caption: 'Кухня для самостоятельного приготовления еды' },
   { src: '/images/estate/interior-bathroom-new.webp', alt: 'Санузел с душевой в доме усадьбы', caption: 'Один из санузлов дома' },
   { src: '/images/estate/interior-living-new.webp', alt: 'Гостиная с диваном и панорамными окнами', caption: 'Общая гостиная для всей компании' },
   { src: '/images/estate/interior-fireplace-new.webp', alt: 'Кирпичный камин с живым огнём', caption: 'Настоящий дровяной камин в гостиной' },
@@ -250,7 +250,7 @@ export const galleryPhotos = [
   { src: '/images/estate/winter-house-new.webp', alt: 'Дом усадьбы в снегу вечером', caption: 'Дом после снегопада' },
   { src: '/images/estate/winter-forest-color-new.webp', alt: 'Заснеженные сосны в вечерней подсветке', caption: 'Подсвеченный сосновый лес' },
   { src: '/images/estate/spring-daffodils-new.webp', alt: 'Нарциссы у каменной стены', caption: 'Цветы у дома' },
-  { src: '/images/estate/spring-banya-night-new.webp', alt: 'Баня и сосны ночью', caption: 'Вечер на т��рритории' },
+  { src: '/images/estate/spring-banya-night-new.webp', alt: 'Баня и сосны ночью', caption: 'Вечер на территории' },
   { src: '/images/estate/summer-house-new.webp', alt: 'Дом на зелёной поляне', caption: 'Дом среди зелёных сосен' },
   { src: '/images/estate/aerial-house-new.webp', alt: 'Дом и лес с высоты', caption: 'Территория с высоты' },
   { src: '/images/estate/autumn-terrace-new.webp', alt: 'Открытая терраса дома среди сосен', caption: 'Открытая терраса у дома' },
