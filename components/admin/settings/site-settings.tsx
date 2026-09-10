@@ -12,8 +12,7 @@ export function SiteSettings() {
 
   const [form, setForm] = useState({
     title: '', subtitle: '', description: '',
-    phone: '', address: '',
-    telegram: '', whatsapp: '',
+    phone: '', address: '', whatsapp: '',
   })
 
   useEffect(() => {
@@ -23,7 +22,6 @@ export function SiteSettings() {
       description: s.description ?? '',
       phone: s.phone ?? '',
       address: s.address ?? '',
-      telegram: s.telegram ?? '',
       whatsapp: s.whatsapp ?? '',
     })
   }, [s])
@@ -60,15 +58,12 @@ export function SiteSettings() {
         </FieldRow>
       </SettingsForm>
 
-      <SettingsForm title="Контакты" onSubmit={() => save({ phone: form.phone, address: form.address, telegram: form.telegram, whatsapp: form.whatsapp })}>
+      <SettingsForm title="Контакты" onSubmit={() => save({ phone: form.phone, address: form.address, whatsapp: form.whatsapp })}>
         <FieldRow label="Телефон">
           <TextInput type="tel" value={form.phone} onChange={(v) => update('phone', v)} />
         </FieldRow>
         <FieldRow label="Адрес">
           <TextInput value={form.address} onChange={(v) => update('address', v)} />
-        </FieldRow>
-        <FieldRow label="Telegram" hint="@username или ссылка">
-          <TextInput value={form.telegram} onChange={(v) => update('telegram', v)} />
         </FieldRow>
         <FieldRow label="WhatsApp" hint="Номер в формате +7...">
           <TextInput value={form.whatsapp} onChange={(v) => update('whatsapp', v)} />

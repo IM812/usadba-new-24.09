@@ -29,13 +29,10 @@ export interface Settings {
   phone: string
   email: string
   address: string
-  telegram: string
   whatsapp: string
   title: string
   subtitle: string
   description: string
-  telegram_bot_token: string
-  telegram_chat_id: string
   avito_ics_url: string
   site_url: string
 }

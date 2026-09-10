@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { MessageCircle, Phone, Send, X } from "lucide-react"
+import { MessageCircle, Phone, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { contacts } from "@/lib/site"
 
@@ -35,7 +35,6 @@ export function ContactDock() {
   const links = [
     { href: contacts.phoneHref, label: "Позвонить", icon: Phone },
     { href: `${contacts.whatsapp}?text=${WHATSAPP_TEXT}`, label: "WhatsApp", icon: MessageCircle },
-    { href: contacts.telegram, label: "Telegram", icon: Send },
   ]
 
   return (

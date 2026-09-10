@@ -61,7 +61,7 @@ export function LodgingJsonLd({ checkIn, checkOut }: { checkIn: string; checkOut
           reviewCount: site.rating.reviewCount,
           bestRating: "5",
         },
-        sameAs: [contacts.mapsUrl, contacts.telegram],
+        sameAs: [contacts.mapsUrl, contacts.vk],
       }}
     />
   )

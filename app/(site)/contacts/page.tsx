@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { ArrowUpRight, Phone, MessageCircle, Send, MapPin } from "lucide-react"
+import { ArrowUpRight, Phone, MessageCircle, MapPin } from "lucide-react"
 import { PageHero } from "@/components/lux/page-hero"
 import { Container, Section, SectionHeading, Eyebrow } from "@/components/lux/ui"
 import { BookButton } from "@/components/lux/book-button"
@@ -9,7 +9,7 @@ import { getRates } from "@/lib/rates"
 export const metadata: Metadata = {
   title: "Контакты",
   description:
-    "Телефон, WhatsApp и Telegram усадьбы в Антропково. Отвечаем ежедневно с 9:00 до 22:00 по московскому времени.",
+    "Телефон и WhatsApp усадьбы в Антропково. Отвечаем ежедневно с 9:00 до 22:00 по московскому времени.",
 }
 
 const channels = [
@@ -27,14 +27,6 @@ const channels = [
     href: contacts.phoneHref,
     external: false,
   },
-  {
-    icon: Send,
-    label: "Telegram",
-    value: "@usadba_antropkovo",
-    href: contacts.telegram,
-    external: true,
-  },
-
 ]
 
 export default async function ContactsPage() {
