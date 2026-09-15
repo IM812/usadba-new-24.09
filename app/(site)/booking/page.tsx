@@ -85,7 +85,7 @@ export default async function BookingPage() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-background/70" aria-hidden="true" />
+        <div className="absolute inset-0 bg-background/50" aria-hidden="true" />
 
         <Container size="narrow" className="relative z-10 text-center">
           <Eyebrow className="justify-center">Нужна помощь</Eyebrow>

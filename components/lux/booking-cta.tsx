@@ -31,7 +31,7 @@ export function BookingCta({
       />
       <div
         aria-hidden="true"
-        className={`absolute inset-0 ${image ? "bg-background/70" : "bg-background/80"}`}
+        className={`absolute inset-0 ${image ? "bg-background/50" : "bg-background/80"}`}
       />
 
       <Container size="narrow" className="relative flex flex-col items-center text-center">
