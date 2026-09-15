@@ -86,7 +86,7 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
               onClick={(event) => openPhoto(i, event.currentTarget)}
               aria-label={`Открыть фотографию: ${p.alt}`}
               className={cn(
-                "group relative shrink-0 snap-center overflow-hidden rounded-2xl bg-secondary sm:snap-none",
+                "gallery-photo group relative shrink-0 snap-center overflow-hidden rounded-2xl bg-secondary sm:snap-none",
                 wide
                   ? "w-[calc(100vw-2.5rem)] aspect-4/3 sm:col-span-2 sm:w-auto lg:col-span-4 lg:row-span-2 lg:aspect-auto lg:min-h-[28rem]"
                   : "w-[calc(100vw-4.25rem)] aspect-4/5 sm:w-auto sm:aspect-square lg:col-span-2",
@@ -96,8 +96,10 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
                 src={p.src || "/placeholder.svg"}
                 alt={p.alt}
                 fill
-                sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 40vw"
-                className="object-cover transition-transform duration-[1.1s] ease-out group-hover:scale-[1.05]"
+                loading="lazy"
+                quality={64}
+                sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 ease-out motion-reduce:transition-none sm:group-hover:scale-[1.03]"
               />
               <span
                 aria-hidden
@@ -119,7 +121,7 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
           role="dialog"
           aria-modal="true"
           aria-label="Просмотр фотографии"
-          className="fixed inset-0 z-70 grid h-[100dvh] w-screen grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden overscroll-none bg-background/97 backdrop-blur-sm"
+          className="fixed inset-0 z-70 grid h-[100dvh] w-screen grid-rows-[auto_minmax(0,1fr)_auto] overflow-hidden overscroll-none bg-background/98"
           onTouchStart={(e) => {
             touchStart.current = e.touches[0].clientX
           }}
