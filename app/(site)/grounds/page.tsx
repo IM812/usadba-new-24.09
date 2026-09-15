@@ -147,8 +147,8 @@ export default function GroundsPage() {
       <BookingCta
         title="Отдых у двух озер"
         lead="Скажите даты — уточним стоимость лодки и сап-бордов, расскажем, что сейчас клюет и где в этом сезоне лучше всего собирать грибы."
-        image="/images/drive/grounds/aerial-peninsula.webp"
-        imageAlt="Усадьба и лесное озеро с высоты"
+        image="/images/drive/grounds/aerial-between-lakes.webp"
+        imageAlt="Усадьба в сосновом лесу между двумя озёрами"
       />
     </>
   )

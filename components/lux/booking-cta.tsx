@@ -9,7 +9,7 @@ import { Container, Eyebrow } from "@/components/lux/ui"
 export function BookingCta({
   title = "Проверьте свободные даты",
   lead = "Выберите даты в календаре — сразу увидите доступность и предварительную стоимость проживания.",
-  image = "/images/estate/autumn-house-new.webp",
+  image,
   imageAlt = "Бревенчатый дом усадьбы среди сосен",
 }: {
   title?: string
@@ -18,17 +18,21 @@ export function BookingCta({
   imageAlt?: string
 }) {
   const { openBooking } = useBooking()
+  const resolvedImage = image ?? "/images/estate/autumn-house-new.webp"
 
   return (
     <section className="relative overflow-hidden py-12 min-[390px]:py-14 sm:py-32">
       <Image
-        src={image || "/placeholder.svg"}
+        src={resolvedImage}
         alt={imageAlt}
         fill
         sizes="100vw"
         className="object-cover"
       />
-      <div aria-hidden="true" className="absolute inset-0 bg-background/80" />
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 ${image ? "bg-background/70" : "bg-background/80"}`}
+      />
 
       <Container size="narrow" className="relative flex flex-col items-center text-center">
         <Eyebrow>Бронирование</Eyebrow>

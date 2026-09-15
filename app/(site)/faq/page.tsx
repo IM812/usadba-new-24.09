@@ -71,8 +71,8 @@ export default async function FaqPage() {
       </Section>
 
       <BookingCta
-        image="/images/drive/house/house-by-lake.webp"
-        imageAlt="Бревенчатый дом усадьбы среди сосен у озера"
+        image="/images/drive/house/house-lights.webp"
+        imageAlt="Уютно освещённый дом усадьбы среди деревьев"
         title="Проверим ваши даты"
         lead="Отправьте заявку — подтвердим свободные дни и пришлем условия."
       />

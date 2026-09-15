@@ -113,8 +113,8 @@ export default async function ReviewsPage() {
       </Section>
 
       <BookingCta
-        image="/images/drive/grounds/aerial-lake.webp"
-        imageAlt="Лесное озеро среди сосен с высоты"
+        image="/images/drive/grounds/guests-pier.webp"
+        imageAlt="Гости отдыхают на причале у лесного озера"
         title="Станьте следующим отзывом"
         lead="Расскажем про свободные даты и подготовим усадьбу к вашему приезду."
       />

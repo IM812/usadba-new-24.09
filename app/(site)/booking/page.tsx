@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { CalendarCheck, MessageCircle, KeyRound } from "lucide-react"
 
 import { PageHero } from "@/components/lux/page-hero"
@@ -76,8 +77,17 @@ export default async function BookingPage() {
         </Container>
       </Section>
 
-      <Section tone="deep">
-        <Container size="narrow" className="text-center">
+      <section className="relative overflow-hidden border-y border-border bg-background py-20 sm:py-24 md:py-32">
+        <Image
+          src="/images/drive/living/sofas-lake-view.webp"
+          alt="Уютная гостиная усадьбы с видом на лесное озеро"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-background/70" aria-hidden="true" />
+
+        <Container size="narrow" className="relative z-10 text-center">
           <Eyebrow className="justify-center">Нужна помощь</Eyebrow>
           <h2 className="mt-6 text-balance font-display text-[2rem] font-semibold leading-tight text-foreground sm:text-4xl">
             Проще спросить — ответим лично
@@ -96,9 +106,8 @@ export default async function BookingPage() {
             </a>
             <TextLink href={contacts.whatsapp}>Написать в WhatsApp</TextLink>
           </div>
-
         </Container>
-      </Section>
+      </section>
     </>
   )
 }

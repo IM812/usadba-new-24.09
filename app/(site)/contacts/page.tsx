@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { ArrowUpRight, Phone, MessageCircle, MapPin } from "lucide-react"
 import { PageHero } from "@/components/lux/page-hero"
+import { BookingCta } from "@/components/lux/booking-cta"
 import { Container, Section, SectionHeading, Eyebrow } from "@/components/lux/ui"
 import { BookButton } from "@/components/lux/book-button"
 import { contacts } from "@/lib/site"
@@ -137,6 +138,13 @@ export default async function ContactsPage() {
           </div>
         </Container>
       </Section>
+
+      <BookingCta
+        title="Договоримся о вашем отдыхе"
+        lead="Выберите удобные даты — мы лично ответим на вопросы, уточним детали и подготовим усадьбу к вашему приезду."
+        image="/images/drive/grounds/pond-evening.webp"
+        imageAlt="Вечер у лесного озера рядом с усадьбой"
+      />
     </>
   )
 }
