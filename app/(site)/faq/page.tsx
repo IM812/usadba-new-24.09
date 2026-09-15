@@ -26,7 +26,7 @@ export default async function FaqPage() {
         eyebrow="Вопросы и ответы"
         title="Все, что спрашивают до приезда"
         lead="Собрали ответы на частые вопросы гостей. Остались детали — напишите нам, все подскажем."
-        image="/images/estate/house-night.jpg"
+        image="/images/drive/house/house-lights.webp"
         imageAlt="Освещенный бревенчатый дом усадьбы вечером"
       />
 
@@ -71,8 +71,8 @@ export default async function FaqPage() {
       </Section>
 
       <BookingCta
-        image="/images/estate/house-lawn.jpg"
-        imageAlt="Бревенчатый дом усадьбы на зеленой поляне среди сосен"
+        image="/images/drive/house/house-by-lake.webp"
+        imageAlt="Бревенчатый дом усадьбы среди сосен у озера"
         title="Проверим ваши даты"
         lead="Отправьте заявку — подтвердим свободные дни и пришлем условия."
       />

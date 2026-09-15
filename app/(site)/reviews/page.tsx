@@ -46,7 +46,7 @@ export default async function ReviewsPage() {
           </>
         }
         lead={`${site.rating.count} оценок и ${site.rating.reviewCount} отзыва на Яндекс Картах.`}
-        image="/images/estate/fireplace.jpg"
+        image="/images/drive/living/fireplace.webp"
         imageAlt="Гостиная усадьбы с кирпичным камином"
         meta={[`${site.rating.count} оценок`, `${site.rating.reviewCount} отзыва`, "Яндекс Карты"]}
       />
@@ -113,8 +113,8 @@ export default async function ReviewsPage() {
       </Section>
 
       <BookingCta
-        image="/images/estate/lake-wide.jpg"
-        imageAlt="Вид на озеро сквозь стволы сосен"
+        image="/images/drive/grounds/aerial-lake.webp"
+        imageAlt="Лесное озеро среди сосен с высоты"
         title="Станьте следующим отзывом"
         lead="Расскажем про свободные даты и подготовим усадьбу к вашему приезду."
       />

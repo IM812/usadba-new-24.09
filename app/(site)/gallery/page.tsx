@@ -13,28 +13,28 @@ export const metadata: Metadata = {
 
 const gallerySections = [
   {
-    eyebrow: "Дом и комнаты",
-    title: "Пространство для общей жизни и личной тишины",
-    lead: "Гостиная, кухня, столовая и разные спальни — без повторов одного и того же ракурса.",
-    photos: galleryPhotos.slice(0, 11),
+    eyebrow: "Дом и общие пространства",
+    title: "Место, где вся компания собирается вместе",
+    lead: "Терраса, гостиная, кухня, столовая и прихожая — от общих планов до деталей интерьера.",
+    photos: galleryPhotos.filter((photo) => photo.category === "house"),
   },
   {
-    eyebrow: "Территория и озеро",
-    title: "Дом стоит среди сосен между двумя озёрами",
-    lead: "Показываем масштаб с земли и воздуха: берег, причал, лес и расположение усадьбы.",
-    photos: galleryPhotos.slice(11, 24),
+    eyebrow: "Спальни",
+    title: "Четыре комнаты для личной тишины",
+    lead: "Показываем разные варианты размещения и фактическую обстановку спален.",
+    photos: galleryPhotos.filter((photo) => photo.category === "bedrooms"),
   },
   {
     eyebrow: "Баня и чан",
-    title: "Актуальная баня у воды",
-    lead: "Парная на дровах и сибирский чан под открытым небом — так банный отдых выглядит сейчас.",
-    photos: galleryPhotos.slice(24, 30),
+    title: "Парная и горячий чан у воды",
+    lead: "Светлая парная на дровах, комната отдыха и сибирский чан среди сосен в разные сезоны.",
+    photos: galleryPhotos.filter((photo) => photo.category === "spa"),
   },
   {
-    eyebrow: "Вокруг дома",
-    title: "Территория в деталях",
-    lead: "Снег, зелень, вечерний свет и детали вокруг дома — без деления фотографий по сезонам.",
-    photos: galleryPhotos.slice(30, 39),
+    eyebrow: "Территория и озёра",
+    title: "Усадьба на лесном берегу между двух озёр",
+    lead: "Панорамы с воздуха, дорожка к воде, сосновый лес и тихое зимнее озеро.",
+    photos: galleryPhotos.filter((photo) => photo.category === "grounds"),
   },
 ] as const
 
@@ -45,9 +45,9 @@ export default function GalleryPage() {
         eyebrow="Галерея"
         title="Усадьба без ретуши"
         lead="Все фотографии сделаны здесь. В подборке — дом, разные спальни, баня, чан, озёра и территория усадьбы."
-        image="/images/estate/autumn-house-wide-new.webp"
-        imageAlt="Бревенчатый дом усадьбы среди сосен"
-        meta={["39 фотографий", "дом и спальни", "озёра, баня и территория"]}
+        image="/images/drive/house/terrace-autumn.webp"
+        imageAlt="Открытая терраса бревенчатого дома среди осенних сосен"
+        meta={["40 фотографий", "тематические альбомы", "дом, озёра, баня и территория"]}
       />
 
       {gallerySections.map((section, index) => (
@@ -66,8 +66,8 @@ export default function GalleryPage() {
       <BookingCta
         title="Хотите увидеть больше?"
         lead="Напишите нам — пришлём свежие фотографии и видео с территории."
-        image="/images/estate/aerial-estate-new.webp"
-        imageAlt="Усадьба среди соснового леса с высоты"
+        image="/images/drive/grounds/aerial-estate.webp"
+        imageAlt="Усадьба среди соснового леса у озера с высоты"
       />
     </>
   )

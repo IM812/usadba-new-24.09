@@ -38,7 +38,7 @@ export default async function PricesPage() {
         eyebrow="Цены"
         title={<>От {formatMoney(minPrice)} ₽ за дом целиком</>}
         lead="Вы арендуете усадьбу целиком. Цена зависит от сезона, дня недели и количества гостей; дополнительные услуги оплачиваются отдельно."
-        image="/images/estate/autumn-terrace-new.webp"
+        image="/images/drive/house/terrace-table.webp"
         imageAlt="Терраса усадьбы среди золотых осенних сосен"
       />
 
@@ -155,8 +155,8 @@ export default async function PricesPage() {
       </Section>
 
       <BookingCta
-        image="/images/estate/summer-house-new.webp"
-        imageAlt="Бревенчатый дом усадьбы на зелёной поляне летом"
+        image="/images/drive/house/house-by-lake.webp"
+        imageAlt="Бревенчатый дом усадьбы у лесного озера"
         title="Посчитаем ваши даты"
         lead="Откройте календарь — свободные дни, точная сумма и минимальный срок появятся сразу."
       />
