@@ -20,7 +20,7 @@ const gallerySections = [
   },
   {
     eyebrow: "Спальни",
-    title: "Четыре комнаты для личной тишины",
+    title: "Четыре отдельные спальни",
     lead: "Показываем разные варианты размещения и фактическую обстановку спален.",
     photos: galleryPhotos.filter((photo) => photo.category === "bedrooms"),
   },
@@ -32,7 +32,7 @@ const gallerySections = [
   },
   {
     eyebrow: "Территория и озёра",
-    title: "Усадьба на лесном берегу между двух озёр",
+    title: "Усадьба на лесном берегу между двумя озёрами",
     lead: "Живые кадры у воды, причал, сосновый лес и несколько панорам, которые показывают расположение усадьбы.",
     photos: galleryPhotos.filter((photo) => photo.category === "grounds"),
   },
