@@ -5,6 +5,8 @@ import { PhotoGrid } from "@/components/lux/photo-grid"
 import { Container, Section, SectionHeading } from "@/components/lux/ui"
 import { getGalleryPhotos } from "@/lib/gallery-public"
 
+export const dynamic = "force-dynamic"
+
 export const metadata: Metadata = {
   title: "Галерея",
   description:

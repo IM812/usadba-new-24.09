@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { requireAdminAuth } from '@/lib/admin-auth'
 import { galleryPhotos } from '@/lib/site'
+import { revalidatePath } from 'next/cache'
 
 // GET is public — the gallery on the site reads from this
 export async function GET() {
@@ -77,11 +78,13 @@ export async function DELETE(req: NextRequest) {
       if (insertError) return NextResponse.json({ ok: false, error: insertError.message }, { status: 500 })
     }
 
+    revalidatePath('/gallery')
     return NextResponse.json({ ok: true })
   }
 
   const { error } = await supabase.from('gallery').delete().eq('id', id)
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 })
+  revalidatePath('/gallery')
   return NextResponse.json({ ok: true })
 }
 

@@ -1,7 +1,9 @@
+import { unstable_noStore as noStore } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
 import { galleryPhotos } from '@/lib/site'
 
 export async function getGalleryPhotos() {
+  noStore()
   const fallback = galleryPhotos.map((photo, index) => ({
     ...photo,
     id: `static:${encodeURIComponent(photo.src)}`,
