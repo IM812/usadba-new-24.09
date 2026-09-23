@@ -7,10 +7,10 @@ import { Plus, Trash2, Loader2, Check, Pencil } from 'lucide-react'
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
 const SEASON_COLORS: Record<string, string> = {
-  'Зима':  'bg-blue-50 border-blue-200 text-blue-800',
-  'Весна': 'bg-green-50 border-green-200 text-green-800',
-  'Лето':  'bg-amber-50 border-amber-200 text-amber-800',
-  'Осень': 'bg-orange-50 border-orange-200 text-orange-800',
+  'Зима':  'bg-blue-500/15 border-blue-400/30 text-blue-200',
+  'Весна': 'bg-green-500/15 border-green-400/30 text-green-200',
+  'Лето':  'bg-primary/15 border-primary/30 text-primary',
+  'Осень': 'bg-orange-500/15 border-orange-400/30 text-orange-200',
 }
 
 const MONTHS = [
@@ -166,7 +166,7 @@ function SeasonRow({
     SEASON_COLORS[season.name] ?? 'bg-muted border-border text-foreground'
 
   return (
-    <div className="bg-card border border-border rounded-xl overflow-hidden">
+    <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
       <div className="px-5 py-4 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3 min-w-0">
           <span
@@ -351,7 +351,7 @@ export function SeasonalPricesSettings() {
     if (!json.ok) {
       console.error('[v0] seasonal-prices POST error:', json.error)
     }
-    setNewForm({ name: '', date_from: '01-01', date_to: '01-31', base_price: 20000, weekend_price: 24000 })
+    setNewForm({ name: '', date_from: '01-01', date_to: '01-31', base_price: 20000, weekend_price: 24000, minimum_nights: 1 })
     setAdding(false)
     setSaving(false)
     mutate()

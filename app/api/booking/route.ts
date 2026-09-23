@@ -37,6 +37,16 @@ function seasonWidth(from: string, to: string): number {
   return toDay >= fromDay ? toDay - fromDay : (12 * 31 + 31) - fromDay + toDay
 }
 
+function minimumNightsForDate(d: Date, seasons: SeasonalPrice[], fallback: number): number {
+  const key = `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+  const matching = seasons.filter((s) =>
+    s.date_from <= s.date_to
+      ? key >= s.date_from && key <= s.date_to
+      : key >= s.date_from || key <= s.date_to,
+  )
+  return Math.max(fallback, ...matching.map((s) => s.minimum_nights ?? 1))
+}
+
 function getSeasonalPrice(
   d: Date,
   seasons: SeasonalPrice[],
@@ -147,7 +157,7 @@ export async function POST(req: Request) {
     const [{ data: settings }, { data: seasons }] = await Promise.all([
       supabase
         .from('settings')
-        .select('base_price, weekend_price, price_mode, extra_guest_price, base_guests, max_guests, telegram_bot_token, telegram_chat_id, avito_ics_url, site_url')
+        .select('base_price, weekend_price, price_mode, minimum_nights, extra_guest_price, base_guests, max_guests, telegram_bot_token, telegram_chat_id, avito_ics_url, site_url')
         .eq('id', 1)
         .single(),
       supabase
@@ -213,7 +223,7 @@ export async function POST(req: Request) {
     )
     const minimumNights = Math.max(
       settings?.minimum_nights ?? 1,
-      ...activeSeasons.map((season) => season.minimum_nights ?? 1),
+      ...nightsList.map((night) => minimumNightsForDate(night.date, activeSeasons, settings?.minimum_nights ?? 1)),
     )
     if (nights < minimumNights) {
       return NextResponse.json(

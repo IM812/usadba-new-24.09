@@ -6,7 +6,6 @@ export const metadata: Metadata = {
 }
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  // Панель управления живёт в собственной светлой теме,
-  // независимо от тёмной темы публичного сайта.
+  // Админка использует те же токены, фон и контраст, что и публичный сайт.
   return <div className="theme-admin min-h-screen bg-background text-foreground">{children}</div>
 }
