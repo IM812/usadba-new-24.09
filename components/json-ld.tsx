@@ -61,7 +61,6 @@ export async function LodgingJsonLd({ checkIn, checkOut }: { checkIn: string; ch
           "@type": "AggregateRating",
           ratingValue: rating.value.replace(",", "."),
           ratingCount: rating.count,
-          reviewCount: rating.reviewCount,
           bestRating: "5",
         },
         sameAs: [contacts.mapsUrl, contacts.vk],

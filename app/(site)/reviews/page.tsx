@@ -40,10 +40,10 @@ export default async function ReviewsPage() {
       <PageHero
         eyebrow="Отзывы"
         title={`Рейтинг ${rating.value} по отзывам гостей`}
-        lead={`${rating.count} оценок и ${rating.reviewCount} ${plural(rating.reviewCount, "отзыв", "отзыва", "отзывов")} на Яндекс Картах.`}
+        lead={`${rating.count} ${plural(rating.count, "оценка", "оценки", "оценок")} на Яндекс Картах.`}
         image="/images/drive/living/sofa-window.webp"
         imageAlt="Гостиная усадьбы у больших окон"
-        meta={[`${rating.count} оценок`, `${rating.reviewCount} ${plural(rating.reviewCount, "отзыв", "отзыва", "отзывов")}`, "Яндекс Карты"]}
+        meta={[`${rating.count} ${plural(rating.count, "оценка", "оценки", "оценок")}`, "Яндекс Карты"]}
       />
 
       {/* Сводка рейтинга */}

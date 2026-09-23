@@ -7,7 +7,6 @@ export const YANDEX_REVIEWS_URL =
 export type YandexRating = {
   value: string
   count: number
-  reviewCount: number
 }
 
 function readMetaNumber(html: string, itemProp: string) {
@@ -22,7 +21,6 @@ export const getYandexRating = cache(async function getYandexRating(): Promise<Y
   const fallback = {
     value: site.rating.value,
     count: site.rating.count,
-    reviewCount: site.rating.reviewCount,
   }
 
   try {
@@ -40,8 +38,6 @@ export const getYandexRating = cache(async function getYandexRating(): Promise<Y
     const html = await response.text()
     const ratingValue = readMetaNumber(html, 'ratingValue')
     const ratingCount = readMetaNumber(html, 'ratingCount')
-    const reviewCount = readMetaNumber(html, 'reviewCount')
-
     if (!Number.isFinite(ratingValue) || !Number.isInteger(ratingCount) || ratingCount < 1) {
       return fallback
     }
@@ -52,7 +48,6 @@ export const getYandexRating = cache(async function getYandexRating(): Promise<Y
         maximumFractionDigits: 1,
       }),
       count: ratingCount,
-      reviewCount: Number.isInteger(reviewCount) ? reviewCount : fallback.reviewCount,
     }
   } catch {
     return fallback

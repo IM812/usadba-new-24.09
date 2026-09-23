@@ -9,7 +9,7 @@ export const site = {
   shortName: 'Антропково',
   tagline: 'Гостевой дом между двумя озерами',
   region: 'Псковская область',
-  rating: { value: '5,0', count: 75, reviewCount: 42, source: 'Яндекс Карты' },
+  rating: { value: '5,0', count: 75, source: 'Яндекс Карты' },
 } as const
 
 export const contacts = {
