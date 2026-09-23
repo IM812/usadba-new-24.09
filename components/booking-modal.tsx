@@ -636,10 +636,10 @@ export function BookingModal({ open, onClose, prefill }: Props) {
         type="button"
         aria-label="Закрыть"
         onClick={close}
-        className="absolute inset-0 h-full w-full cursor-default bg-foreground/60 backdrop-blur-sm"
+        className="absolute inset-0 h-full w-full cursor-default bg-foreground/70"
       />
 
-      <div className="relative z-10 flex max-h-[94svh] w-full flex-col overflow-hidden rounded-t-2xl bg-card shadow-2xl sm:max-h-[92dvh] sm:max-w-lg sm:rounded-2xl">
+      <div className="relative z-10 flex max-h-[94svh] w-full flex-col overflow-hidden rounded-t-2xl bg-card shadow-2xl [contain:layout_paint] sm:max-h-[92dvh] sm:max-w-lg sm:rounded-2xl">
         {/* Header — остаётся на месте при прокрутке формы */}
         <div className="relative flex shrink-0 items-start justify-between gap-3 border-b border-border bg-secondary px-4 py-3 text-foreground min-[390px]:py-4 sm:px-6 sm:py-5">
           {/* латунная нить вместо плотной заливки — акцент, а не пятно */}
@@ -688,7 +688,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
               <StepDot index={2} label="Ваши контакты" active={step === 2} done={false} />
             </div>
 
-            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pt-4 sm:px-6 sm:pt-5">
+            <div className="min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-y-contain px-4 pt-4 [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch] sm:px-6 sm:pt-5">
               {step === 1 ? (
                 <div className="flex flex-col gap-4">
                   {/* Availability status */}
