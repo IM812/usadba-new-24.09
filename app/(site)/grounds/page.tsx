@@ -37,8 +37,8 @@ export default function GroundsPage() {
         eyebrow="Территория"
         title="Два озера и сосновый бор"
         lead="Усадьба находится между двумя озерами, в окружении соснового леса. Рядом — собственный пляж и причал для спокойного отдыха у воды."
-        image="/images/drive/grounds/aerial-between-lakes.webp"
-        imageAlt="Два лесных озера и усадьба среди соснового бора с высоты"
+        image="/images/drive/grounds/aerial-lake.webp"
+        imageAlt="Лесное озеро и сосновый берег усадьбы с высоты"
         meta={["2 озера", "свой причал", "лодка и 2 сап-борда", "грибной бор"]}
       />
 
