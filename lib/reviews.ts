@@ -9,14 +9,22 @@ export type YandexRating = {
   count: number
 }
 
-function readMetaNumber(html: string, itemProp: string) {
-  const match = html.match(
-    new RegExp(`<meta[^>]+itemProp=["']${itemProp}["'][^>]+content=["']([^"']+)["']`, 'i'),
+function readNumber(html: string, key: string) {
+  const metaMatch = html.match(
+    new RegExp(`<meta[^>]+(?:itemprop|property)=["']${key}["'][^>]+content=["']([^"']+)["']`, 'i'),
   )
-  return match ? Number(match[1]) : Number.NaN
+  if (metaMatch) return Number(metaMatch[1].replace(',', '.'))
+
+  const jsonMatch = html.match(
+    new RegExp(`["']${key}["']\\s*:\\s*["']?([0-9]+(?:[.,][0-9]+)?)`, 'i'),
+  )
+  return jsonMatch ? Number(jsonMatch[1].replace(',', '.')) : Number.NaN
 }
 
-/** Актуальные данные карточки; при недоступности Яндекса остаются последние подтверждённые значения. */
+/**
+ * Забирает рейтинг и количество оценок из карточки Яндекс Карт.
+ * Next.js обновляет ответ автоматически раз в час, а при сбое оставляет fallback.
+ */
 export const getYandexRating = cache(async function getYandexRating(): Promise<YandexRating> {
   const fallback = {
     value: site.rating.value,
@@ -29,15 +37,15 @@ export const getYandexRating = cache(async function getYandexRating(): Promise<Y
         'Accept-Language': 'ru-RU,ru;q=0.9',
         'User-Agent': 'Mozilla/5.0 (compatible; AntropkovoWebsite/1.0)',
       },
-      next: { revalidate: 21600 },
+      next: { revalidate: 3600 },
       signal: AbortSignal.timeout(5000),
     })
 
     if (!response.ok) return fallback
 
     const html = await response.text()
-    const ratingValue = readMetaNumber(html, 'ratingValue')
-    const ratingCount = readMetaNumber(html, 'ratingCount')
+    const ratingValue = readNumber(html, 'ratingValue')
+    const ratingCount = readNumber(html, 'ratingCount')
     if (!Number.isFinite(ratingValue) || !Number.isInteger(ratingCount) || ratingCount < 1) {
       return fallback
     }
