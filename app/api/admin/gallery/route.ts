@@ -13,8 +13,9 @@ export async function GET() {
 
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 })
 
-  const savedByUrl = new Map((data ?? []).map((item) => [item.url, item]))
-  const staticItems = galleryPhotos.map((photo, index) => {
+  const deletedUrls = new Set((data ?? []).filter((item) => item.sort_order === -1).map((item) => item.url))
+  const savedByUrl = new Map((data ?? []).filter((item) => item.sort_order !== -1).map((item) => [item.url, item]))
+  const staticItems = galleryPhotos.filter((photo) => !deletedUrls.has(photo.src)).map((photo, index) => {
     const saved = savedByUrl.get(photo.src)
     return {
       id: saved?.id ?? `static:${encodeURIComponent(photo.src)}`,
@@ -31,7 +32,7 @@ export async function GET() {
 
   const staticUrls = new Set(galleryPhotos.map((photo) => photo.src))
   const uploadedItems = (data ?? [])
-    .filter((item) => !staticUrls.has(item.url))
+    .filter((item) => item.sort_order !== -1 && !staticUrls.has(item.url))
     .map((item) => ({ ...item, caption: item.alt, persisted: true }))
 
   return NextResponse.json({ ok: true, data: [...staticItems, ...uploadedItems] })
@@ -53,6 +54,32 @@ export async function DELETE(req: NextRequest) {
   const supabase = createServiceClient()
   const { id } = await req.json()
   if (!id) return NextResponse.json({ ok: false, error: 'id required' }, { status: 400 })
+  if (id.startsWith('static:')) {
+    let url: string
+    try {
+      url = decodeURIComponent(id.slice('static:'.length))
+    } catch {
+      return NextResponse.json({ ok: false, error: 'Некорректный идентификатор фото' }, { status: 400 })
+    }
+
+    const { data: updated, error: updateError } = await supabase
+      .from('gallery')
+      .update({ alt: '', sort_order: -1, is_main: false })
+      .eq('url', url)
+      .select('id')
+
+    if (updateError) return NextResponse.json({ ok: false, error: updateError.message }, { status: 500 })
+
+    if (!updated?.length) {
+      const { error: insertError } = await supabase
+        .from('gallery')
+        .insert({ url, alt: '', sort_order: -1, is_main: false })
+      if (insertError) return NextResponse.json({ ok: false, error: insertError.message }, { status: 500 })
+    }
+
+    return NextResponse.json({ ok: true })
+  }
+
   const { error } = await supabase.from('gallery').delete().eq('id', id)
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 })
   return NextResponse.json({ ok: true })

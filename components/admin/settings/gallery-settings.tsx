@@ -26,6 +26,8 @@ export function GallerySettings() {
   const [drafts, setDrafts] = useState<Record<string, string>>({})
   const [savingId, setSavingId] = useState<string | null>(null)
   const [savedId, setSavedId] = useState<string | null>(null)
+  const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const uid = useId()
 
@@ -109,12 +111,24 @@ export function GallerySettings() {
   }
 
   async function deleteItem(id: string) {
-    await fetch('/api/admin/gallery', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id }),
-    })
-    mutate()
+    if (!window.confirm('Удалить это фото из галереи?')) return
+
+    setDeletingId(id)
+    setDeleteError(null)
+    try {
+      const res = await fetch('/api/admin/gallery', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      })
+      const json = await res.json()
+      if (!res.ok || !json.ok) throw new Error(json.error || 'Не удалось удалить фото')
+      await mutate()
+    } catch (error) {
+      setDeleteError(error instanceof Error ? error.message : 'Не удалось удалить фото')
+    } finally {
+      setDeletingId(null)
+    }
   }
 
   async function setMain(id: string) {
@@ -218,6 +232,12 @@ export function GallerySettings() {
         )}
       </div>
 
+      {deleteError && (
+        <p role="alert" className="mb-4 rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+          {deleteError}
+        </p>
+      )}
+
       {/* Gallery grid */}
       {items.length === 0 && uploading.length === 0 ? (
         <p className="text-sm text-muted-foreground text-center py-8">Фотографий пока нет</p>
@@ -253,11 +273,14 @@ export function GallerySettings() {
                   <Star className="size-4 text-amber-900" />
                 </button>
                 <button
+                  type="button"
                   onClick={() => deleteItem(item.id)}
                   title="Удалить"
-                  className="size-8 rounded-full bg-destructive flex items-center justify-center hover:opacity-90 transition-opacity"
+                  aria-label={`Удалить фото: ${item.caption ?? item.alt ?? 'без подписи'}`}
+                  disabled={deletingId === item.id}
+                  className="size-8 rounded-full bg-destructive flex items-center justify-center hover:opacity-90 transition-opacity disabled:cursor-wait disabled:opacity-50"
                 >
-                  <Trash2 className="size-4 text-white" />
+                  {deletingId === item.id ? <Loader2 className="size-4 animate-spin text-white" /> : <Trash2 className="size-4 text-white" />}
                 </button>
                 </div>
               </div>

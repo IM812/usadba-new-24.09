@@ -19,8 +19,9 @@ export async function getGalleryPhotos() {
 
     if (error || !data) return fallback
 
-    const savedByUrl = new Map(data.map((item) => [item.url, item]))
-    const merged = fallback.map((photo) => {
+    const deletedUrls = new Set(data.filter((item) => item.sort_order === -1).map((item) => item.url))
+    const savedByUrl = new Map(data.filter((item) => item.sort_order !== -1).map((item) => [item.url, item]))
+    const merged = fallback.filter((photo) => !deletedUrls.has(photo.src)).map((photo) => {
       const saved = savedByUrl.get(photo.src)
       if (!saved) return photo
       return {
@@ -35,7 +36,7 @@ export async function getGalleryPhotos() {
 
     const staticUrls = new Set(fallback.map((photo) => photo.src))
     const uploaded = data
-      .filter((item) => !staticUrls.has(item.url))
+      .filter((item) => item.sort_order !== -1 && !staticUrls.has(item.url))
       .map((item) => ({
         category: 'house' as const,
         src: item.url,
