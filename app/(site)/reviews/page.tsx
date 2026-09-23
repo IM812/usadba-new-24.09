@@ -41,8 +41,8 @@ export default async function ReviewsPage() {
         eyebrow="Отзывы"
         title={`Рейтинг ${rating.value} по отзывам гостей`}
         lead={`${rating.count} оценок и ${rating.reviewCount} ${plural(rating.reviewCount, "отзыв", "отзыва", "отзывов")} на Яндекс Картах.`}
-        image="/images/drive/living/fireplace.webp"
-        imageAlt="Гостиная усадьбы с кирпичным камином"
+        image="/images/drive/living/sofa-window.webp"
+        imageAlt="Гостиная усадьбы у больших окон"
         meta={[`${rating.count} оценок`, `${rating.reviewCount} ${plural(rating.reviewCount, "отзыв", "отзыва", "отзывов")}`, "Яндекс Карты"]}
       />
 
