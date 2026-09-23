@@ -18,7 +18,7 @@ import {
 } from "@/components/lux/ui"
 import { LodgingJsonLd } from "@/components/json-ld"
 import { getRates } from "@/lib/rates"
-import { getReviews } from "@/lib/reviews"
+import { getReviews, getYandexRating } from "@/lib/reviews"
 import { estateFacts, includedInStay, navigation, site } from "@/lib/site"
 
 const chapters: {
@@ -61,7 +61,7 @@ export const revalidate = 300
 
 export default async function HomePage() {
   // Параллельно: последовательные await складывали задержки в общее время рендера.
-  const [{ settings }, reviews] = await Promise.all([getRates(), getReviews()])
+  const [{ settings }, reviews, rating] = await Promise.all([getRates(), getReviews(), getYandexRating()])
 
   return (
     <>
@@ -206,7 +206,7 @@ export default async function HomePage() {
         <Container size="wide">
           <div data-reveal className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeading
-              eyebrow={`${site.rating.value} из 5,0 · ${site.rating.count} оценок`}
+              eyebrow={`${rating.value} из 5,0 · ${rating.count} оценок`}
               title="Что говорят гости"
             />
             <TextLink href="/reviews" className="shrink-0">

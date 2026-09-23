@@ -4,13 +4,13 @@ import { PageHero } from "@/components/lux/page-hero"
 import { BookingCta } from "@/components/lux/booking-cta"
 import { ReviewsGrid } from "@/components/lux/reviews-rail"
 import { Container, Section, SectionHeading, Eyebrow, TextLink } from "@/components/lux/ui"
-import { site } from "@/lib/site"
-import { YANDEX_REVIEWS_URL, getReviews } from "@/lib/reviews"
+import { plural } from "@/lib/availability"
+import { YANDEX_REVIEWS_URL, getReviews, getYandexRating } from "@/lib/reviews"
 
 export const metadata: Metadata = {
   title: "Отзывы гостей",
   description:
-    "Рейтинг 5,0 на основе 75 оценок. Что пишут гости, которые уже провели несколько дней в усадьбе между двумя озерами.",
+    "Отзывы гостей об усадьбе между двумя озерами в Псковской области. Актуальный рейтинг и оценки на Яндекс Картах.",
 }
 
 /** Из чего складывается репутация — по повторяющимся мотивам в отзывах. */
@@ -33,7 +33,7 @@ const themes = [
 export const revalidate = 300
 
 export default async function ReviewsPage() {
-  const reviews = await getReviews()
+  const [reviews, rating] = await Promise.all([getReviews(), getYandexRating()])
 
   return (
     <>
@@ -41,14 +41,14 @@ export default async function ReviewsPage() {
         eyebrow="Отзывы"
         title={
           <>
-            Рейтинг {site.rating.value}. <br className="hidden sm:block" />
-            Ни одной оценки ниже
+            Рейтинг {rating.value} по отзывам гостей. <br className="hidden sm:block" />
+            Нам доверяют отдыхать
           </>
         }
-        lead={`${site.rating.count} оценок и ${site.rating.reviewCount} отзыва на Яндекс Картах.`}
+        lead={`${rating.count} оценок и ${rating.reviewCount} ${plural(rating.reviewCount, "отзыв", "отзыва", "отзывов")} на Яндекс Картах.`}
         image="/images/drive/living/fireplace.webp"
         imageAlt="Гостиная усадьбы с кирпичным камином"
-        meta={[`${site.rating.count} оценок`, `${site.rating.reviewCount} отзыва`, "Яндекс Карты"]}
+        meta={[`${rating.count} оценок`, `${rating.reviewCount} ${plural(rating.reviewCount, "отзыв", "отзыва", "отзывов")}`, "Яндекс Карты"]}
       />
 
       {/* Сводка рейтинга */}
@@ -57,7 +57,7 @@ export default async function ReviewsPage() {
           <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-center gap-6">
               <span className="font-display text-6xl font-semibold leading-none text-accent sm:text-7xl">
-                {site.rating.value}
+                {rating.value}
               </span>
               <div className="flex flex-col gap-2">
                 <span className="flex gap-1" aria-hidden>
@@ -66,7 +66,7 @@ export default async function ReviewsPage() {
                   ))}
                 </span>
                 <span className="text-sm text-muted-foreground">
-                  {`Средняя оценка по ${site.rating.count} оценкам`}
+                  {`Средняя оценка по ${rating.count} оценкам`}
                 </span>
               </div>
             </div>

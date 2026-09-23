@@ -1,3 +1,4 @@
+import { getYandexRating } from "@/lib/reviews"
 import { SITE_URL, contacts, site } from "@/lib/site"
 
 /** Абсолютный URL из относительного пути (домен кириллический — URL сам даст punycode). */
@@ -17,7 +18,9 @@ function Script({ data }: { data: unknown }) {
  * LodgingBusiness для главной: адрес, координаты, контакты и рейтинг.
  * Это то, что Яндекс и Google используют для карточки объекта в выдаче.
  */
-export function LodgingJsonLd({ checkIn, checkOut }: { checkIn: string; checkOut: string }) {
+export async function LodgingJsonLd({ checkIn, checkOut }: { checkIn: string; checkOut: string }) {
+  const rating = await getYandexRating()
+
   return (
     <Script
       data={{
@@ -56,9 +59,9 @@ export function LodgingJsonLd({ checkIn, checkOut }: { checkIn: string; checkOut
         ].map((name) => ({ "@type": "LocationFeatureSpecification", name, value: true })),
         aggregateRating: {
           "@type": "AggregateRating",
-          ratingValue: site.rating.value.replace(",", "."),
-          ratingCount: site.rating.count,
-          reviewCount: site.rating.reviewCount,
+          ratingValue: rating.value.replace(",", "."),
+          ratingCount: rating.count,
+          reviewCount: rating.reviewCount,
           bestRating: "5",
         },
         sameAs: [contacts.mapsUrl, contacts.vk],

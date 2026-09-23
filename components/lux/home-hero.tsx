@@ -3,10 +3,11 @@ import { ArrowDown, ExternalLink, Star } from "lucide-react"
 import { BookButton } from "@/components/lux/book-button"
 import { LuxLink } from "@/components/lux/ui"
 import { WeatherBadge } from "@/components/weather-badge"
-import { YANDEX_REVIEWS_URL } from "@/lib/reviews"
+import { getYandexRating, YANDEX_REVIEWS_URL } from "@/lib/reviews"
 import { contacts, site } from "@/lib/site"
 
-export function HomeHero() {
+export async function HomeHero() {
+  const rating = await getYandexRating()
   return (
     <section className="relative flex min-h-[86svh] flex-col overflow-hidden pb-7 sm:min-h-[100svh] sm:justify-end sm:pb-0">
       {/* Затемнение идет сверху вниз: текст читается, а нижняя половина
@@ -84,7 +85,7 @@ export function HomeHero() {
           style={{ animationDelay: "620ms" }}
         >
           {[
-            { k: "Рейтинг", v: site.rating.value, sub: `${site.rating.count} оценок на Яндекс Картах`, href: YANDEX_REVIEWS_URL },
+            { k: "Рейтинг", v: rating.value, sub: `${rating.count} оценок на Яндекс Картах`, href: YANDEX_REVIEWS_URL },
             { k: "Площадь", v: "250 м²", sub: "4 спальни с санузлом", href: "/estate" },
             { k: "Формат", v: "дом целиком", sub: "только для вашей компании", href: "/estate" },
             { k: "От Москвы", v: "≈ 5 часов", sub: "точка на Яндекс Картах", href: contacts.mapsUrl },

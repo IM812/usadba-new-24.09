@@ -32,7 +32,7 @@ export const navigation = [
   { href: '/grounds', label: 'Территория', note: 'Озера, причал, активности' },
   { href: '/gallery', label: 'Галерея', note: 'Дом, территория, баня и озёра' },
   { href: '/prices', label: 'Цены', note: 'Тарифы и что включено' },
-  { href: '/reviews', label: 'Отзывы', note: '75 оценок, рейтинг 5,0' },
+  { href: '/reviews', label: 'Отзывы', note: 'Актуальные оценки на Яндекс Картах' },
   { href: '/location', label: 'Как добраться', note: 'Маршруты и карта' },
   { href: '/contacts', label: 'Контакты', note: 'Связь и реквизиты' },
 ] as const

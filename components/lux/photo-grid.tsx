@@ -97,8 +97,8 @@ export function PhotoGrid({ photos, className }: { photos: readonly Photo[]; cla
                 alt={p.alt}
                 fill
                 loading="lazy"
-                quality={64}
-                sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, 33vw"
+                quality={88}
+                sizes="(max-width: 640px) 82vw, (max-width: 1024px) 50vw, (max-width: 1536px) 66vw, 900px"
                 className="object-cover transition-transform duration-500 ease-out motion-reduce:transition-none sm:group-hover:scale-[1.03]"
               />
               <span
