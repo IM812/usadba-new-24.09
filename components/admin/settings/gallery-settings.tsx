@@ -23,6 +23,9 @@ export function GallerySettings() {
   const [uploading, setUploading] = useState<UploadingFile[]>([])
   const [isDragging, setIsDragging] = useState(false)
   const [altInput, setAltInput] = useState('')
+  const [drafts, setDrafts] = useState<Record<string, string>>({})
+  const [savingId, setSavingId] = useState<string | null>(null)
+  const [savedId, setSavedId] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const uid = useId()
 
@@ -78,6 +81,32 @@ export function GallerySettings() {
 
   const onDragOver = (e: React.DragEvent) => { e.preventDefault(); setIsDragging(true) }
   const onDragLeave = () => setIsDragging(false)
+
+  function updateDraft(item: GalleryItem, value: string) {
+    setDrafts((current) => ({ ...current, [item.id]: value }))
+    setSavedId(null)
+  }
+
+  async function saveCaption(item: GalleryItem) {
+    setSavingId(item.id)
+    try {
+      const res = await fetch('/api/admin/gallery', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: item.id,
+          url: item.url,
+          caption: drafts[item.id] ?? item.caption ?? item.alt ?? '',
+        }),
+      })
+      const json = await res.json()
+      if (!json.ok) throw new Error(json.error || 'Не удалось сохранить подпись')
+      setSavedId(item.id)
+      await mutate()
+    } finally {
+      setSavingId(null)
+    }
+  }
 
   async function deleteItem(id: string) {
     await fetch('/api/admin/gallery', {
@@ -197,24 +226,25 @@ export function GallerySettings() {
           {items.map((item) => (
             <div
               key={item.id}
-              className="relative group rounded-xl overflow-hidden border border-border aspect-[4/3] bg-secondary"
+              className="group overflow-hidden rounded-xl border border-border bg-card"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={item.url}
-                alt={item.alt || 'Фото усадьбы'}
-                className="w-full h-full object-cover"
-                onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }}
-              />
-              {item.is_main && (
-                <span className="absolute top-2 left-2 bg-amber-400 text-amber-900 text-xs font-medium px-2 py-0.5 rounded-full">
-                  Главное
-                </span>
-              )}
-              <div className={cn(
-                'absolute inset-0 bg-foreground/60 flex items-center justify-center gap-2',
-                'opacity-0 group-hover:opacity-100 transition-opacity',
-              )}>
+              <div className="relative aspect-[4/3] bg-secondary">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={item.url}
+                  alt={item.alt || 'Фото усадьбы'}
+                  className="h-full w-full object-cover"
+                  onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0.3' }}
+                />
+                {item.is_main && (
+                  <span className="absolute top-2 left-2 bg-amber-400 text-amber-900 text-xs font-medium px-2 py-0.5 rounded-full">
+                    Главное
+                  </span>
+                )}
+                <div className={cn(
+                  'absolute inset-0 bg-foreground/60 flex items-center justify-center gap-2',
+                  'opacity-0 group-hover:opacity-100 transition-opacity',
+                )}>
                 <button
                   onClick={() => setMain(item.id)}
                   title="Сделать главным"
@@ -229,6 +259,31 @@ export function GallerySettings() {
                 >
                   <Trash2 className="size-4 text-white" />
                 </button>
+                </div>
+              </div>
+              <div className="space-y-2 p-3">
+                <label htmlFor={`caption-${item.id}`} className="text-xs font-medium text-muted-foreground">
+                  Подпись на фото
+                </label>
+                <input
+                  id={`caption-${item.id}`}
+                  value={drafts[item.id] ?? item.caption ?? item.alt ?? ''}
+                  onChange={(event) => updateDraft(item, event.target.value)}
+                  maxLength={160}
+                  placeholder="Например: Столик в прихожей"
+                  className="h-9 w-full rounded-lg border border-input bg-background px-2.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] text-muted-foreground">{(drafts[item.id] ?? item.caption ?? item.alt ?? '').length}/160</span>
+                  <button
+                    type="button"
+                    onClick={() => saveCaption(item)}
+                    disabled={savingId === item.id}
+                    className="rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+                  >
+                    {savingId === item.id ? 'Сохраняю…' : savedId === item.id ? 'Сохранено' : 'Сохранить'}
+                  </button>
+                </div>
               </div>
             </div>
           ))}

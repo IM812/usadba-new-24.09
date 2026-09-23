@@ -43,6 +43,8 @@ export interface GalleryItem {
   id: string
   url: string
   alt: string
+  caption?: string
+  category?: string
   sort_order: number
   is_main: boolean
   created_at: string
