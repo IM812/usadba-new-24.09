@@ -21,10 +21,14 @@ export async function getGalleryPhotos() {
 
     if (error || !data) return fallback
 
-    const deletedUrls = new Set(data.filter((item) => item.sort_order === -1).map((item) => item.url))
-    const savedByUrl = new Map(data.filter((item) => item.sort_order !== -1).map((item) => [item.url, item]))
-    const merged = fallback.filter((photo) => !deletedUrls.has(photo.src)).map((photo) => {
-      const saved = savedByUrl.get(photo.src)
+    const normalizeUrl = (url: string) => url.trim()
+    const isDeleted = (item: { sort_order: number | string | null }) => Number(item.sort_order) === -1
+    const deletedUrls = new Set(data.filter(isDeleted).map((item) => normalizeUrl(item.url)))
+    const savedByUrl = new Map(
+      data.filter((item) => !isDeleted(item)).map((item) => [normalizeUrl(item.url), item]),
+    )
+    const merged = fallback.filter((photo) => !deletedUrls.has(normalizeUrl(photo.src))).map((photo) => {
+      const saved = savedByUrl.get(normalizeUrl(photo.src))
       if (!saved) return photo
       return {
         ...photo,
@@ -36,9 +40,9 @@ export async function getGalleryPhotos() {
       }
     })
 
-    const staticUrls = new Set(fallback.map((photo) => photo.src))
+    const staticUrls = new Set(fallback.map((photo) => normalizeUrl(photo.src)))
     const uploaded = data
-      .filter((item) => item.sort_order !== -1 && !staticUrls.has(item.url))
+      .filter((item) => !isDeleted(item) && !staticUrls.has(normalizeUrl(item.url)))
       .map((item) => ({
         category: 'house' as const,
         src: item.url,

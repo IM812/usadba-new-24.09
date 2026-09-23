@@ -14,10 +14,14 @@ export async function GET() {
 
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 })
 
-  const deletedUrls = new Set((data ?? []).filter((item) => item.sort_order === -1).map((item) => item.url))
-  const savedByUrl = new Map((data ?? []).filter((item) => item.sort_order !== -1).map((item) => [item.url, item]))
-  const staticItems = galleryPhotos.filter((photo) => !deletedUrls.has(photo.src)).map((photo, index) => {
-    const saved = savedByUrl.get(photo.src)
+  const normalizeUrl = (url: string) => url.trim()
+  const isDeleted = (item: { sort_order: number | string | null }) => Number(item.sort_order) === -1
+  const deletedUrls = new Set((data ?? []).filter(isDeleted).map((item) => normalizeUrl(item.url)))
+  const savedByUrl = new Map(
+    (data ?? []).filter((item) => !isDeleted(item)).map((item) => [normalizeUrl(item.url), item]),
+  )
+  const staticItems = galleryPhotos.filter((photo) => !deletedUrls.has(normalizeUrl(photo.src))).map((photo, index) => {
+    const saved = savedByUrl.get(normalizeUrl(photo.src))
     return {
       id: saved?.id ?? `static:${encodeURIComponent(photo.src)}`,
       url: photo.src,
@@ -31,9 +35,9 @@ export async function GET() {
     }
   })
 
-  const staticUrls = new Set(galleryPhotos.map((photo) => photo.src))
+  const staticUrls = new Set(galleryPhotos.map((photo) => normalizeUrl(photo.src)))
   const uploadedItems = (data ?? [])
-    .filter((item) => item.sort_order !== -1 && !staticUrls.has(item.url))
+    .filter((item) => !isDeleted(item) && !staticUrls.has(normalizeUrl(item.url)))
     .map((item) => ({ ...item, caption: item.alt, persisted: true }))
 
   return NextResponse.json({ ok: true, data: [...staticItems, ...uploadedItems] })
@@ -79,12 +83,14 @@ export async function DELETE(req: NextRequest) {
     }
 
     revalidatePath('/gallery')
+    revalidatePath('/admin/settings/gallery')
     return NextResponse.json({ ok: true })
   }
 
   const { error } = await supabase.from('gallery').delete().eq('id', id)
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 })
   revalidatePath('/gallery')
+  revalidatePath('/admin/settings/gallery')
   return NextResponse.json({ ok: true })
 }
 
