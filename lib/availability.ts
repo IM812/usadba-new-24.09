@@ -20,6 +20,7 @@ export type SeasonalPrice = {
   date_to: string // MM-DD
   base_price: number
   weekend_price: number
+  minimum_nights?: number
 }
 
 export const DEFAULT_SETTINGS: AvailabilitySettings = {
@@ -122,8 +123,11 @@ export function quoteStay(
   const nights = Math.max(0, nightsBetween(checkIn, checkOut))
 
   let nightsTotal = 0
+  let minimumNights = settings.minimum_nights
   for (let i = 0; i < nights; i++) {
-    nightsTotal += priceForNight(addDays(checkIn, i), seasons, settings)
+    const night = addDays(checkIn, i)
+    nightsTotal += priceForNight(night, seasons, settings)
+    minimumNights = Math.max(minimumNights, minimumNightsForDate(night, seasons, settings))
   }
 
   const extraGuests = Math.max(0, guests - settings.base_guests)
@@ -137,8 +141,24 @@ export function quoteStay(
     extraGuestFee,
     cleaningFee,
     total: nightsTotal + extraGuestFee + cleaningFee,
-    belowMinimum: nights > 0 && nights < settings.minimum_nights,
+    belowMinimum: nights > 0 && nights < minimumNights,
   }
+}
+
+export function minimumNightsForDate(
+  d: Date,
+  seasons: readonly SeasonalPrice[],
+  settings: AvailabilitySettings,
+): number {
+  const key = `${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+  if (settings.price_mode !== 'seasonal') return settings.minimum_nights
+  const matching = seasons.filter((s) => {
+    const inRange = s.date_from <= s.date_to
+      ? key >= s.date_from && key <= s.date_to
+      : key >= s.date_from || key <= s.date_to
+    return inRange
+  })
+  return Math.max(settings.minimum_nights, ...matching.map((s) => s.minimum_nights ?? 1))
 }
 
 export const money = (n: number) => new Intl.NumberFormat('ru-RU').format(n)

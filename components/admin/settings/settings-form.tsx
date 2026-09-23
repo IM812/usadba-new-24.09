@@ -35,7 +35,7 @@ export function SettingsForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-card border border-border rounded-xl overflow-hidden">
+    <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl overflow-hidden surface">
       <div className="px-6 py-4 border-b border-border">
         <h2 className="text-sm font-semibold text-foreground">{title}</h2>
         {description && <p className="text-xs text-muted-foreground mt-0.5">{description}</p>}

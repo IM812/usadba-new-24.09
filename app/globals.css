@@ -97,28 +97,28 @@
   --sidebar-ring: oklch(0.815 0.072 66);
 }
 
-/* Панель управления остаётся светлой и утилитарной */
+/* Админка использует ту же тёмную лесную тему, что и публичный сайт. */
 .theme-admin {
-  color-scheme: light;
-  --background: oklch(0.98 0.008 110);
-  --foreground: oklch(0.24 0.02 145);
-  --card: oklch(0.995 0.005 110);
-  --card-foreground: oklch(0.24 0.02 145);
-  --popover: oklch(0.995 0.005 110);
-  --popover-foreground: oklch(0.24 0.02 145);
-  --primary: oklch(0.42 0.07 150);
-  --primary-foreground: oklch(0.98 0.01 110);
-  --secondary: oklch(0.94 0.02 120);
-  --secondary-foreground: oklch(0.3 0.04 150);
-  --muted: oklch(0.94 0.015 120);
-  --muted-foreground: oklch(0.5 0.03 140);
-  --accent: oklch(0.68 0.12 80);
-  --accent-foreground: oklch(0.22 0.03 150);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.02 120);
-  --input: oklch(0.88 0.02 120);
-  --ring: oklch(0.42 0.07 150);
-  --radius: 0.5rem;
+  color-scheme: dark;
+  --background: oklch(0.148 0.016 158);
+  --foreground: oklch(0.955 0.009 92);
+  --card: oklch(0.208 0.018 158);
+  --card-foreground: oklch(0.955 0.009 92);
+  --popover: oklch(0.192 0.017 158);
+  --popover-foreground: oklch(0.955 0.009 92);
+  --primary: oklch(0.815 0.072 66);
+  --primary-foreground: oklch(0.16 0.02 158);
+  --secondary: oklch(0.252 0.02 158);
+  --secondary-foreground: oklch(0.955 0.009 92);
+  --muted: oklch(0.228 0.018 158);
+  --muted-foreground: oklch(0.715 0.016 140);
+  --accent: oklch(0.815 0.072 66);
+  --accent-foreground: oklch(0.16 0.02 158);
+  --destructive: oklch(0.62 0.19 25);
+  --border: oklch(0.955 0.009 92 / 14%);
+  --input: oklch(0.955 0.009 92 / 18%);
+  --ring: oklch(0.815 0.072 66);
+  --radius: 1rem;
 }
 
 @layer base {

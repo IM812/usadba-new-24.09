@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import type { Booking } from '@/lib/types'
 import type { BusyRange } from '@/lib/ics'
 import { todayKey } from '@/lib/date'
+import { priceForNight, type AvailabilitySettings, type SeasonalPrice } from '@/lib/availability'
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json())
 
@@ -34,6 +35,18 @@ export function AdminCalendar() {
 
   const { data: bookingsRes } = useSWR('/api/admin/bookings', fetcher, { refreshInterval: 30000 })
   const { data: availRes } = useSWR('/api/availability', fetcher, { refreshInterval: 300000 })
+
+  const availabilitySettings: AvailabilitySettings = {
+    base_price: availRes?.settings?.base_price ?? 20000,
+    weekend_price: availRes?.settings?.weekend_price ?? 24000,
+    extra_guest_price: availRes?.settings?.extra_guest_price ?? 1650,
+    cleaning_fee: availRes?.settings?.cleaning_fee ?? 0,
+    minimum_nights: availRes?.settings?.minimum_nights ?? 1,
+    base_guests: availRes?.settings?.base_guests ?? 8,
+    max_guests: availRes?.settings?.max_guests ?? 15,
+    price_mode: availRes?.settings?.price_mode === 'seasonal' ? 'seasonal' : 'base',
+  }
+  const seasonalPrices: SeasonalPrice[] = availRes?.seasonalPrices ?? []
 
   const bookings: Booking[] = (bookingsRes?.data ?? []).filter(
     (b: Booking) => b.status !== 'cancelled',
@@ -89,7 +102,7 @@ export function AdminCalendar() {
     <div className="p-6 max-w-5xl mx-auto">
       <div className="mb-6">
         <h1 className="text-2xl font-semibold text-foreground">Календарь</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">Все бронирования и занятость</p>
+        <p className="text-sm text-muted-foreground mt-0.5">Все бронирования, занятость и цена каждой ночи</p>
       </div>
 
       {/* Legend */}
@@ -142,6 +155,7 @@ export function AdminCalendar() {
             const isPast = iso < today
             const checkIn = isCheckIn(iso)
             const checkOut = isCheckOut(iso)
+            const nightPrice = priceForNight(new Date(`${iso}T12:00:00`), seasonalPrices, availabilitySettings)
 
             const bgClass = booking
               ? booking.status === 'confirmed'
@@ -173,8 +187,11 @@ export function AdminCalendar() {
                 >
                   {parseInt(iso.slice(8), 10)}
                 </span>
+                <span className="block text-[10px] leading-tight font-medium text-primary">
+                  {formatRub(nightPrice)}
+                </span>
                 {checkIn && (
-                  <span className="block text-[10px] leading-tight text-green-700 font-medium">
+                  <span className="block text-[10px] leading-tight text-green-500 font-medium">
                     Заезд
                   </span>
                 )}

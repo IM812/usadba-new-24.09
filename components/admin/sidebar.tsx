@@ -59,9 +59,9 @@ function NavLink({
       href={href}
       onClick={onClick}
       className={cn(
-        'flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+        'flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
         active
-          ? 'bg-primary text-primary-foreground'
+          ? 'bg-primary text-primary-foreground shadow-sm'
           : 'text-muted-foreground hover:bg-secondary hover:text-foreground',
       )}
     >
@@ -81,14 +81,14 @@ function SidebarContent({ onClose }: { onClose?: () => void }) {
   }
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col bg-sidebar">
       <div className="flex items-center gap-3 px-4 py-5 border-b border-border">
         <div className="size-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
           <Settings className="size-4 text-primary-foreground" />
         </div>
         <div className="min-w-0">
-          <p className="text-sm font-semibold text-foreground truncate">Усадьба</p>
-          <p className="text-xs text-muted-foreground">Панель управления</p>
+          <p className="text-sm font-semibold text-foreground truncate font-display">Усадьба</p>
+          <p className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Панель управления</p>
         </div>
         {onClose && (
           <button onClick={onClose} className="ml-auto text-muted-foreground hover:text-foreground">

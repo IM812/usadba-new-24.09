@@ -21,6 +21,7 @@ export type SeasonalRate = {
   date_to: string
   base_price: number
   weekend_price: number
+  minimum_nights?: number
   sort_order: number
 }
 
@@ -60,7 +61,7 @@ export const getRates = cache(async function getRates(): Promise<{
         .single(),
       supabase
         .from('seasonal_prices')
-        .select('id, name, date_from, date_to, base_price, weekend_price, sort_order')
+        .select('id, name, date_from, date_to, base_price, weekend_price, minimum_nights, sort_order')
         .eq('active', true)
         // при равном sort_order (по умолчанию он одинаковый) сезоны идут
         // по календарю, а не в случайном порядке вставки

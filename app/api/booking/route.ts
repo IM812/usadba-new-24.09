@@ -21,6 +21,7 @@ type SeasonalPrice = {
   date_to: string
   base_price: number
   weekend_price: number
+  minimum_nights?: number
 }
 
 function isWeekend(d: Date) {
@@ -151,7 +152,7 @@ export async function POST(req: Request) {
         .single(),
       supabase
         .from('seasonal_prices')
-        .select('date_from, date_to, base_price, weekend_price')
+        .select('date_from, date_to, base_price, weekend_price, minimum_nights')
         .eq('active', true)
         .order('sort_order'),
     ])
@@ -202,13 +203,24 @@ export async function POST(req: Request) {
     }
 
     // --- Calculate price ---
+    const activeSeasons = priceMode === 'seasonal' ? (seasons ?? []) : []
     const { total: accommodationTotal, nights, nightsList } = calcPrice(
       arrival,
       departure,
       basePrice,
       weekendPrice,
-      priceMode === 'seasonal' ? (seasons ?? []) : [],
+      activeSeasons,
     )
+    const minimumNights = Math.max(
+      settings?.minimum_nights ?? 1,
+      ...activeSeasons.map((season) => season.minimum_nights ?? 1),
+    )
+    if (nights < minimumNights) {
+      return NextResponse.json(
+        { ok: false, error: 'minimum_nights', minimum_nights: minimumNights },
+        { status: 400 },
+      )
+    }
     const extraGuests = Math.max(0, guestsCount - baseGuests)
     const extraGuestTotal = extraGuests * extraGuestPrice * nights
     const spaTotal = spaCount * spaSurcharge.price
