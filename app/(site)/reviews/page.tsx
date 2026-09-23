@@ -39,12 +39,7 @@ export default async function ReviewsPage() {
     <>
       <PageHero
         eyebrow="Отзывы"
-        title={
-          <>
-            Рейтинг {rating.value} по отзывам гостей. <br className="hidden sm:block" />
-            Нам доверяют отдыхать
-          </>
-        }
+        title={`Рейтинг ${rating.value} по отзывам гостей`}
         lead={`${rating.count} оценок и ${rating.reviewCount} ${plural(rating.reviewCount, "отзыв", "отзыва", "отзывов")} на Яндекс Картах.`}
         image="/images/drive/living/fireplace.webp"
         imageAlt="Гостиная усадьбы с кирпичным камином"
@@ -115,7 +110,7 @@ export default async function ReviewsPage() {
       <BookingCta
         image="/images/drive/grounds/guests-pier.webp"
         imageAlt="Гости отдыхают на причале у лесного озера"
-        title="Станьте следующим отзывом"
+        title="Поделитесь впечатлениями"
         lead="Расскажем про свободные даты и подготовим усадьбу к вашему приезду."
       />
     </>
