@@ -27,6 +27,7 @@ export type BookingPrefill = {
   arrival?: string
   departure?: string
   guests?: string
+  spaSessions?: string
 }
 
 type Props = {
@@ -494,14 +495,15 @@ export function BookingModal({ open, onClose, prefill }: Props) {
   // Подхватываем даты, выбранные на странице бронирования
   useEffect(() => {
     if (!open || !prefill) return
-    const { arrival, departure, guests } = prefill
-    if (!arrival && !departure && !guests) return
+    const { arrival, departure, guests, spaSessions } = prefill
+    if (!arrival && !departure && !guests && !spaSessions) return
 
     setForm((f) => ({
       ...f,
       arrival: arrival ?? f.arrival,
       departure: departure ?? f.departure,
       guests: guests ?? f.guests,
+      spaSessions: spaSessions ? Math.max(0, Number(spaSessions) || 0) : f.spaSessions,
     }))
     setSelecting(arrival && !departure ? "departure" : "arrival")
 

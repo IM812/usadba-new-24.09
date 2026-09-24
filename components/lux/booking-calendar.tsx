@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, Minus, Plus } from "lucide-react"
 import { useBooking } from "@/components/lux/booking-provider"
 import { LuxButton } from "@/components/lux/ui"
 import { addDays, startOfToday, toDateKey } from "@/lib/date"
+import { spaSurcharge } from "@/lib/site"
 import {
   DEFAULT_SETTINGS,
   guestsWord,
@@ -126,6 +127,7 @@ export function BookingCalendar() {
   const [checkIn, setCheckIn] = useState<Date | null>(null)
   const [checkOut, setCheckOut] = useState<Date | null>(null)
   const [guests, setGuests] = useState(DEFAULT_SETTINGS.base_guests)
+  const [spaSessions, setSpaSessions] = useState(0)
   const [twoMonths, setTwoMonths] = useState(false)
 
   const { data, isLoading } = useSWR("/api/availability", fetcher, {
@@ -210,6 +212,7 @@ export function BookingCalendar() {
       arrival: checkIn ? toDateKey(checkIn) : undefined,
       departure: checkOut ? toDateKey(checkOut) : undefined,
       guests: String(guests),
+      spaSessions: String(spaSessions),
     })
   }
 
@@ -329,6 +332,42 @@ export function BookingCalendar() {
             </div>
           </div>
 
+          {/* Баня и чан */}
+          <div className="mt-7 border-t border-border pt-6">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-[13px] uppercase tracking-[0.12em] text-muted-foreground">
+                  Баня и чан
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {money(spaSurcharge.price)} ₽ за топку
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setSpaSessions((count) => Math.max(0, count - 1))}
+                  disabled={spaSessions === 0}
+                  aria-label="Убрать топку бани и чана"
+                  className="flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent hover:text-accent disabled:opacity-35"
+                >
+                  <Minus className="size-4" />
+                </button>
+                <span className="min-w-5 text-center font-display text-xl font-semibold text-foreground">
+                  {spaSessions}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSpaSessions((count) => Math.min(20, count + 1))}
+                  aria-label="Добавить топку бани и чана"
+                  className="flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+                >
+                  <Plus className="size-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
           {/* Расчёт */}
           <div className="mt-8 border-t border-border pt-7">
             {quote ? (
@@ -354,6 +393,12 @@ export function BookingCalendar() {
                       <span className="text-foreground/90">{money(quote.cleaningFee)} ₽</span>
                     </div>
                   ) : null}
+                  {spaSessions > 0 ? (
+                    <div className="flex justify-between gap-4">
+                      <span>Баня и чан · {spaSessions} топка{spaSessions === 1 ? "" : spaSessions < 5 ? "и" : "ок"}</span>
+                      <span className="text-foreground/90">{money(spaSessions * spaSurcharge.price)} ₽</span>
+                    </div>
+                  ) : null}
                 </div>
 
                 <div className="mt-6 flex items-baseline justify-between gap-4 border-t border-border pt-5">
@@ -361,7 +406,7 @@ export function BookingCalendar() {
                     Итого
                   </span>
                   <span className="font-display text-3xl font-semibold text-accent min-[390px]:text-4xl">
-                    {money(quote.total)} ₽
+                    {money(quote.total + spaSessions * spaSurcharge.price)} ₽
                   </span>
                 </div>
 
