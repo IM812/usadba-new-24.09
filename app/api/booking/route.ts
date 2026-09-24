@@ -267,7 +267,7 @@ export async function POST(req: Request) {
     ].filter(Boolean)
 
     const text = [
-      '🏡 *Новая заявка на брониро��ание*',
+      '🏡 *Новая заявка на бронирование*',
       '',
       `📅 Заезд: *${formatDate(arrival)}*`,
       `📅 Выезд: *${formatDate(departure)}*`,
