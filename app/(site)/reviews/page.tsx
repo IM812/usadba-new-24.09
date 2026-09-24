@@ -101,7 +101,7 @@ export default async function ReviewsPage() {
         <Section tone="raised">
         <Container>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeading eyebrow="Слово гостям" title="Отзывы без правок" />
+            <SectionHeading eyebrow="Слово гостям" title="Отзывы" />
             <TextLink href={YANDEX_REVIEWS_URL} className="shrink-0">Все отзывы на Яндекс Картах</TextLink>
           </div>
           <div className="mt-8 sm:mt-12">

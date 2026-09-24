@@ -103,7 +103,7 @@ export const groundExperiences = [
     id: 'forest',
     name: 'Сосновый лес',
     season: 'Круглый год',
-    image: '/images/drive/grounds/forest-lake-path.webp',
+    image: '/images/drive/grounds/aerial-wide.webp',
     description:
       'Лес начинается сразу за территорией. Здесь можно гулять, собирать ягоды и грибы или просто дышать тишиной.',
   },
@@ -111,7 +111,7 @@ export const groundExperiences = [
     id: 'banya',
     name: 'Баня',
     season: 'По согласованию',
-    image: '/images/drive/spa/sauna.webp',
+    image: '/images/drive/spa/sauna-details.webp',
     description:
       'Теплая баня на дровах рядом с озером — для спокойного вечера после прогулки или дня у воды.',
   },
