@@ -108,7 +108,6 @@ type Season = {
   date_to: string
   base_price: number
   weekend_price: number
-  minimum_nights: number
   active: boolean
   sort_order: number
 }
@@ -146,7 +145,6 @@ function SeasonRow({
       date_to: form.date_to,
       base_price: Number(form.base_price),
       weekend_price: Number(form.weekend_price),
-      minimum_nights: Math.max(1, Number(form.minimum_nights) || 1),
       active: form.active,
     })
     setSaving(false)
@@ -179,7 +177,7 @@ function SeasonRow({
           </span>
           <span className="text-sm font-medium text-foreground">
             {Number(season.base_price).toLocaleString('ru')} /{' '}
-            {Number(season.weekend_price).toLocaleString('ru')} ₽ · от {season.minimum_nights || 1} н.
+            {Number(season.weekend_price).toLocaleString('ru')} ₽
           </span>
           {!season.active && (
             <span className="text-xs text-muted-foreground border border-border rounded px-1.5 py-0.5">
@@ -267,17 +265,6 @@ function SeasonRow({
                 className="mt-1 h-9 w-full rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
-            <div>
-              <label className="text-xs text-muted-foreground">Минимум ночей</label>
-              <input
-                type="number"
-                min="1"
-                max="30"
-                value={form.minimum_nights}
-                onChange={(e) => upd('minimum_nights', Math.max(1, Number(e.target.value) || 1))}
-                className="mt-1 h-9 w-full rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-              />
-            </div>
             <div className="flex items-end">
               <button
                 type="button"
@@ -311,7 +298,6 @@ export function SeasonalPricesSettings() {
     date_to: '01-31',
     base_price: 20000,
     weekend_price: 24000,
-    minimum_nights: 1,
   })
   const [saving, setSaving] = useState(false)
 
@@ -351,7 +337,7 @@ export function SeasonalPricesSettings() {
     if (!json.ok) {
       console.error('[v0] seasonal-prices POST error:', json.error)
     }
-    setNewForm({ name: '', date_from: '01-01', date_to: '01-31', base_price: 20000, weekend_price: 24000, minimum_nights: 1 })
+    setNewForm({ name: '', date_from: '01-01', date_to: '01-31', base_price: 20000, weekend_price: 24000 })
     setAdding(false)
     setSaving(false)
     mutate()
@@ -421,19 +407,6 @@ export function SeasonalPricesSettings() {
                 value={newForm.weekend_price}
                 onChange={(e) =>
                   setNewForm((f) => ({ ...f, weekend_price: Number(e.target.value) }))
-                }
-                className="mt-1 h-9 w-full rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-              />
-            </div>
-            <div>
-              <label className="text-xs text-muted-foreground">Минимум ночей</label>
-              <input
-                type="number"
-                min="1"
-                max="30"
-                value={newForm.minimum_nights}
-                onChange={(e) =>
-                  setNewForm((f) => ({ ...f, minimum_nights: Math.max(1, Number(e.target.value) || 1) }))
                 }
                 className="mt-1 h-9 w-full rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               />

@@ -26,10 +26,12 @@ export async function POST(req: NextRequest) {
 
   const supabase = createServiceClient()
   const raw = await req.json()
+  // seasonal_prices has no minimum_nights column — strip it so inserts don't fail
+  const { minimum_nights: _omitMinNights, ...rest } = raw
   const body = {
-    ...raw,
-    ...(raw.date_from !== undefined && { date_from: normalizeMmDd(raw.date_from) }),
-    ...(raw.date_to !== undefined && { date_to: normalizeMmDd(raw.date_to) }),
+    ...rest,
+    ...(rest.date_from !== undefined && { date_from: normalizeMmDd(rest.date_from) }),
+    ...(rest.date_to !== undefined && { date_to: normalizeMmDd(rest.date_to) }),
   }
   const { data, error } = await supabase.from('seasonal_prices').insert(body).select().single()
   if (error) return NextResponse.json({ ok: false, error: error.message }, { status: 500 })

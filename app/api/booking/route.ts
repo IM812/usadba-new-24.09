@@ -122,7 +122,11 @@ export async function POST(req: Request) {
     const supabase = createServiceClient()
 
     // --- Load the same pricing/settings source as /api/availability ---
-    const [{ data: pricingRow }, { data: settings }, { data: seasons }] = await Promise.all([
+    const [
+      { data: pricingRow, error: pricingError },
+      { data: settings, error: settingsError },
+      { data: seasons, error: seasonsError },
+    ] = await Promise.all([
       supabase
         .from('settings')
         .select('base_price, weekend_price, price_mode, minimum_nights, extra_guest_price, base_guests, max_guests')
@@ -135,10 +139,14 @@ export async function POST(req: Request) {
         .single(),
       supabase
         .from('seasonal_prices')
-        .select('id, name, date_from, date_to, base_price, weekend_price, minimum_nights')
+        .select('*')
         .eq('active', true)
         .order('sort_order'),
     ])
+
+    if (pricingError) console.error('[booking] pricing settings error:', pricingError.message)
+    if (settingsError) console.error('[booking] telegram settings error:', settingsError.message)
+    if (seasonsError) console.error('[booking] seasonal prices error:', seasonsError.message)
 
     const pricingSettings: AvailabilitySettings = {
       base_price: pricingRow?.base_price ?? 20000,
