@@ -48,7 +48,7 @@ export default function GroundsPage() {
           <div data-reveal>
             <SectionHeading
               eyebrow="Чем заняться"
-              title="Лес, баня, чан и озеро"
+              title="Развлечения, которые не нужно искать"
               lead="Все это рядом с домом, а лодка и сапы уже входят в стоимость проживания."
             />
           </div>
