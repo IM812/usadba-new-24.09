@@ -85,23 +85,54 @@ function nightsWord(n: number) {
   return 'ночей'
 }
 
+/**
+ * База Telegram Bot API. По умолчанию api.telegram.org, но на серверах,
+ * где исходящие на Telegram заблокированы (частый случай на российских VDS),
+ * можно задать прокси через переменную окружения TELEGRAM_API_BASE.
+ */
+const TELEGRAM_API_BASE = (process.env.TELEGRAM_API_BASE || 'https://api.telegram.org').replace(/\/+$/, '')
+
 async function sendTelegramMessage(
   token: string,
   chatId: string,
   text: string,
   inlineKeyboard?: object,
-) {
-  if (!token || !chatId) return
-  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text,
-      parse_mode: 'Markdown',
-      ...(inlineKeyboard ? { reply_markup: { inline_keyboard: inlineKeyboard } } : {}),
-    }),
-  }).catch((e) => console.error('[telegram] send error:', e))
+): Promise<{ ok: boolean; error?: string }> {
+  if (!token || !chatId) {
+    console.error('[telegram] пропущено: не заданы token или chat_id в настройках')
+    return { ok: false, error: 'missing_credentials' }
+  }
+
+  // Не даём запросу висеть бесконечно: если Telegram недоступен — падаем за 10с.
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 10_000)
+  try {
+    const res = await fetch(`${TELEGRAM_API_BASE}/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text,
+        parse_mode: 'Markdown',
+        ...(inlineKeyboard ? { reply_markup: { inline_keyboard: inlineKeyboard } } : {}),
+      }),
+      signal: controller.signal,
+    })
+    // fetch НЕ бросает исключение на HTTP 4xx/5xx — проверяем ответ вручную.
+    const data = (await res.json().catch(() => null)) as { ok?: boolean; description?: string } | null
+    if (!res.ok || !data?.ok) {
+      const desc = data?.description || `HTTP ${res.status}`
+      console.error('[telegram] отправка не удалась:', desc)
+      return { ok: false, error: desc }
+    }
+    return { ok: true }
+  } catch (e) {
+    const msg = e instanceof Error ? (e.name === 'AbortError' ? 'timeout: Telegram недоступен за 10с' : e.message) : String(e)
+    console.error('[telegram] сетевая ошибка:', msg)
+    return { ok: false, error: msg }
+  } finally {
+    clearTimeout(timer)
+  }
 }
 
 export async function POST(req: Request) {
@@ -175,7 +206,8 @@ export async function POST(req: Request) {
     const botToken = settings?.telegram_bot_token ?? ''
     const chatId = settings?.telegram_chat_id ?? ''
     const avitoUrl = settings?.avito_ics_url ?? ''
-    const siteUrl = settings?.site_url ?? ''
+    // Убираем хвостовые слэши, иначе в ссылках кнопок получается двойной слэш (domain//api/...)
+    const siteUrl = (settings?.site_url ?? '').replace(/\/+$/, '')
 
     // --- Check Supabase confirmed bookings ---
     const { data: existing } = await supabase
@@ -298,9 +330,12 @@ export async function POST(req: Request) {
           ]]
         : null
 
-    await sendTelegramMessage(botToken, chatId, text, keyboard ?? undefined)
+    const notify = await sendTelegramMessage(botToken, chatId, text, keyboard ?? undefined)
+    if (!notify.ok) {
+      console.error(`[booking] уведомление в Telegram НЕ отправлено (bookingId=${bookingId}): ${notify.error}`)
+    }
 
-    return NextResponse.json({ ok: true, id: bookingId })
+    return NextResponse.json({ ok: true, id: bookingId, notified: notify.ok })
   } catch (err) {
     console.error('[booking] Unexpected error:', err)
     return NextResponse.json({ ok: false, error: 'Internal error' }, { status: 500 })
