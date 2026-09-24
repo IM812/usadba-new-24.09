@@ -227,7 +227,7 @@ export const galleryPhotos = [
   { category: 'house', src: '/images/drive/house/house-autumn-wide.webp', alt: 'Бревенчатый дом усадьбы в осеннем лесу', caption: 'Усадьба в осеннем лесу' },
   { category: 'house', src: '/images/drive/living/sofas-lake-view.webp', alt: 'Гостиная с мягкими диванами и видом на озеро', caption: 'Гостиная с видом на озеро' },
   { category: 'house', src: '/images/drive/kitchen/kitchen-wide.webp', alt: 'Оборудованная кухня с деревянной мебелью', caption: 'Просторная кухня' },
-  { category: 'house', src: '/images/drive/dining/festive-table.webp', alt: 'Празднично накрытый стол в усадьбе', caption: 'Праздничная сервировка в столовой' },
+  { category: 'house', src: '/images/drive/dining/feast.webp', alt: 'Празднично накрытый стол в усадьбе', caption: 'Праздничная сервировка в столовой' },
   { category: 'house', src: '/images/drive/house/house-evening.webp', alt: 'Бревенчатый дом усадьбы вечером', caption: 'Дом в вечернем свете' },
   { category: 'house', src: '/images/drive/living/sofa-window.webp', alt: 'Диванная зона у больших окон', caption: 'Зона отдыха у окон' },
   { category: 'house', src: '/images/drive/living/fireplace.webp', alt: 'Кирпичный камин в гостиной усадьбы', caption: 'Дровяной камин в гостиной' },
