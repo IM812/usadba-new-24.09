@@ -54,7 +54,7 @@ export const getRates = cache(async function getRates(): Promise<{
 
   try {
     const supabase = createServiceClient()
-    const [{ data: settings }, { data: seasons }] = await Promise.all([
+    const [settingsResult, seasonsResult] = await Promise.all([
       supabase
         .from('settings')
         .select(
@@ -64,7 +64,7 @@ export const getRates = cache(async function getRates(): Promise<{
         .single(),
       supabase
         .from('seasonal_prices')
-        .select('id, name, date_from, date_to, base_price, weekend_price, minimum_nights, sort_order')
+        .select('id, name, date_from, date_to, base_price, weekend_price, sort_order')
         .eq('active', true)
         // при равном sort_order (по умолчанию он одинаковый) сезоны идут
         // по календарю, а не в случайном порядке вставки
@@ -72,14 +72,17 @@ export const getRates = cache(async function getRates(): Promise<{
         .order('date_from'),
     ])
 
+    if (settingsResult.error) throw settingsResult.error
+    if (seasonsResult.error) throw seasonsResult.error
+
     // null-колонки не должны затирать дефолты
     const clean = Object.fromEntries(
-      Object.entries(settings ?? {}).filter(([, v]) => v !== null && v !== undefined && v !== ''),
+      Object.entries(settingsResult.data ?? {}).filter(([, v]) => v !== null && v !== undefined && v !== ''),
     )
 
     return {
       settings: { ...FALLBACK, ...clean } as RateSettings,
-      seasons: (seasons ?? []) as SeasonalRate[],
+      seasons: (seasonsResult.data ?? []) as SeasonalRate[],
     }
   } catch (err) {
     console.error('[rates] failed to load', err)
