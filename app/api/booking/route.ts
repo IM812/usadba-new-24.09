@@ -206,7 +206,8 @@ export async function POST(req: Request) {
     const botToken = settings?.telegram_bot_token ?? ''
     const chatId = settings?.telegram_chat_id ?? ''
     const avitoUrl = settings?.avito_ics_url ?? ''
-    const siteUrl = settings?.site_url ?? ''
+    // Убираем хвостовые слэши, иначе в ссылках кнопок получается двойной слэш (domain//api/...)
+    const siteUrl = (settings?.site_url ?? '').replace(/\/+$/, '')
 
     // --- Check Supabase confirmed bookings ---
     const { data: existing } = await supabase
