@@ -139,14 +139,14 @@ export async function POST(req: Request) {
         .single(),
       supabase
         .from('seasonal_prices')
-        .select('id, name, date_from, date_to, base_price, weekend_price, minimum_nights')
+        .select('*')
         .eq('active', true)
         .order('sort_order'),
     ])
 
-    console.log('[v0][booking] pricingRow:', JSON.stringify(pricingRow), 'error:', pricingError?.message)
-    console.log('[v0][booking] settingsError:', settingsError?.message, 'seasonsError:', seasonsError?.message)
-    console.log('[v0][booking] seasons count:', seasons?.length, JSON.stringify(seasons))
+    if (pricingError) console.error('[booking] pricing settings error:', pricingError.message)
+    if (settingsError) console.error('[booking] telegram settings error:', settingsError.message)
+    if (seasonsError) console.error('[booking] seasonal prices error:', seasonsError.message)
 
     const pricingSettings: AvailabilitySettings = {
       base_price: pricingRow?.base_price ?? 20000,
