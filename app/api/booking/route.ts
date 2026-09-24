@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createClient, createServiceClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { fetchAvitoRanges, rangesOverlap } from '@/lib/ics'
 import { spaSurcharge } from '@/lib/site'
 import { isWeekendNight, priceForNight, type AvailabilitySettings, type SeasonalPrice } from '@/lib/availability'
@@ -120,13 +120,10 @@ export async function POST(req: Request) {
       : 0
 
     const supabase = createServiceClient()
-    // Read pricing through the same public server client as /api/availability,
-    // then keep the service client for booking writes and protected data.
-    const pricingClient = await createClient()
 
-    // --- Load settings + seasonal prices ---
+    // --- Load the same pricing/settings source as /api/availability ---
     const [{ data: pricingRow }, { data: settings }, { data: seasons }] = await Promise.all([
-      pricingClient
+      supabase
         .from('settings')
         .select('base_price, weekend_price, price_mode, minimum_nights, extra_guest_price, base_guests, max_guests')
         .eq('id', 1)
