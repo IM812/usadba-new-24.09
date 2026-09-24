@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { ExternalLink, MapPin, Phone, Send } from "lucide-react"
-import { contacts, navigation, secondaryNavigation, site } from "@/lib/site"
+import { contacts, legalNavigation, navigation, secondaryNavigation, site } from "@/lib/site"
 import { Container, Eyebrow } from "@/components/lux/ui"
 import { getRates } from "@/lib/rates"
 import { getYandexRating, YANDEX_REVIEWS_URL } from "@/lib/reviews"
@@ -91,6 +91,17 @@ export async function SiteFooter() {
           <p>
             © {year} {site.name}
           </p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+            {legalNavigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="underline decoration-border underline-offset-4 transition-colors hover:text-accent"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
           <p className="text-pretty">
             {`Дом сдается целиком · Заезд с ${settings.check_in_time}, выезд до ${settings.check_out_time} · Условия подтверждаем перед бронированием`}
           </p>

@@ -1,12 +1,12 @@
 import type { MetadataRoute } from 'next'
-import { navigation, secondaryNavigation, SITE_URL } from '@/lib/site'
+import { legalNavigation, navigation, secondaryNavigation, SITE_URL } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
   return [
     { url: SITE_URL, lastModified: now, changeFrequency: 'weekly', priority: 1 },
-    ...[...navigation, ...secondaryNavigation].map((n) => ({
+    ...[...navigation, ...secondaryNavigation, ...legalNavigation].map((n) => ({
       url: `${SITE_URL}${n.href}`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
