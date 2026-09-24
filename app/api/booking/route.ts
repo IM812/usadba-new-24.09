@@ -1,5 +1,3 @@
-import http from 'node:http'
-import https from 'node:https'
 import { NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { fetchAvitoRanges, rangesOverlap } from '@/lib/ics'
@@ -87,100 +85,23 @@ function nightsWord(n: number) {
   return 'ночей'
 }
 
-/**
- * База Telegram Bot API. По умолчанию api.telegram.org. Можно переопределить
- * через переменную окружения TELEGRAM_API_BASE (например, прокси).
- */
-const TELEGRAM_API_BASE = (process.env.TELEGRAM_API_BASE || 'https://api.telegram.org').replace(/\/+$/, '')
-
-/**
- * POST JSON через нативный node:http(s) с принудительным IPv4 (family: 4).
- *
- * Почему не глобальный fetch: на многих российских VDS IPv6-маршрут до
- * api.telegram.org сломан. Нативный fetch (undici) при этом молча зависает
- * на попытке подключиться по IPv6, хотя curl (happy-eyeballs → IPv4) и Vercel
- * работают. Принудительный IPv4 убирает это расхождение окружений.
- */
-function postJson(
-  urlStr: string,
-  payload: unknown,
-  timeoutMs: number,
-): Promise<{ ok: boolean; status: number; body: string }> {
-  return new Promise((resolve) => {
-    let url: URL
-    try {
-      url = new URL(urlStr)
-    } catch {
-      resolve({ ok: false, status: 0, body: 'invalid_url' })
-      return
-    }
-    const isHttps = url.protocol === 'https:'
-    const transport = isHttps ? https : http
-    const data = Buffer.from(JSON.stringify(payload))
-    const request = transport.request(
-      {
-        hostname: url.hostname,
-        port: url.port || (isHttps ? 443 : 80),
-        path: `${url.pathname}${url.search}`,
-        method: 'POST',
-        family: 4,
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': data.length,
-        },
-        timeout: timeoutMs,
-      },
-      (res) => {
-        let chunks = ''
-        res.setEncoding('utf8')
-        res.on('data', (c) => (chunks += c))
-        res.on('end', () =>
-          resolve({ ok: (res.statusCode ?? 0) < 400, status: res.statusCode ?? 0, body: chunks }),
-        )
-      },
-    )
-    request.on('error', (e) => resolve({ ok: false, status: 0, body: e.message }))
-    request.on('timeout', () => {
-      request.destroy()
-      resolve({ ok: false, status: 0, body: 'timeout: Telegram недоступен за 10с' })
-    })
-    request.write(data)
-    request.end()
-  })
-}
-
 async function sendTelegramMessage(
   token: string,
   chatId: string,
   text: string,
   inlineKeyboard?: object,
-): Promise<{ ok: boolean; error?: string }> {
-  if (!token || !chatId) {
-    console.error('[telegram] пропущено: не заданы token или chat_id в настройках')
-    return { ok: false, error: 'missing_credentials' }
-  }
-
-  const payload = {
-    chat_id: chatId,
-    text,
-    parse_mode: 'Markdown',
-    ...(inlineKeyboard ? { reply_markup: { inline_keyboard: inlineKeyboard } } : {}),
-  }
-
-  const res = await postJson(`${TELEGRAM_API_BASE}/bot${token}/sendMessage`, payload, 10_000)
-  let parsed: { ok?: boolean; description?: string } | null = null
-  try {
-    parsed = JSON.parse(res.body)
-  } catch {
-    parsed = null
-  }
-  // Telegram отдаёт HTTP 4xx с описанием ошибки — проверяем и статус, и тело.
-  if (!res.ok || !parsed?.ok) {
-    const desc = parsed?.description || (res.status ? `HTTP ${res.status}` : res.body)
-    console.error('[telegram] отправка не удалась:', desc)
-    return { ok: false, error: desc }
-  }
-  return { ok: true }
+) {
+  if (!token || !chatId) return
+  await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text,
+      parse_mode: 'Markdown',
+      ...(inlineKeyboard ? { reply_markup: { inline_keyboard: inlineKeyboard } } : {}),
+    }),
+  }).catch((e) => console.error('[telegram] send error:', e))
 }
 
 export async function POST(req: Request) {
@@ -378,12 +299,9 @@ export async function POST(req: Request) {
           ]]
         : null
 
-    const notify = await sendTelegramMessage(botToken, chatId, text, keyboard ?? undefined)
-    if (!notify.ok) {
-      console.error(`[booking] уведомление в Telegram НЕ отправлено (bookingId=${bookingId}): ${notify.error}`)
-    }
+    await sendTelegramMessage(botToken, chatId, text, keyboard ?? undefined)
 
-    return NextResponse.json({ ok: true, id: bookingId, notified: notify.ok })
+    return NextResponse.json({ ok: true, id: bookingId })
   } catch (err) {
     console.error('[booking] Unexpected error:', err)
     return NextResponse.json({ ok: false, error: 'Internal error' }, { status: 500 })
