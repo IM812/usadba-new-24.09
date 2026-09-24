@@ -122,7 +122,11 @@ export async function POST(req: Request) {
     const supabase = createServiceClient()
 
     // --- Load the same pricing/settings source as /api/availability ---
-    const [{ data: pricingRow }, { data: settings }, { data: seasons }] = await Promise.all([
+    const [
+      { data: pricingRow, error: pricingError },
+      { data: settings, error: settingsError },
+      { data: seasons, error: seasonsError },
+    ] = await Promise.all([
       supabase
         .from('settings')
         .select('base_price, weekend_price, price_mode, minimum_nights, extra_guest_price, base_guests, max_guests')
@@ -139,6 +143,10 @@ export async function POST(req: Request) {
         .eq('active', true)
         .order('sort_order'),
     ])
+
+    console.log('[v0][booking] pricingRow:', JSON.stringify(pricingRow), 'error:', pricingError?.message)
+    console.log('[v0][booking] settingsError:', settingsError?.message, 'seasonsError:', seasonsError?.message)
+    console.log('[v0][booking] seasons count:', seasons?.length, JSON.stringify(seasons))
 
     const pricingSettings: AvailabilitySettings = {
       base_price: pricingRow?.base_price ?? 20000,
@@ -259,7 +267,7 @@ export async function POST(req: Request) {
     ].filter(Boolean)
 
     const text = [
-      '🏡 *Новая заявка на бронирование*',
+      '🏡 *Новая заявка на брониро��ание*',
       '',
       `📅 Заезд: *${formatDate(arrival)}*`,
       `📅 Выезд: *${formatDate(departure)}*`,
