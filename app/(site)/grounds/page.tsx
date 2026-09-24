@@ -35,7 +35,7 @@ export default function GroundsPage() {
     <>
       <PageHero
         eyebrow="Территория"
-        title="Два озера и сосновый бор"
+        title="Два озера и сосновый лес"
         lead="Усадьба находится между двумя озерами, в окружении соснового леса. Рядом — собственный пляж и причал для спокойного отдыха у воды."
         image="/images/drive/grounds/aerial-lake.webp"
         imageAlt="Лесное озеро и сосновый берег усадьбы с высоты"
