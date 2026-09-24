@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createServiceClient } from '@/lib/supabase/server'
+import { createClient, createServiceClient } from '@/lib/supabase/server'
 import { fetchAvitoRanges, rangesOverlap } from '@/lib/ics'
 import { spaSurcharge } from '@/lib/site'
 import { isWeekendNight, priceForNight, type AvailabilitySettings, type SeasonalPrice } from '@/lib/availability'
@@ -120,12 +120,20 @@ export async function POST(req: Request) {
       : 0
 
     const supabase = createServiceClient()
+    // Read pricing through the same public server client as /api/availability,
+    // then keep the service client for booking writes and protected data.
+    const pricingClient = await createClient()
 
     // --- Load settings + seasonal prices ---
-    const [{ data: settings }, { data: seasons }] = await Promise.all([
+    const [{ data: pricingRow }, { data: settings }, { data: seasons }] = await Promise.all([
+      pricingClient
+        .from('settings')
+        .select('base_price, weekend_price, price_mode, minimum_nights, extra_guest_price, base_guests, max_guests')
+        .eq('id', 1)
+        .single(),
       supabase
         .from('settings')
-        .select('base_price, weekend_price, price_mode, minimum_nights, extra_guest_price, base_guests, max_guests, telegram_bot_token, telegram_chat_id, avito_ics_url, site_url')
+        .select('telegram_bot_token, telegram_chat_id, avito_ics_url, site_url')
         .eq('id', 1)
         .single(),
       supabase
@@ -136,15 +144,15 @@ export async function POST(req: Request) {
     ])
 
     const pricingSettings: AvailabilitySettings = {
-      base_price: settings?.base_price ?? 20000,
-      weekend_price: settings?.weekend_price ?? 24000,
-      extra_guest_price: settings?.extra_guest_price ?? 1650,
+      base_price: pricingRow?.base_price ?? 20000,
+      weekend_price: pricingRow?.weekend_price ?? 24000,
+      extra_guest_price: pricingRow?.extra_guest_price ?? 1650,
       cleaning_fee: 0,
-      minimum_nights: settings?.minimum_nights ?? 1,
-      base_guests: settings?.base_guests ?? 8,
-      max_guests: settings?.max_guests ?? 15,
+      minimum_nights: pricingRow?.minimum_nights ?? 1,
+      base_guests: pricingRow?.base_guests ?? 8,
+      max_guests: pricingRow?.max_guests ?? 15,
       // Normalize the database value so whitespace/casing cannot silently disable a season.
-      price_mode: String(settings?.price_mode ?? 'base').trim().toLowerCase() === 'seasonal' ? 'seasonal' : 'base',
+      price_mode: String(pricingRow?.price_mode ?? 'base').trim().toLowerCase() === 'seasonal' ? 'seasonal' : 'base',
     }
     const extraGuestPrice = pricingSettings.extra_guest_price
     const baseGuests = pricingSettings.base_guests
@@ -197,8 +205,8 @@ export async function POST(req: Request) {
       activeSeasons,
     )
     const minimumNights = Math.max(
-      settings?.minimum_nights ?? 1,
-      ...nightsList.map((night) => minimumNightsForDate(night.date, activeSeasons, settings?.minimum_nights ?? 1)),
+      pricingSettings.minimum_nights,
+      ...nightsList.map((night) => minimumNightsForDate(night.date, activeSeasons, pricingSettings.minimum_nights)),
     )
     if (nights < minimumNights) {
       return NextResponse.json(
