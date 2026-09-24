@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { fetchAvitoRanges, rangesOverlap } from '@/lib/ics'
 import { spaSurcharge } from '@/lib/site'
+import { isWeekendNight, priceForNight, type AvailabilitySettings, type SeasonalPrice } from '@/lib/availability'
 
 /** Больше двадцати топок за заезд — явная ошибка ввода, а не заказ. */
 const MAX_SPA_SESSIONS = 20
@@ -14,19 +15,6 @@ function formatDate(iso: string) {
 
 function formatRub(n: number) {
   return n.toLocaleString('ru-RU') + ' ₽'
-}
-
-type SeasonalPrice = {
-  date_from: string
-  date_to: string
-  base_price: number
-  weekend_price: number
-  minimum_nights?: number
-}
-
-function isWeekend(d: Date) {
-  const day = d.getDay()
-  return day === 5 || day === 6
 }
 
 function seasonWidth(from: string, to: string): number {
@@ -47,48 +35,28 @@ function minimumNightsForDate(d: Date, seasons: SeasonalPrice[], fallback: numbe
   return Math.max(fallback, ...matching.map((s) => s.minimum_nights ?? 1))
 }
 
-function getSeasonalPrice(
-  d: Date,
-  seasons: SeasonalPrice[],
-  fallbackBase: number,
-  fallbackWeekend: number,
-): number {
-  const mm = String(d.getMonth() + 1).padStart(2, '0')
-  const dd = String(d.getDate()).padStart(2, '0')
-  const key = `${mm}-${dd}`
-  const sorted = [...seasons].sort(
-    (a, b) => seasonWidth(a.date_from, a.date_to) - seasonWidth(b.date_from, b.date_to)
-  )
-  for (const s of sorted) {
-    const from = s.date_from
-    const to = s.date_to
-    const inRange = from <= to ? key >= from && key <= to : key >= from || key <= to
-    if (inRange) return isWeekend(d) ? s.weekend_price : s.base_price
-  }
-  return isWeekend(d) ? fallbackWeekend : fallbackBase
-}
-
 type NightInfo = { date: Date; price: number; weekend: boolean }
 
 function calcPrice(
   arrival: string,
   departure: string,
-  basePrice: number,
-  weekendPrice: number,
-  seasons: SeasonalPrice[] = [],
+  settings: AvailabilitySettings,
+  seasons: SeasonalPrice[],
 ): { total: number; nights: number; nightsList: NightInfo[] } {
-  const start = new Date(arrival)
-  const end = new Date(departure)
+  const start = new Date(`${arrival}T00:00:00`)
+  const end = new Date(`${departure}T00:00:00`)
   const nights = Math.round((end.getTime() - start.getTime()) / 86_400_000)
   let total = 0
   const nightsList: NightInfo[] = []
+
   for (let i = 0; i < nights; i++) {
     const d = new Date(start)
     d.setDate(d.getDate() + i)
-    const price = getSeasonalPrice(d, seasons, basePrice, weekendPrice)
+    const price = priceForNight(d, seasons, settings)
     total += price
-    nightsList.push({ date: d, price, weekend: isWeekend(d) })
+    nightsList.push({ date: d, price, weekend: isWeekendNight(d) })
   }
+
   return { total, nights, nightsList }
 }
 
@@ -162,17 +130,25 @@ export async function POST(req: Request) {
         .single(),
       supabase
         .from('seasonal_prices')
-        .select('date_from, date_to, base_price, weekend_price, minimum_nights')
+        .select('id, name, date_from, date_to, base_price, weekend_price, minimum_nights')
         .eq('active', true)
         .order('sort_order'),
     ])
 
-    const basePrice = settings?.base_price ?? 20000
-    const weekendPrice = settings?.weekend_price ?? 24000
-    const priceMode = settings?.price_mode ?? 'base'
-    const extraGuestPrice = settings?.extra_guest_price ?? 1650
-    const baseGuests = settings?.base_guests ?? 8
-    const maxGuests = settings?.max_guests ?? 15
+    const pricingSettings: AvailabilitySettings = {
+      base_price: settings?.base_price ?? 20000,
+      weekend_price: settings?.weekend_price ?? 24000,
+      extra_guest_price: settings?.extra_guest_price ?? 1650,
+      cleaning_fee: 0,
+      minimum_nights: settings?.minimum_nights ?? 1,
+      base_guests: settings?.base_guests ?? 8,
+      max_guests: settings?.max_guests ?? 15,
+      // Normalize the database value so whitespace/casing cannot silently disable a season.
+      price_mode: String(settings?.price_mode ?? 'base').trim().toLowerCase() === 'seasonal' ? 'seasonal' : 'base',
+    }
+    const extraGuestPrice = pricingSettings.extra_guest_price
+    const baseGuests = pricingSettings.base_guests
+    const maxGuests = pricingSettings.max_guests
     const guestsCount = parseInt(guests) || 1
 
     // Validate guest count
@@ -213,12 +189,11 @@ export async function POST(req: Request) {
     }
 
     // --- Calculate price ---
-    const activeSeasons = priceMode === 'seasonal' ? (seasons ?? []) : []
+    const activeSeasons = pricingSettings.price_mode === 'seasonal' ? (seasons ?? []) : []
     const { total: accommodationTotal, nights, nightsList } = calcPrice(
       arrival,
       departure,
-      basePrice,
-      weekendPrice,
+      pricingSettings,
       activeSeasons,
     )
     const minimumNights = Math.max(
