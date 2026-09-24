@@ -5,7 +5,6 @@ export interface Booking {
   id: string
   guest_name: string
   phone: string
-  email: string | null
   guests_count: number
   check_in: string  // YYYY-MM-DD
   check_out: string // YYYY-MM-DD

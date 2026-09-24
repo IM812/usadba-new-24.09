@@ -42,6 +42,11 @@ export const secondaryNavigation = [
   { href: '/faq', label: 'Вопросы и ответы' },
 ] as const
 
+export const legalNavigation = [
+  { href: '/privacy', label: 'Политика обработки данных' },
+  { href: '/consent', label: 'Согласие на обработку данных' },
+] as const
+
 /** Ключевые факты — используются в хиро и на странице усадьбы. */
 export const estateFacts = [
   { value: '250', unit: 'м²', label: 'Площадь дома' },
@@ -197,7 +202,7 @@ export const seasons = [
     name: 'Зима',
     months: 'декабрь — февраль',
     image: '/images/estate/winter-house-new.webp',
-    line: 'Снег по колено, тихий лес и теплый свет дома зимним вечером.',
+    line: 'Снег по колено, тихий лес и теплый ��вет дома зимним вечером.',
   },
   {
     id: 'spring',
@@ -251,7 +256,7 @@ export const galleryPhotos = [
   { category: 'house', src: '/images/drive/kitchen/kitchen-window.webp', alt: 'Кухня с окном и обеденным столом', caption: 'Кухня с обеденным столом' },
   { category: 'house', src: '/images/drive/living/reading-lamp.webp', alt: 'Уголок для чтения в гостиной', caption: 'Уголок для чтения' },
   { category: 'house', src: '/images/drive/entry/entry-door.webp', alt: 'Вход в бревенчатый дом', caption: 'Вход в дом' },
-  { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-twin.webp', alt: 'Спальня с двумя отдельными кроватями', caption: 'Спальня с двумя кроватями' },
+  { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-twin.webp', alt: 'Спальня с двумя отдельными кроватями', caption: 'Спальня с двумя кроват��ми' },
   { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-lake-view.webp', alt: 'Спальня с окном и деревянной отделкой', caption: 'Спальня с видом на лес' },
   { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-warm.webp', alt: 'Уютная спальня в б��евенчатом доме', caption: 'Спальня в деревянном доме' },
   { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-detail.webp', alt: 'Кровать и текстиль в спальне усадьбы', caption: 'Интерьер спальни' },
