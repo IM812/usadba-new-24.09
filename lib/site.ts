@@ -158,7 +158,7 @@ export const includedInStay = [
   'Постельное бельё и полотенца',
   'Полностью оборудованная кухня',
   'Гостиная с камином',
-  'Парк��вка на территории',
+  'Парк����вка на территории',
   'Wi-Fi в доме',
   'Четыре отдельные спальни',
 ] as const
@@ -256,6 +256,7 @@ export const galleryPhotos = [
   { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-warm.webp', alt: 'Уютная спальня в б��евенчатом доме', caption: 'Спальня в деревянном доме' },
   { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-detail.webp', alt: 'Кровать и текстиль в спальне усадьбы', caption: 'Интерьер спальни' },
   { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-bed.webp', alt: 'Спальня с большой кроватью в бревенчатом доме', caption: 'Спальня с большой кроватью' },
+  { category: 'bedrooms', src: '/images/drive/bedrooms/bedroom-towels.webp', alt: 'Спальня с полотенцами на кровати в бревенчатом доме', caption: 'Спальня с полотенцами' },
   { category: 'spa', src: '/images/drive/spa/hot-tub-lake.webp', alt: 'Гости в сибирском чане у лесного озера', caption: 'Отдых в чане у озера' },
   { category: 'spa', src: '/images/drive/spa/hot-tub-shore.webp', alt: 'Сибирский чан с огнём у берега озера', caption: 'Чан на берегу озера' },
   { category: 'spa', src: '/images/drive/spa/sauna.webp', alt: 'Деревянная парная в бане', caption: 'Парная в бане' },
