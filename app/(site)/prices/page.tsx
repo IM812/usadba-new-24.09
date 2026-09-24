@@ -26,7 +26,6 @@ export default async function PricesPage() {
   const rules = [
     { label: "Заезд", value: `с ${settings.check_in_time}` },
     { label: "Выезд", value: `до ${settings.check_out_time}` },
-    { label: "Минимальный срок", value: `${settings.minimum_nights} ${settings.minimum_nights === 1 ? "ночь" : "ночи"}` },
     { label: "Базовое размещение", value: `${settings.base_guests} гостей` },
     { label: "Максимум гостей", value: `${settings.max_guests} гостей` },
     { label: "Подтверждение", value: "после согласования" },
@@ -158,7 +157,7 @@ export default async function PricesPage() {
         image="/images/drive/house/house-by-lake.webp"
         imageAlt="Бревенчатый дом усадьбы у лесного озера"
         title="Посчитаем ваши даты"
-        lead="Откройте календарь — свободные дни, точная сумма и минимальный срок появятся сразу."
+        lead="Откройте календарь — свободные дни и точная сумма появятся сразу."
       />
     </>
   )

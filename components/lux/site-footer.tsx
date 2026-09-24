@@ -20,7 +20,7 @@ export async function SiteFooter() {
               <span className="eyebrow mt-2 text-accent">в Антропково</span>
             </Link>
             <p className="max-w-xs text-pretty text-sm leading-relaxed text-muted-foreground">
-              Бревенчатый дом на 250 м² в сосновом бору между двумя озерами. Сдается целиком, без
+              Бревенчатый дом 250 м² в сосновом бору между двумя озерами. Сдается целиком, без
               соседей и посторонних.
             </p>
             <a

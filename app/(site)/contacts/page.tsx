@@ -10,7 +10,7 @@ import { getRates } from "@/lib/rates"
 export const metadata: Metadata = {
   title: "Контакты",
   description:
-    "Телефон и WhatsApp усадьбы в Антропково. Отвечаем ежедневно с 9:00 до 22:00 по московскому времени.",
+    "Телефон и WhatsApp усадьбы в Антропково. Отвечаем 24/7.",
 }
 
 const channels = [
@@ -39,7 +39,7 @@ export default async function ContactsPage() {
     { k: "Адрес", v: contacts.addressFull },
     { k: "Координаты", v: "56.383947, 29.831097" },
     { k: "Заезд и выезд", v: `с ${settings.check_in_time} · до ${settings.check_out_time}` },
-    { k: "Мы на связи", v: "Ежедневно 9:00 — 22:00 (МСК)" },
+    { k: "Мы на связи", v: "24/7" },
   ]
 
   return (
@@ -59,7 +59,7 @@ export default async function ContactsPage() {
           <SectionHeading
             eyebrow="Способы связи"
             title="Как с нами связаться"
-            lead="Обычно отвечаем в течение часа в рабочее время."
+            lead="Отвечаем 24/7."
           />
 
           <div className="mt-8 grid grid-cols-1 gap-3 min-[390px]:mt-10 sm:mt-12 sm:grid-cols-2 sm:gap-4">

@@ -50,7 +50,7 @@ export default async function GalleryPage() {
         lead="Все фотографии сделаны здесь. В подборке — дом, разные спальни, баня, чан, озёра и территория усадьбы."
         image="/images/drive/house/terrace-table.webp"
         imageAlt="Терраса усадьбы с видом на осенний лес"
-        meta={["51 фотография", "тематические альбомы", "дом, озёра, баня и территория"]}
+        meta={[`${galleryPhotos.length} фотографий`, "тематические альбомы", "дом, озёра, баня и территория"]}
       />
 
       {gallerySections.map((section, index) => (

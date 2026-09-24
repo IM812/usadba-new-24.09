@@ -100,7 +100,10 @@ export default async function ReviewsPage() {
       {/* Сами отзывы */}
         <Section tone="raised">
         <Container>
-          <SectionHeading eyebrow="Слово гостям" title="Отзывы без правок" />
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHeading eyebrow="Слово гостям" title="Отзывы без правок" />
+            <TextLink href={YANDEX_REVIEWS_URL} className="shrink-0">Все отзывы на Яндекс Картах</TextLink>
+          </div>
           <div className="mt-8 sm:mt-12">
             <ReviewsGrid reviews={reviews} />
           </div>
