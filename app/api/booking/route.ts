@@ -1,3 +1,5 @@
+import http from 'node:http'
+import https from 'node:https'
 import { NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { fetchAvitoRanges, rangesOverlap } from '@/lib/ics'
@@ -86,11 +88,66 @@ function nightsWord(n: number) {
 }
 
 /**
- * База Telegram Bot API. По умолчанию api.telegram.org, но на серверах,
- * где исходящие на Telegram заблокированы (частый случай на российских VDS),
- * можно задать прокси через переменную окружения TELEGRAM_API_BASE.
+ * База Telegram Bot API. По умолчанию api.telegram.org. Можно переопределить
+ * через переменную окружения TELEGRAM_API_BASE (например, прокси).
  */
 const TELEGRAM_API_BASE = (process.env.TELEGRAM_API_BASE || 'https://api.telegram.org').replace(/\/+$/, '')
+
+/**
+ * POST JSON через нативный node:http(s) с принудительным IPv4 (family: 4).
+ *
+ * Почему не глобальный fetch: на многих российских VDS IPv6-маршрут до
+ * api.telegram.org сломан. Нативный fetch (undici) при этом молча зависает
+ * на попытке подключиться по IPv6, хотя curl (happy-eyeballs → IPv4) и Vercel
+ * работают. Принудительный IPv4 убирает это расхождение окружений.
+ */
+function postJson(
+  urlStr: string,
+  payload: unknown,
+  timeoutMs: number,
+): Promise<{ ok: boolean; status: number; body: string }> {
+  return new Promise((resolve) => {
+    let url: URL
+    try {
+      url = new URL(urlStr)
+    } catch {
+      resolve({ ok: false, status: 0, body: 'invalid_url' })
+      return
+    }
+    const isHttps = url.protocol === 'https:'
+    const transport = isHttps ? https : http
+    const data = Buffer.from(JSON.stringify(payload))
+    const request = transport.request(
+      {
+        hostname: url.hostname,
+        port: url.port || (isHttps ? 443 : 80),
+        path: `${url.pathname}${url.search}`,
+        method: 'POST',
+        family: 4,
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': data.length,
+        },
+        timeout: timeoutMs,
+      },
+      (res) => {
+        let chunks = ''
+        res.setEncoding('utf8')
+        res.on('data', (c) => (chunks += c))
+        res.on('end', () =>
+          resolve({ ok: (res.statusCode ?? 0) < 400, status: res.statusCode ?? 0, body: chunks }),
+        )
+      },
+    )
+    request.on('error', (e) => resolve({ ok: false, status: 0, body: e.message }))
+    request.on('timeout', () => {
+      request.destroy()
+      resolve({ ok: false, status: 0, body: 'timeout: Telegram недоступен за 10с' })
+    })
+    request.write(data)
+    request.end()
+  })
+}
 
 async function sendTelegramMessage(
   token: string,
@@ -103,36 +160,27 @@ async function sendTelegramMessage(
     return { ok: false, error: 'missing_credentials' }
   }
 
-  // Не даём запросу висеть бесконечно: если Telegram недоступен — падаем за 10с.
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), 10_000)
-  try {
-    const res = await fetch(`${TELEGRAM_API_BASE}/bot${token}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text,
-        parse_mode: 'Markdown',
-        ...(inlineKeyboard ? { reply_markup: { inline_keyboard: inlineKeyboard } } : {}),
-      }),
-      signal: controller.signal,
-    })
-    // fetch НЕ бросает исключение на HTTP 4xx/5xx — проверяем ответ вручную.
-    const data = (await res.json().catch(() => null)) as { ok?: boolean; description?: string } | null
-    if (!res.ok || !data?.ok) {
-      const desc = data?.description || `HTTP ${res.status}`
-      console.error('[telegram] отправка не удалась:', desc)
-      return { ok: false, error: desc }
-    }
-    return { ok: true }
-  } catch (e) {
-    const msg = e instanceof Error ? (e.name === 'AbortError' ? 'timeout: Telegram недоступен за 10с' : e.message) : String(e)
-    console.error('[telegram] сетевая ошибка:', msg)
-    return { ok: false, error: msg }
-  } finally {
-    clearTimeout(timer)
+  const payload = {
+    chat_id: chatId,
+    text,
+    parse_mode: 'Markdown',
+    ...(inlineKeyboard ? { reply_markup: { inline_keyboard: inlineKeyboard } } : {}),
   }
+
+  const res = await postJson(`${TELEGRAM_API_BASE}/bot${token}/sendMessage`, payload, 10_000)
+  let parsed: { ok?: boolean; description?: string } | null = null
+  try {
+    parsed = JSON.parse(res.body)
+  } catch {
+    parsed = null
+  }
+  // Telegram отдаёт HTTP 4xx с описанием ошибки — проверяем и статус, и тело.
+  if (!res.ok || !parsed?.ok) {
+    const desc = parsed?.description || (res.status ? `HTTP ${res.status}` : res.body)
+    console.error('[telegram] отправка не удалась:', desc)
+    return { ok: false, error: desc }
+  }
+  return { ok: true }
 }
 
 export async function POST(req: Request) {
