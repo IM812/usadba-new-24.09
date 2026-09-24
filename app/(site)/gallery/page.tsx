@@ -4,6 +4,7 @@ import { PageHero } from "@/components/lux/page-hero"
 import { PhotoGrid } from "@/components/lux/photo-grid"
 import { Container, Section, SectionHeading } from "@/components/lux/ui"
 import { getGalleryPhotos } from "@/lib/gallery-public"
+import { plural } from "@/lib/availability"
 
 export const dynamic = "force-dynamic"
 
@@ -50,7 +51,7 @@ export default async function GalleryPage() {
         lead="Все фотографии сделаны здесь. В подборке — дом, разные спальни, баня, чан, озёра и территория усадьбы."
         image="/images/drive/house/terrace-table.webp"
         imageAlt="Терраса усадьбы с видом на осенний лес"
-        meta={["51 фотография", "тематические альбомы", "дом, озёра, баня и территория"]}
+        meta={[`${galleryPhotos.length} ${plural(galleryPhotos.length, "фотография", "фотографии", "фотографий")}`, "тематические альбомы", "дом, озёра, баня и территория"]}
       />
 
       {gallerySections.map((section, index) => (

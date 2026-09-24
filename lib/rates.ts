@@ -1,4 +1,5 @@
 import { cache } from 'react'
+import { unstable_noStore as noStore } from 'next/cache'
 import { createServiceClient } from '@/lib/supabase/server'
 
 export type RateSettings = {
@@ -49,6 +50,8 @@ export const getRates = cache(async function getRates(): Promise<{
   settings: RateSettings
   seasons: SeasonalRate[]
 }> {
+  noStore()
+
   try {
     const supabase = createServiceClient()
     const [{ data: settings }, { data: seasons }] = await Promise.all([

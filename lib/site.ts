@@ -16,7 +16,7 @@ export const contacts = {
   phoneLabel: '+7 (995) 155-88-42',
   phoneHref: 'tel:+79951558842',
   whatsapp: 'https://wa.me/79951558842',
-  vk: 'https://vk.com/usadba_antropkovo',
+  vk: 'https://vk.ru/antropkovo',
   addressShort: 'Антропково, Новосокольнический р-н',
   addressFull: 'Псковская область, Новосокольнический район, д. Антропково',
   mapsUrl: 'https://yandex.ru/maps/org/usadba_v_antropkovo/216703670267/',
@@ -100,36 +100,36 @@ export const spaOptions = [
 
 export const groundExperiences = [
   {
-    id: 'lake',
-    name: 'Озеро у усадьбы',
+    id: 'forest',
+    name: 'Сосновый лес',
     season: 'Круглый год',
-    image: '/images/drive/grounds/aerial-lake.webp',
+    image: '/images/drive/grounds/forest-lake-path.webp',
     description:
-      'Спокойное лесное озеро рядом с домом. У воды можно провести утро, встретить закат или выйти на рыбалку.',
+      'Лес начинается сразу за территорией. Здесь можно гулять, собирать ягоды и грибы или просто дышать тишиной.',
+  },
+  {
+    id: 'banya',
+    name: 'Баня',
+    season: 'По согласованию',
+    image: '/images/drive/spa/sauna.webp',
+    description:
+      'Теплая баня на дровах рядом с озером — для спокойного вечера после прогулки или дня у воды.',
   },
   {
     id: 'chan',
-    name: 'Чан у воды',
+    name: 'Сибирский чан',
     season: 'По согласованию',
-    image: '/images/drive/spa/hot-tub-lake.webp',
+    image: '/images/drive/spa/hot-tub-shore.webp',
     description:
-      'Сибирский чан стоит среди сосен рядом с озером. Подготовка и время отдыха согласуются при бронировании.',
+      'Чан под открытым небом стоит среди сосен у воды. Подготовка и время отдыха согласуются при бронировании.',
   },
   {
-    id: 'panorama',
-    name: 'Усадьба между озерами',
+    id: 'lake',
+    name: 'Озеро',
     season: 'Круглый год',
-    image: '/images/drive/grounds/aerial-between-lakes.webp',
+    image: '/images/drive/grounds/aerial-lake.webp',
     description:
-      'С высоты видно расположение дома среди соснового бора и озер. До воды можно дойти пешком.',
-  },
-  {
-    id: 'winter-forest',
-    name: 'Сосновый лес зимой',
-    season: 'Зима',
-    image: '/images/drive/grounds/winter-lake.webp',
-    description:
-      'Заснеженный лес начинается сразу за территорией. Здесь тихо и удобно гулять без долгой дороги.',
+      'Два лесных озера рядом с домом: для прогулок, рыбалки, купания и долгих вечеров у берега.',
   },
 ] as const
 
@@ -151,13 +151,12 @@ export const extraGuestPolicy = {
   label: 'После 8 гостей — 1 650 ₽ за каждого дополнительного гостя за ночь',
 } as const
 
-export const waterEquipmentPolicy =
-  'Лодка и сап-борды оплачиваются отдельно; стоимость уточняется при бронировании.'
+export const waterEquipmentPolicy = 'Лодка и сапы входят в стоимость проживания.'
 
 export const includedInStay = [
   'Дом сдается целиком — других гостей не будет',
   'Постельное бельё и полотенца',
-  'Полностью оборудованная кухня и посудомоечная машина',
+  'Полностью оборудованная кухня',
   'Гостиная с камином',
   'Парковка на территории',
   'Wi-Fi в доме',
@@ -228,7 +227,7 @@ export const galleryPhotos = [
   { category: 'house', src: '/images/drive/house/house-autumn-wide.webp', alt: 'Бревенчатый дом усадьбы в осеннем лесу', caption: 'Усадьба в осеннем лесу' },
   { category: 'house', src: '/images/drive/living/sofas-lake-view.webp', alt: 'Гостиная с мягкими диванами и видом на озеро', caption: 'Гостиная с видом на озеро' },
   { category: 'house', src: '/images/drive/kitchen/kitchen-wide.webp', alt: 'Оборудованная кухня с деревянной мебелью', caption: 'Просторная кухня' },
-  { category: 'house', src: '/images/drive/dining/festive-table.webp', alt: 'Празднично накрытый стол в усадьбе', caption: 'Праздничная сервировка в столовой' },
+  { category: 'house', src: '/images/drive/dining/feast.webp', alt: 'Празднично накрытый стол в усадьбе', caption: 'Праздничная сервировка в столовой' },
   { category: 'house', src: '/images/drive/house/house-evening.webp', alt: 'Бревенчатый дом усадьбы вечером', caption: 'Дом в вечернем свете' },
   { category: 'house', src: '/images/drive/living/sofa-window.webp', alt: 'Диванная зона у больших окон', caption: 'Зона отдыха у окон' },
   { category: 'house', src: '/images/drive/living/fireplace.webp', alt: 'Кирпичный камин в гостиной усадьбы', caption: 'Дровяной камин в гостиной' },
