@@ -56,7 +56,7 @@ function Wordmark({ className, variant = "default" }: { className?: string; vari
         // в фирменном лаймовом цвете, тот же тон, что у "в Антропково" и кнопки.
         <span
           aria-hidden="true"
-          className="block size-9 shrink-0 bg-accent transition-transform duration-300 group-hover:scale-105 sm:size-11"
+          className="block size-11 shrink-0 bg-accent transition-transform duration-300 group-hover:scale-105 sm:size-14"
           style={{
             maskImage: "url(/icon.svg)",
             maskSize: "contain",
@@ -200,7 +200,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               type="button"
               onClick={() => openBooking()}
               /* Залитая лаймовая пилюля обычным кеглем — главное действие
-                 должно читаться как кнопка, а не как капительная надпись. */
+                 должно читаться ��ак кнопка, а не как капительная надпись. */
               className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-accent px-3 text-[12px] font-semibold tracking-[-0.01em] text-accent-foreground transition-all duration-200 hover:brightness-110 active:scale-[0.97] min-[390px]:px-4 min-[390px]:text-[13px] sm:px-6 sm:text-[14px]"
             >
               <span className="min-[360px]:hidden">Даты</span>
