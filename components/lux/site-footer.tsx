@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, MapPin, Phone, Send } from "lucide-react"
 import { contacts, legalNavigation, navigation, secondaryNavigation, site } from "@/lib/site"
@@ -15,9 +16,12 @@ export async function SiteFooter() {
         <div className="grid gap-9 min-[390px]:gap-10 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
           {/* Лого и подпись */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="flex flex-col leading-none">
-              <span className="font-display text-3xl font-semibold text-foreground">Усадьба</span>
-              <span className="eyebrow mt-2 text-accent">в Антропково</span>
+            <Link href="/" className="flex items-center gap-3 leading-none">
+              <Image src="/icon.svg" alt="" width={40} height={40} className="size-9 shrink-0 sm:size-10" />
+              <span className="flex flex-col">
+                <span className="font-display text-3xl font-semibold text-foreground">Усадьба</span>
+                <span className="eyebrow mt-2 text-accent">в Антропково</span>
+              </span>
             </Link>
             <p className="max-w-xs text-pretty text-sm leading-relaxed text-muted-foreground">
               Бревенчатый дом 250 м² в сосновом лесу между двумя озерами. Сдается целиком, без

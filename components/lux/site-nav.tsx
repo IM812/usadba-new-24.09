@@ -13,14 +13,24 @@ function Wordmark({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={cn("group flex min-h-11 flex-col items-center justify-center leading-none", className)}
+      className={cn("group flex min-h-11 items-center justify-center gap-2 leading-none", className)}
       aria-label={`${site.name} — на главную`}
     >
-      <span className="font-display text-[1.35rem] font-extrabold tracking-[-0.03em] text-foreground sm:text-2xl">
-        Усадьба
-      </span>
-      <span className="eyebrow mt-1 text-[0.5rem] text-accent transition-colors sm:text-[0.5625rem]">
-        в Антропково
+      <Image
+        src="/icon.svg"
+        alt=""
+        width={28}
+        height={28}
+        className="size-6 shrink-0 sm:size-7"
+        priority
+      />
+      <span className="flex flex-col items-start">
+        <span className="font-display text-[1.35rem] font-extrabold tracking-[-0.03em] text-foreground sm:text-2xl">
+          Усадьба
+        </span>
+        <span className="eyebrow mt-1 text-[0.5rem] text-accent transition-colors sm:text-[0.5625rem]">
+          в Антропково
+        </span>
       </span>
     </Link>
   )
@@ -210,7 +220,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
                 {everOpened ? (
                   <Image
                     src="/images/estate/house-autumn.jpg"
-                    alt="Деревянный дом усадьбы среди золотой осенней листвы"
+                    alt="Дере��янный дом усадьбы среди золотой осенней листвы"
                     fill
                     sizes="(max-width: 1024px) 60vw, 30vw"
                     className={cn(
