@@ -67,11 +67,11 @@ function Wordmark({ className, variant = "default" }: { className?: string; vari
           />
         </span>
       ) : (
-        // Печать-медальон со стеклянной подложкой: держит контраст и на фото,
-        // и на плотной шапке при скролле, но не выглядит как коробка-иконка.
+        // Квадратный значок в тон футеру — держит контраст и на фото,
+        // и на плотной шапке при скролле.
         <span
           aria-hidden="true"
-          className="relative flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 group-hover:ring-accent/50 sm:size-10"
+          className="relative flex size-9 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 group-hover:ring-accent/50 sm:size-10"
         >
           <Image src="/brand-mark.png" alt="" width={80} height={80} className="relative size-3/4 object-contain" priority />
         </span>
