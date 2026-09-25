@@ -229,7 +229,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               <X className="size-5" aria-hidden="true" />
               <span className="eyebrow hidden sm:inline">Закрыть</span>
             </button>
-            <Wordmark className="absolute left-1/2 -translate-x-1/2" />
+            <Wordmark variant="hero" className="absolute left-1/2 -translate-x-1/2" />
             <span className="eyebrow hidden text-muted-foreground lg:inline">{site.region}</span>
           </div>
 
