@@ -214,10 +214,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               <span className="eyebrow hidden sm:inline">Закрыть</span>
             </button>
             <Wordmark className="absolute left-1/2 -translate-x-1/2" />
-            <div className="hidden flex-col items-end gap-3 lg:flex">
-              <span className="eyebrow text-muted-foreground">{site.region}</span>
-              <SocialRow />
-            </div>
+            <span className="eyebrow hidden text-muted-foreground lg:inline">{site.region}</span>
           </div>
 
           <div className="mx-auto grid min-h-0 w-full max-w-[1600px] flex-1 gap-7 px-4 pb-8 pt-2 min-[390px]:px-5 sm:px-8 sm:pb-16 sm:pt-6 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:px-12 lg:pb-6 lg:pt-2">
@@ -291,6 +288,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
                 <p className="text-[13px] leading-relaxed text-muted-foreground">
                   {contacts.addressFull}
                 </p>
+                <SocialRow className="lg:justify-end" />
               </div>
             </div>
           </div>
