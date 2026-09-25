@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, MapPin, Phone, Send } from "lucide-react"
 import { contacts, legalNavigation, navigation, secondaryNavigation, site } from "@/lib/site"
@@ -18,23 +19,10 @@ export async function SiteFooter() {
             <Link href="/" className="group flex items-center gap-4 leading-none">
               <span
                 aria-hidden="true"
-                className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-accent/10 ring-1 ring-inset ring-accent/30 transition-colors duration-300 group-hover:ring-accent/50 sm:size-14"
+                className="flex size-12 shrink-0 items-center justify-center rounded-2xl ring-1 ring-inset ring-accent/30 transition-colors duration-300 group-hover:ring-accent/50 sm:size-14"
               >
-                {/* Иконку заливаем фирменным лаймом через маску — тот же приём,
-                    что и в hero-логотипе, чтобы знак читался чётко, а не тускло. */}
-                <span
-                  className="size-7 bg-accent sm:size-8"
-                  style={{
-                    maskImage: "url(/icon.svg)",
-                    maskSize: "contain",
-                    maskRepeat: "no-repeat",
-                    maskPosition: "center",
-                    WebkitMaskImage: "url(/icon.svg)",
-                    WebkitMaskSize: "contain",
-                    WebkitMaskRepeat: "no-repeat",
-                    WebkitMaskPosition: "center",
-                  }}
-                />
+                {/* Фирменный знак — оригинальная картинка без перерисовки, фон вырезан. */}
+                <Image src="/brand-mark.png" alt="" width={112} height={112} className="size-3/4 object-contain" />
               </span>
               <span aria-hidden="true" className="h-9 w-px shrink-0 bg-border sm:h-10" />
               <span className="flex flex-col">
