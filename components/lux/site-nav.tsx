@@ -44,22 +44,41 @@ function SocialRow({ className }: { className?: string }) {
   )
 }
 
-function Wordmark({ className }: { className?: string }) {
+function Wordmark({ className, variant = "default" }: { className?: string; variant?: "default" | "hero" }) {
   return (
     <Link
       href="/"
       className={cn("group flex min-h-11 items-center justify-center gap-3 leading-none", className)}
       aria-label={`${site.name} — на главную`}
     >
-      {/* Печать-медальон со стеклянной подложкой: держит контраст и на фото,
-          и на плотной шапке при скролле, но не выглядит как коробка-иконка. */}
-      <span
-        aria-hidden="true"
-        className="relative flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 group-hover:ring-accent/50 sm:size-10"
-      >
-        <span className="absolute inset-0 rounded-full bg-current/[0.06]" />
-        <Image src="/icon.svg" alt="" width={32} height={32} className="relative size-5 sm:size-[1.4rem]" priority />
-      </span>
+      {variant === "hero" ? (
+        // В хиро знак стоит открыто, без подложки-медальона: крупный силуэт
+        // в фирменном лаймовом цвете, тот же тон, что у "в Антропково" и кнопки.
+        <span
+          aria-hidden="true"
+          className="block size-9 shrink-0 bg-accent transition-transform duration-300 group-hover:scale-105 sm:size-11"
+          style={{
+            maskImage: "url(/icon.svg)",
+            maskSize: "contain",
+            maskRepeat: "no-repeat",
+            maskPosition: "center",
+            WebkitMaskImage: "url(/icon.svg)",
+            WebkitMaskSize: "contain",
+            WebkitMaskRepeat: "no-repeat",
+            WebkitMaskPosition: "center",
+          }}
+        />
+      ) : (
+        // Печать-медальон со стеклянной подложкой: держит контраст и на фото,
+        // и на плотной шапке при скролле, но не выглядит как коробка-иконка.
+        <span
+          aria-hidden="true"
+          className="relative flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 group-hover:ring-accent/50 sm:size-10"
+        >
+          <span className="absolute inset-0 rounded-full bg-current/[0.06]" />
+          <Image src="/icon.svg" alt="" width={32} height={32} className="relative size-5 sm:size-[1.4rem]" priority />
+        </span>
+      )}
       <span aria-hidden="true" className="h-7 w-px shrink-0 bg-border/70 sm:h-8" />
       <span className="flex flex-col items-start">
         <span className="font-display text-[1.35rem] font-extrabold tracking-[-0.03em] text-foreground sm:text-2xl">
@@ -167,7 +186,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
 
           {/* На телефоне логотип стоит в потоке: абсолютное центрирование
               накладывало его на кнопку «Забронировать» при ширине ~390px. */}
-          <Wordmark className="sm:absolute sm:left-1/2 sm:-translate-x-1/2" />
+          <Wordmark variant="hero" className="sm:absolute sm:left-1/2 sm:-translate-x-1/2" />
 
           <div className="flex items-center gap-2 sm:gap-6">
             <a
