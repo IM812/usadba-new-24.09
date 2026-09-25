@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="none">
-  <g stroke="#5f7a63" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M112 282 L320 112 L528 282"/>
-    <path d="M448 172 V132 H480 V202"/>
-    <rect x="278" y="212" width="84" height="84" rx="16"/>
-    <path d="M96 372 Q160 332 224 372 T352 372 T480 372 T544 372"/>
-    <path d="M96 432 Q160 392 224 432 T352 432 T480 432 T544 432"/>
-    <path d="M96 492 Q160 452 224 492 T352 492 T480 492 T544 492"/>
+  <g stroke="#5f7a63" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M84 296 L320 96 L556 296"/>
+    <path d="M452 176 V120 H500 V218"/>
+    <rect x="266" y="216" width="108" height="108" rx="18"/>
+    <path d="M72 380 Q152 328 232 380 Q312 432 392 380 Q472 328 552 380"/>
+    <path d="M72 452 Q152 400 232 452 Q312 504 392 452 Q472 400 552 452"/>
+    <path d="M72 524 Q152 472 232 524 Q312 576 392 524 Q472 472 552 524"/>
   </g>
 </svg>
