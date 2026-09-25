@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" stroke="currentColor" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M92 268 L256 122 L420 268" />
-  <path d="M342 134 L342 196" />
-  <rect x="220" y="206" width="72" height="72" rx="18" />
-  <path d="M92 344 q41 -30 82 0 t82 0 t82 0 t82 0" />
-  <path d="M92 402 q41 -30 82 0 t82 0 t82 0 t82 0" />
-  <path d="M92 460 q41 -30 82 0 t82 0 t82 0 t82 0" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M104 284 L320 128 L536 284" />
+  <path d="M430 158 L430 218" />
+  <rect x="279" y="224" width="82" height="82" rx="20" />
+  <path d="M104 388 q27 -26 54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0" />
+  <path d="M104 442 q27 -26 54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0" />
+  <path d="M104 496 q27 -26 54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0" />
 </svg>
