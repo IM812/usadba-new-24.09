@@ -16,14 +16,8 @@ export async function SiteFooter() {
         <div className="grid gap-9 min-[390px]:gap-10 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
           {/* Лого и подпись */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="flex items-center gap-4 leading-none">
-              <span
-                aria-hidden="true"
-                className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent/10 ring-1 ring-inset ring-accent/25 sm:size-14"
-              >
-                <Image src="/icon.svg" alt="" width={40} height={40} className="size-7 sm:size-8" />
-              </span>
-              <span aria-hidden="true" className="h-9 w-px shrink-0 bg-border sm:h-10" />
+            <Link href="/" className="flex items-center gap-3 leading-none">
+              <Image src="/icon.svg" alt="" width={40} height={40} className="size-9 shrink-0 sm:size-10" />
               <span className="flex flex-col">
                 <span className="font-display text-3xl font-semibold text-foreground">Усадьба</span>
                 <span className="eyebrow mt-2 text-accent">в Антропково</span>

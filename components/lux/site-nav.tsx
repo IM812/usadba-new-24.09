@@ -16,16 +16,20 @@ function Wordmark({ className }: { className?: string }) {
       className={cn("group flex min-h-11 items-center justify-center gap-3 leading-none", className)}
       aria-label={`${site.name} — на главную`}
     >
-      {/* Знак живёт в собственной плитке — мягкий акцентный фон и тонкая
-          рамка превращают линии дома в узнаваемую марку, а не в иконку,
-          подвешенную рядом с текстом. */}
-      <span
-        aria-hidden="true"
-        className="flex size-9 shrink-0 items-center justify-center rounded-full bg-accent/10 ring-1 ring-inset ring-accent/25 sm:size-11"
-      >
-        <Image src="/icon.svg" alt="" width={28} height={28} className="size-5 sm:size-6" priority />
+      {/* Мягкое акцентное сияние за знаком выделяет его на тёмной шапке
+          без «коробки» — линии дома читаются как марка, а не подвешенная иконка. */}
+      <span aria-hidden="true" className="relative flex size-8 shrink-0 items-center justify-center sm:size-9">
+        <span className="absolute inset-0 scale-150 rounded-full bg-accent/25 blur-md transition-opacity duration-300 group-hover:bg-accent/35" />
+        <Image
+          src="/icon.svg"
+          alt=""
+          width={32}
+          height={32}
+          className="relative size-8 drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)] sm:size-9"
+          priority
+        />
       </span>
-      <span aria-hidden="true" className="h-7 w-px shrink-0 bg-border sm:h-8" />
+      <span aria-hidden="true" className="h-7 w-px shrink-0 bg-border/70 sm:h-8" />
       <span className="flex flex-col items-start">
         <span className="font-display text-[1.35rem] font-extrabold tracking-[-0.03em] text-foreground sm:text-2xl">
           Усадьба
