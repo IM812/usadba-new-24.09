@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, MapPin, Phone, Send } from "lucide-react"
 import { contacts, legalNavigation, navigation, secondaryNavigation, site } from "@/lib/site"
@@ -16,12 +15,26 @@ export async function SiteFooter() {
         <div className="grid gap-9 min-[390px]:gap-10 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
           {/* Лого и подпись */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="flex items-center gap-4 leading-none">
+            <Link href="/" className="group flex items-center gap-4 leading-none">
               <span
                 aria-hidden="true"
-                className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 ring-1 ring-inset ring-accent/25 sm:size-14"
+                className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-accent/10 ring-1 ring-inset ring-accent/30 transition-colors duration-300 group-hover:ring-accent/50 sm:size-14"
               >
-                <Image src="/icon.svg" alt="" width={40} height={40} className="size-7 sm:size-8" />
+                {/* Иконку заливаем фирменным лаймом через маску — тот же приём,
+                    что и в hero-логотипе, чтобы знак читался чётко, а не тускло. */}
+                <span
+                  className="size-7 bg-accent sm:size-8"
+                  style={{
+                    maskImage: "url(/icon.svg)",
+                    maskSize: "contain",
+                    maskRepeat: "no-repeat",
+                    maskPosition: "center",
+                    WebkitMaskImage: "url(/icon.svg)",
+                    WebkitMaskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                  }}
+                />
               </span>
               <span aria-hidden="true" className="h-9 w-px shrink-0 bg-border sm:h-10" />
               <span className="flex flex-col">
