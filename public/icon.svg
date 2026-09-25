@@ -1,10 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="none">
-  <g stroke="currentColor" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M110 280 L320 115 L530 280" />
-    <path d="M430 190 L430 145 L460 145 L460 215" />
-    <rect x="272" y="212" width="96" height="96" rx="14" />
-    <path d="M95 362 Q145 322 195 362 Q245 402 295 362 Q345 322 395 362 Q445 402 495 362 Q520 342 545 362" />
-    <path d="M95 422 Q145 382 195 422 Q245 462 295 422 Q345 382 395 422 Q445 462 495 422 Q520 402 545 422" />
-    <path d="M95 482 Q145 442 195 482 Q245 522 295 482 Q345 442 395 482 Q445 522 495 482 Q520 462 545 482" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="none" stroke="currentColor" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M104 284 L320 128 L536 284" />
+  <path d="M430 158 L430 218" />
+  <rect x="279" y="224" width="82" height="82" rx="20" />
+  <path d="M104 388 q27 -26 54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0" />
+  <path d="M104 442 q27 -26 54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0" />
+  <path d="M104 496 q27 -26 54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0 t54 0" />
 </svg>

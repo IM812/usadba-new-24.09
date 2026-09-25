@@ -52,31 +52,28 @@ function Wordmark({ className, variant = "default" }: { className?: string; vari
       aria-label={`${site.name} — на главную`}
     >
       {variant === "hero" ? (
-        // В хиро знак стоит открыто, без подложки-медальона: крупный силуэт
-        // в фирменном лаймовом цвете, тот же тон, что у "в Антропково" и кнопки.
+        // Фирменный знак — оригинальная картинка без перерисовки, фон вырезан.
         <span
           aria-hidden="true"
-          className="block size-11 shrink-0 bg-accent transition-transform duration-300 group-hover:scale-105 sm:size-14"
-          style={{
-            maskImage: "url(/icon.svg)",
-            maskSize: "contain",
-            maskRepeat: "no-repeat",
-            maskPosition: "center",
-            WebkitMaskImage: "url(/icon.svg)",
-            WebkitMaskSize: "contain",
-            WebkitMaskRepeat: "no-repeat",
-            WebkitMaskPosition: "center",
-          }}
-        />
-      ) : (
-        // Печать-медальон со стеклянной подложкой: держит контраст и на фото,
-        // и на плотной шапке при скролле, но не выглядит как коробка-иконка.
-        <span
-          aria-hidden="true"
-          className="relative flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 group-hover:ring-accent/50 sm:size-10"
+          className="block size-10 shrink-0 transition-transform duration-300 group-hover:scale-105 sm:size-12"
         >
-          <span className="absolute inset-0 rounded-full bg-current/[0.06]" />
-          <Image src="/icon.svg" alt="" width={32} height={32} className="relative size-5 sm:size-[1.4rem]" priority />
+          <Image
+            src="/brand-mark.png"
+            alt=""
+            width={112}
+            height={112}
+            className="size-full object-contain drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)]"
+            priority
+          />
+        </span>
+      ) : (
+        // Квадратный значок в тон футеру — держит контраст и на фото,
+        // и на плотной шапке при скролле.
+        <span
+          aria-hidden="true"
+          className="relative flex size-9 shrink-0 items-center justify-center rounded-xl ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 group-hover:ring-accent/50 sm:size-10"
+        >
+          <Image src="/brand-mark.png" alt="" width={80} height={80} className="relative size-3/4 object-contain" priority />
         </span>
       )}
       <span aria-hidden="true" className="h-7 w-px shrink-0 bg-border/70 sm:h-8" />
@@ -172,7 +169,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
             type="button"
             onClick={openMenu}
             aria-expanded={menuOpen}
-            aria-label="Открыть меню"
+            aria-label="Откры��ь меню"
             /* -ml-2 + px-2: зона нажатия дорастает до 44px, штрих остаётся на месте */
             className="group -ml-2 flex min-h-11 items-center gap-3 px-2 text-foreground transition-colors hover:text-accent"
           >
