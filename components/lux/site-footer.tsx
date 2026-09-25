@@ -19,7 +19,7 @@ export async function SiteFooter() {
             <Link href="/" className="flex items-center gap-4 leading-none">
               <span
                 aria-hidden="true"
-                className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 ring-1 ring-inset ring-accent/25 sm:size-14"
+                className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent/10 ring-1 ring-inset ring-accent/25 sm:size-14"
               >
                 <Image src="/icon.svg" alt="" width={40} height={40} className="size-7 sm:size-8" />
               </span>

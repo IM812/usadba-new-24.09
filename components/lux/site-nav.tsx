@@ -21,7 +21,7 @@ function Wordmark({ className }: { className?: string }) {
           подвешенную рядом с текстом. */}
       <span
         aria-hidden="true"
-        className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 ring-1 ring-inset ring-accent/25 sm:size-11"
+        className="flex size-9 shrink-0 items-center justify-center rounded-full bg-accent/10 ring-1 ring-inset ring-accent/25 sm:size-11"
       >
         <Image src="/icon.svg" alt="" width={28} height={28} className="size-5 sm:size-6" priority />
       </span>
