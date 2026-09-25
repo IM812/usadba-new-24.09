@@ -13,17 +13,19 @@ function Wordmark({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={cn("group flex min-h-11 items-center justify-center gap-2 leading-none", className)}
+      className={cn("group flex min-h-11 items-center justify-center gap-3 leading-none", className)}
       aria-label={`${site.name} — на главную`}
     >
-      <Image
-        src="/icon.svg"
-        alt=""
-        width={28}
-        height={28}
-        className="size-6 shrink-0 sm:size-7"
-        priority
-      />
+      {/* Знак живёт в собственной плитке — мягкий акцентный фон и тонкая
+          рамка превращают линии дома в узнаваемую марку, а не в иконку,
+          подвешенную рядом с текстом. */}
+      <span
+        aria-hidden="true"
+        className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 ring-1 ring-inset ring-accent/25 sm:size-11"
+      >
+        <Image src="/icon.svg" alt="" width={28} height={28} className="size-5 sm:size-6" priority />
+      </span>
+      <span aria-hidden="true" className="h-7 w-px shrink-0 bg-border sm:h-8" />
       <span className="flex flex-col items-start">
         <span className="font-display text-[1.35rem] font-extrabold tracking-[-0.03em] text-foreground sm:text-2xl">
           Усадьба
