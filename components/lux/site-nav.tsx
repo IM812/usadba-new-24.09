@@ -16,18 +16,14 @@ function Wordmark({ className }: { className?: string }) {
       className={cn("group flex min-h-11 items-center justify-center gap-3 leading-none", className)}
       aria-label={`${site.name} — на главную`}
     >
-      {/* Мягкое акцентное сияние за знаком выделяет его на тёмной шапке
-          без «коробки» — линии дома читаются как марка, а не подвешенная иконка. */}
-      <span aria-hidden="true" className="relative flex size-8 shrink-0 items-center justify-center sm:size-9">
-        <span className="absolute inset-0 scale-150 rounded-full bg-accent/25 blur-md transition-opacity duration-300 group-hover:bg-accent/35" />
-        <Image
-          src="/icon.svg"
-          alt=""
-          width={32}
-          height={32}
-          className="relative size-8 drop-shadow-[0_1px_3px_rgba(0,0,0,0.35)] sm:size-9"
-          priority
-        />
+      {/* Печать-медальон со стеклянной подложкой: держит контраст и на фото,
+          и на плотной шапке при скролле, но не выглядит как коробка-иконка. */}
+      <span
+        aria-hidden="true"
+        className="relative flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 group-hover:ring-accent/50 sm:size-10"
+      >
+        <span className="absolute inset-0 rounded-full bg-current/[0.06]" />
+        <Image src="/icon.svg" alt="" width={32} height={32} className="relative size-5 sm:size-[1.4rem]" priority />
       </span>
       <span aria-hidden="true" className="h-7 w-px shrink-0 bg-border/70 sm:h-8" />
       <span className="flex flex-col items-start">
