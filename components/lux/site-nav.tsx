@@ -13,17 +13,19 @@ function Wordmark({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={cn("group flex min-h-11 items-center justify-center gap-2 leading-none", className)}
+      className={cn("group flex min-h-11 items-center justify-center gap-3 leading-none", className)}
       aria-label={`${site.name} — на главную`}
     >
-      <Image
-        src="/icon.svg"
-        alt=""
-        width={28}
-        height={28}
-        className="size-6 shrink-0 sm:size-7"
-        priority
-      />
+      {/* Печать-медальон со стеклянной подложкой: держит контраст и на фото,
+          и на плотной шапке при скролле, но не выглядит как коробка-иконка. */}
+      <span
+        aria-hidden="true"
+        className="relative flex size-9 shrink-0 items-center justify-center rounded-full ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 group-hover:ring-accent/50 sm:size-10"
+      >
+        <span className="absolute inset-0 rounded-full bg-current/[0.06]" />
+        <Image src="/icon.svg" alt="" width={32} height={32} className="relative size-5 sm:size-[1.4rem]" priority />
+      </span>
+      <span aria-hidden="true" className="h-7 w-px shrink-0 bg-border/70 sm:h-8" />
       <span className="flex flex-col items-start">
         <span className="font-display text-[1.35rem] font-extrabold tracking-[-0.03em] text-foreground sm:text-2xl">
           Усадьба
