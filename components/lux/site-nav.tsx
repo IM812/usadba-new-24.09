@@ -4,10 +4,45 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Phone, X } from "lucide-react"
+import { MessageCircle, Phone, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { contacts, navigation, secondaryNavigation, site } from "@/lib/site"
 import { useBooking } from "@/components/lux/booking-provider"
+
+const WHATSAPP_TEXT = encodeURIComponent("Здравствуйте! Хочу узнать о свободных датах в усадьбе.")
+
+/** Мессенджеры в фирменном стиле печати-медальона — тот же приём, что и в логотипе. */
+const socialLinks = [
+  { href: `${contacts.whatsapp}?text=${WHATSAPP_TEXT}`, label: "WhatsApp", kind: "icon" as const },
+  { href: contacts.vk, label: "ВКонтакте", kind: "text" as const, glyph: "VK" },
+]
+
+function SocialRow({ className }: { className?: string }) {
+  return (
+    <div className={cn("flex items-center gap-2.5", className)}>
+      {socialLinks.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.label}
+          title={link.label}
+          className="group relative flex size-10 shrink-0 items-center justify-center rounded-full text-foreground/80 ring-1 ring-inset ring-current/20 backdrop-blur-sm transition-colors duration-300 hover:text-accent hover:ring-accent/50"
+        >
+          <span className="absolute inset-0 rounded-full bg-current/[0.06]" aria-hidden="true" />
+          {link.kind === "icon" ? (
+            <MessageCircle className="relative size-4" aria-hidden="true" />
+          ) : (
+            <span className="relative font-display text-[0.7rem] font-bold tracking-[-0.02em]" aria-hidden="true">
+              {link.glyph}
+            </span>
+          )}
+        </a>
+      ))}
+    </div>
+  )
+}
 
 function Wordmark({ className }: { className?: string }) {
   return (
@@ -179,9 +214,10 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               <span className="eyebrow hidden sm:inline">Закрыть</span>
             </button>
             <Wordmark className="absolute left-1/2 -translate-x-1/2" />
-            <span className="eyebrow hidden text-muted-foreground lg:inline">
-              {site.region}
-            </span>
+            <div className="hidden flex-col items-end gap-3 lg:flex">
+              <span className="eyebrow text-muted-foreground">{site.region}</span>
+              <SocialRow />
+            </div>
           </div>
 
           <div className="mx-auto grid min-h-0 w-full max-w-[1600px] flex-1 gap-7 px-4 pb-8 pt-2 min-[390px]:px-5 sm:px-8 sm:pb-16 sm:pt-6 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:px-12 lg:pb-6 lg:pt-2">
