@@ -4,7 +4,7 @@ import {
   LegalDate,
   LegalDocument,
   LegalList,
-  LegalNumberedList,
+  LegalNote,
   LegalParagraph,
   LegalSection,
   LegalTable,
@@ -141,14 +141,10 @@ export default function PrivacyPage() {
         />
       </LegalSection>
 
-      <LegalSection title="Обобщённые номера">
-        <LegalNumberedList
-          items={[
-            "Действующая редакция Политики доступна по адресу https://снять.усадьбу.рф/privacy.",
-            "Дата публикации: 28 сентября 2026 года.",
-          ]}
-        />
-      </LegalSection>
+      <LegalNote>
+        Действующая редакция настоящей Политики доступна по адресу{" "}
+        <span className="whitespace-nowrap">https://снять.усадьбу.рф/privacy</span>.
+      </LegalNote>
     </LegalDocument>
   )
 }
