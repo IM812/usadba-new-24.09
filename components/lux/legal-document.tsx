@@ -100,8 +100,8 @@ export function LegalNumberedList({ items }: { items: string[] }) {
   )
 }
 
-export function LegalDate() {
-  return <p className="text-sm text-muted-foreground">Дата публикации: 24 сентября 2026 года</p>
+export function LegalDate({ date = "28 сентября 2026 года" }: { date?: string }) {
+  return <p className="text-sm text-muted-foreground">Дата публикации: {date}</p>
 }
 
 export function LegalContact() {

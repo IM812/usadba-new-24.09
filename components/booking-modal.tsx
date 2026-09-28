@@ -45,6 +45,7 @@ type FormState = {
   spaSessions: number
   name: string
   phone: string
+  consent: boolean
 }
 
 const emptyForm: FormState = {
@@ -54,6 +55,7 @@ const emptyForm: FormState = {
   spaSessions: 0,
   name: "",
   phone: "",
+  consent: false,
 }
 
 // ---------------------------------------------------------------------------
@@ -467,7 +469,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
         setBusyRanges(data.ranges)
       } else {
         setBusyRanges([])
-        setAvailError("Занятые даты временно недоступны — уточните у нас перед бронированием.")
+        setAvailError("За��ятые даты временно недоступны — уточните у нас перед бронированием.")
       }
       // Load settings + seasonal prices from the same response
       if (data.settings) setAppSettings(data.settings)
@@ -560,7 +562,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
     form.guests !== "" &&
     !selectionOverlapsBusy(form.arrival, form.departure, busyRanges)
 
-  const step2Valid = form.name.trim() !== "" && form.phone.trim().length >= 6
+  const step2Valid = form.name.trim() !== "" && form.phone.trim().length >= 6 && form.consent
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -955,6 +957,36 @@ export function BookingModal({ open, onClose, prefill }: Props) {
                       )
                     })()}
                   </div>
+
+                  <label className="flex items-start gap-2.5 text-xs leading-relaxed text-muted-foreground">
+                    <input
+                      type="checkbox"
+                      checked={form.consent}
+                      onChange={(e) => update("consent", e.target.checked)}
+                      className="mt-0.5 size-4 shrink-0 rounded border-input text-primary accent-primary outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+                      required
+                    />
+                    <span>
+                      Я даю{" "}
+                      <a
+                        href="/consent"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary underline-offset-2 hover:underline"
+                      >
+                        согласие на обработку персональных данных
+                      </a>{" "}
+                      и подтверждаю ознакомление с{" "}
+                      <a
+                        href="/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary underline-offset-2 hover:underline"
+                      >
+                        политикой конфиденциальности
+                      </a>
+                    </span>
+                  </label>
 
                   {error && (
                     <p className="rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive">
