@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import {
-  LegalContact,
   LegalDate,
   LegalDocument,
   LegalList,
@@ -115,7 +114,7 @@ export default function PrivacyPage() {
       <LegalSection title="10. Меры защиты">
         <LegalParagraph>
           Оператор принимает организационные и технические меры для защиты персональных данных от неправомерного или
-          случайного доступа, изменения, копирования, распространения и иных неправомерных действий.
+          случайного доступа, изменения, копирования, ��аспространения и иных неправомерных действий.
         </LegalParagraph>
       </LegalSection>
 
@@ -125,7 +124,6 @@ export default function PrivacyPage() {
           вправе изменять настоящую Политику. Новая редакция вступает в силу с момента публикации на сайте, если иное
           не предусмотрено новой редакцией.
         </LegalParagraph>
-        <LegalContact />
       </LegalSection>
 
       <LegalSection title="Реквизиты Оператора">
