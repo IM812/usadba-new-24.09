@@ -103,15 +103,3 @@ export function LegalNumberedList({ items }: { items: string[] }) {
 export function LegalDate({ date = "28 сентября 2026 года" }: { date?: string }) {
   return <p className="text-sm text-muted-foreground">Дата публикации: {date}</p>
 }
-
-export function LegalContact() {
-  return (
-    <LegalNote>
-      По вопросам обработки персональных данных можно обратиться по телефону{" "}
-      <a className="whitespace-nowrap text-accent underline underline-offset-4" href="tel:+79951558842">
-        +7 (995) 155-88-42
-      </a>{" "}
-      или через WhatsApp.
-    </LegalNote>
-  )
-}
