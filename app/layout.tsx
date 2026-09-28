@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Inter, Manrope } from 'next/font/google'
+import { CookieBanner } from '@/components/cookie-banner'
 import { SITE_URL } from '@/lib/site'
 import './globals.css'
 
@@ -82,6 +83,7 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground font-sans antialiased">
         {children}
+        <CookieBanner />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
