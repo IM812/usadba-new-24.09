@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/server'
 import { fetchAvitoRanges, rangesOverlap } from '@/lib/ics'
 import { spaSurcharge } from '@/lib/site'
-import { isWeekendNight, priceForNight, type AvailabilitySettings, type SeasonalPrice } from '@/lib/availability'
+import { applySingleNightSurcharge, isWeekendNight, priceForNight, type AvailabilitySettings, type SeasonalPrice } from '@/lib/availability'
 
 /** Больше двадцати топок за заезд — явная ошибка ввода, а не заказ. */
 const MAX_SPA_SESSIONS = 20
@@ -52,7 +52,7 @@ function calcPrice(
   for (let i = 0; i < nights; i++) {
     const d = new Date(start)
     d.setDate(d.getDate() + i)
-    const price = priceForNight(d, seasons, settings)
+    const price = applySingleNightSurcharge(d, priceForNight(d, seasons, settings), nights)
     total += price
     nightsList.push({ date: d, price, weekend: isWeekendNight(d) })
   }

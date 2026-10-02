@@ -19,6 +19,7 @@ import {
 import type { BusyRange } from "@/app/api/availability/route"
 import { todayKey } from "@/lib/date"
 import { spaSurcharge } from "@/lib/site"
+import { applySingleNightSurcharge } from "@/lib/availability"
 
 // ---------------------------------------------------------------------------
 // Types
@@ -198,7 +199,11 @@ function calculatePrice(
     const d = new Date(start)
     d.setDate(d.getDate() + i)
     nightPrices.push(
-      getSeasonalNightPrice(d, seasons, settings.base_price, settings.weekend_price)
+      applySingleNightSurcharge(
+        d,
+        getSeasonalNightPrice(d, seasons, settings.base_price, settings.weekend_price),
+        nights,
+      )
     )
   }
 
@@ -671,7 +676,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
             </div>
             <h3 className="font-display text-2xl text-foreground">Заявка отправлена!</h3>
             <p className="max-w-sm text-pretty text-muted-foreground leading-relaxed">
-              Спасибо, {form.name.trim() || "гость"}! Мы свяжемся с вами по номеру {form.phone}{" "}
+              Спасибо, {form.name.trim() || "гость"}! М�� свяжемся с вами по номеру {form.phone}{" "}
               для подтверждения бронирования с {formatDate(form.arrival)} по{" "}
               {formatDate(form.departure)}.
             </p>
