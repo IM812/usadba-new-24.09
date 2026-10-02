@@ -102,6 +102,18 @@ export function priceForNight(
   return isWeekendNight(d) ? settings.weekend_price : settings.base_price
 }
 
+/**
+ * Надбавка за одну ночь в выходные (пт/сб):
+ * высокий сезон (1 мая — 30 сентября) +50%, остальное время +20%.
+ * Применяется только если в бронировании ровно одна ночь.
+ */
+export function applySingleNightSurcharge(d: Date, price: number, totalNights: number): number {
+  if (totalNights !== 1 || !isWeekendNight(d)) return price
+  const month = d.getMonth() + 1
+  const rate = month >= 5 && month <= 9 ? 1.5 : 1.2
+  return Math.round(price * rate)
+}
+
 export type Quote = {
   nights: number
   nightsTotal: number
@@ -126,7 +138,7 @@ export function quoteStay(
   let minimumNights = settings.minimum_nights
   for (let i = 0; i < nights; i++) {
     const night = addDays(checkIn, i)
-    nightsTotal += priceForNight(night, seasons, settings)
+    nightsTotal += applySingleNightSurcharge(night, priceForNight(night, seasons, settings), nights)
     minimumNights = Math.max(minimumNights, minimumNightsForDate(night, seasons, settings))
   }
 
