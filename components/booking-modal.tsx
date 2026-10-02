@@ -474,7 +474,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
         setBusyRanges(data.ranges)
       } else {
         setBusyRanges([])
-        setAvailError("За��ятые даты временно недоступны — уточните у нас перед бронированием.")
+        setAvailError("Занятые даты временно недоступны — уточните у нас перед бронированием.")
       }
       // Load settings + seasonal prices from the same response
       if (data.settings) setAppSettings(data.settings)
@@ -676,7 +676,7 @@ export function BookingModal({ open, onClose, prefill }: Props) {
             </div>
             <h3 className="font-display text-2xl text-foreground">Заявка отправлена!</h3>
             <p className="max-w-sm text-pretty text-muted-foreground leading-relaxed">
-              Спасибо, {form.name.trim() || "гость"}! М�� свяжемся с вами по номеру {form.phone}{" "}
+              Спасибо, {form.name.trim() || "гость"}! Мы свяжемся с вами по номеру {form.phone}{" "}
               для подтверждения бронирования с {formatDate(form.arrival)} по{" "}
               {formatDate(form.departure)}.
             </p>

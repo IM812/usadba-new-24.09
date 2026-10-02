@@ -169,7 +169,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
             type="button"
             onClick={openMenu}
             aria-expanded={menuOpen}
-            aria-label="Откры��ь меню"
+            aria-label="Открыть меню"
             /* -ml-2 + px-2: зона нажатия дорастает до 44px, штрих остаётся на месте */
             className="group -ml-2 flex min-h-11 items-center gap-3 px-2 text-foreground transition-colors hover:text-accent"
           >
@@ -197,7 +197,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
               type="button"
               onClick={() => openBooking()}
               /* Залитая лаймовая пилюля обычным кеглем — главное действие
-                 должно читаться ��ак кнопка, а не как капительная надпись. */
+                 должно читаться как кнопка, а не как капительная надпись. */
               className="inline-flex min-h-11 shrink-0 items-center rounded-full bg-accent px-3 text-[12px] font-semibold tracking-[-0.01em] text-accent-foreground transition-all duration-200 hover:brightness-110 active:scale-[0.97] min-[390px]:px-4 min-[390px]:text-[13px] sm:px-6 sm:text-[14px]"
             >
               <span className="min-[360px]:hidden">Даты</span>
@@ -271,7 +271,7 @@ export function SiteNav({ transparent = true }: { transparent?: boolean }) {
                 {everOpened ? (
                   <Image
                     src="/images/estate/house-autumn.jpg"
-                    alt="Дере��янный дом усадьбы среди золотой осенней листвы"
+                    alt="Деревянный дом усадьбы среди золотой осенней листвы"
                     fill
                     sizes="(max-width: 1024px) 60vw, 30vw"
                     className={cn(
